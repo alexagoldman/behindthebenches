@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html>
+<title>Behind The Bench</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-white w3-large" style="z-index:4">
+  <span class="w3-bar-item w3-left"><img src="behindthebench.png" alt="HTML5 Icon" style="width:60px;height:60px;"></img></span> 
+  <span class="w3-bar-item w3-center"><h3>Behind The Bench</h3></span>
+  <span class="w3-right"><button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i></button></span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-white w3-collapse w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <h5>Leagues</h5>
+  </div>
+
+  <div class="w3-bar-block">
+    <a onclick="myFunction('NHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> NHL <i class="fa fa-caret-down"></i></a>
+    <div id="NHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#" class="w3-bar-item w3-button w3-padding">ANA</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">ARI</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">BOS</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">BUF</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">CGY</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">CAR</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">CHI</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">COL</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">CBJ</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">DAL</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">DET</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">EDM</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">FLA</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">LAK</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">MIN</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">MTL</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">NSH</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">NJD</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">NYI</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">NYR</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">OTT</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">PHI</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">PIT</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">SJS</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">STL</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">TBL</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">TOR</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">VAN</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">VGK</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">WSH</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding">WPG</a>
+    </div>
+
+    <a onclick="myFunction('AHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> AHL <i class="fa fa-caret-down"></i></a>
+    <div id="AHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#" class="w3-bar-item w3-button w3-padding">Coming Soon</a>
+    </div>
+
+    <a onclick="myFunction('NWHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> NWHL <i class="fa fa-caret-down"></i></a>
+    <div id="NWHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#" class="w3-bar-item w3-button w3-padding">Coming Soon</a>
+    </div>
+
+    <a onclick="myFunction('CWHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> CWHL <i class="fa fa-caret-down"></i></a>
+    <div id="CWHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#" class="w3-bar-item w3-button w3-padding">Coming Soon</a>
+    </div>
+  </div>
+  <br><br><br><br>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:200px;margin-top:75px;">
+
+
+  <hr>
+  
+  <div class="w3-container w3-responsive">
+    <h4 class="w3-center">2018-2017 NHL Coaches</h4>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>ANA</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href="ANA.html">Randy Carlyle</a></td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Steve Konowalchuk</td>
+        <td>Forwards, PP</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Mark Morrison</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Rich Preston</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Sudarshan Maharaj</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Joe Piscotty</td>
+        <td>Video</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>ARI</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href="ARI.html">Rick Tocchet</a></td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>John MacLean</td>
+        <td>Forwards, PP, Skills, 5-on-5 systems</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Scott Allen</td>
+        <td>Defense</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Corey Schwab</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Prospect Goaltending</td>
+        <td>Jon Elkin</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Steve Peters</td>
+        <td>Video</td>
+      </tr>
+      <tr>
+        <td>Skating</td>
+        <td>Dawn Braid</td>
+        <td>Skating</td>
+      </tr>
+      <tr>
+        <td>Euro Player Development</td>
+        <td>Brett Stewart</td>
+        <td>Euro Development</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>BOS</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href="BOS.html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>BUF</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>CGY</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>CAR</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+     <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>CHI</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>COL</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>CBJ</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>DAL</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>DET</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>EDM</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>FLA</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+    <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>LAK</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>MIN</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>MTL</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>NSH</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>NJD</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>NYI</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>NYR</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>OTT</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>PHI</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>PIT</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>SJS</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>STL</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>TBL</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>TOR</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>VAN</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>VGK</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>WSH</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
+      <tr class="w3-dark-grey"><b><u>WPG</u></b></tr>
+      <tr class="w3-dark-grey">
+        <th>Position</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Head</td>
+        <td><a href=".html"></a></td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </div>
+  <hr>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-center w3-padding-16 w3-dark-grey">
+    <h4><a href="https://www.behindthebench.com" target="_blank">Behind The Bench</a></h4>
+    <p><a href="mailto:example@email.com">behindthebench@gmail.com</a></p>
+    <p>Twitter: <a href="https://www.twitter.com/benchBos" target="_blank">@benchBos</a></p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script>
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace("w3-black", "w3-red");
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace("w3-red", "w3-black");
+    }
+}
+
+function w3_open() {
+    if (document.getElementById("mySidebar").style.display === 'block') {
+        document.getElementById("mySidebar").style.display = 'none';
+        document.getElementById("myOverlay").style.display = "none";
+    } else {
+        document.getElementById("mySidebar").style.display = 'block';
+        document.getElementById("myOverlay").style.display = "block";
+    }
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
