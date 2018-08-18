@@ -1,0 +1,1921 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behind the Benches</title>
+  <base target="_self">
+  <meta name="description" content="How to make a fixed sidebar and flexible content area layout with Bootstrap 3." />
+  <meta name="google" value="notranslate">
+  <link rel="icon" href="./../images/behindthebenches.ico">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">body,html,.row-offcanvas {
+  height:100%;
+}
+
+body {
+  padding-top: 50px;
+}
+#sidebar {
+  width: inherit;
+  min-width: 220px;
+  max-width: 220px;
+  background-color:#f5f5f5;
+  float: left;
+  height:100%;
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+.list-unstyled {
+  font-size: 10px;
+}
+
+#BHB {
+  color: white;
+}
+
+a:hover {
+  color: purple;
+}
+
+#main {
+  height:100%;
+  overflow:auto;
+}
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+/*
+ * off Canvas sidebar
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    width:calc(100% + 220px);
+  }
+    
+  .row-offcanvas-left
+  {
+    left: -220px;
+  }
+
+  .row-offcanvas-left.active {
+    left: 0;
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+  }
+}
+</style>
+
+</head>
+<body>
+  
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="BHB" href="./../"><img src="./../images/behindthebenches.png" alt="HTML5 Icon" style="width:1.5em;"></img> Behind the Benches</a>
+    </div>
+   <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="./index.html">NHL</a></li>
+        <li><a href="./../NWHL/index.html">NWHL</a></li>
+        <li><a href="./../CWHL/index.html">CWHL</a></li>
+        <li><a href="./../AHL/index.html">AHL</a></li>
+        <li><a href="./../NCAA/index.html">NCAA</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+</div><!--/.navbar -->
+
+
+<div class="row-offcanvas row-offcanvas-left">
+  <div id="sidebar" class="sidebar-offcanvas">
+      <div class="col-md-12">
+        <h3>Leagues</h3>
+        <ul class="nav nav-pills nav-stacked">
+        <li class="nav-item">
+          <a class="nav-link" href="./index.html">NHL Coaches</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-1">NHL Teams ▾</a>
+            <div id="item-1" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="./ANA.html"><img src="./../images/ana.png" alt="HTML5 Icon" style="width:1.5em;"></img> ANA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./ARI.html"><img src="./../images/ari.png" alt="HTML5 Icon" style="width:1.5em;"></img> ARI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./BOS.html"><img src="./../images/bos.png" alt="HTML5 Icon" style="width:1.5em;"></img> BOS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./BUF.html"><img src="./../images/buf.png" alt="HTML5 Icon" style="width:1.5em;"></img> BUF</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./CGY.html"><img src="./../images/cgy.png" alt="HTML5 Icon" style="width:1.5em;"></img> CGY</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./CAR.html"><img src="./../images/car.png" alt="HTML5 Icon" style="width:1.5em;"></img> CAR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./CHI.html"><img src="./../images/chi.png" alt="HTML5 Icon" style="width:1.5em;"></img> CHI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./COL.html"><img src="./../images/col.png" alt="HTML5 Icon" style="width:1.5em;"></img> COL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./CBJ.html"><img src="./../images/cbj.png" alt="HTML5 Icon" style="width:1.5em;"></img> CBJ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./DAL.html"><img src="./../images/dal.png" alt="HTML5 Icon" style="width:1.5em;"></img> DAL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./DET.html"><img src="./../images/det.png" alt="HTML5 Icon" style="width:1.5em;"></img> DET</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./EDM.html"><img src="./../images/edm.png" alt="HTML5 Icon" style="width:1.5em;"></img> EDM</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./FLA.html"><img src="./../images/fla.png" alt="HTML5 Icon" style="width:1.5em;"></img> FLA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./LAK.html"><img src="./../images/lak.png" alt="HTML5 Icon" style="width:1.5em;"></img> LAK</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./MIN.html"><img src="./../images/min.png" alt="HTML5 Icon" style="width:1.5em;"></img> MIN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./MTL.html"><img src="./../images/mtl.png" alt="HTML5 Icon" style="width:1.5em;"></img> MTL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./NSH.html"><img src="./../images/nsh.png" alt="HTML5 Icon" style="width:1.5em;"></img> NSH</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./NJD.html"><img src="./../images/njd.png" alt="HTML5 Icon" style="width:1.5em;"></img> NJD</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./NYI.html"><img src="./../images/nyi.png" alt="HTML5 Icon" style="width:1.5em;"></img> NYI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./NYR.html"><img src="./../images/nyr.png" alt="HTML5 Icon" style="width:1.5em;"></img> NYR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./OTT.html"><img src="./../images/ott.png" alt="HTML5 Icon" style="width:1.5em;"></img> OTT</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./PHI.html"><img src="./../images/phi.png" alt="HTML5 Icon" style="width:1.5em;"></img> PHI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./PIT.html"><img src="./../images/pit.png" alt="HTML5 Icon" style="width:1.5em;"></img> PIT</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./SJS.html"><img src="./../images/sjs.png" alt="HTML5 Icon" style="width:1.5em;"></img> SJS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./STL.html"><img src="./../images/stl.png" alt="HTML5 Icon" style="width:1.5em;"></img> STL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./TBL.html"><img src="./../images/tbl.png" alt="HTML5 Icon" style="width:1.5em;"></img> TBL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./TOR.html"><img src="./../images/tor.png" alt="HTML5 Icon" style="width:1.5em;"></img> TOR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./VAN.html"><img src="./../images/van.png" alt="HTML5 Icon" style="width:1.5em;"></img> VAN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./VGK.html"><img src="./../images/vgk.png" alt="HTML5 Icon" style="width:1.5em;"></img> VGK</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./WSH.html"><img src="./../images/wsh.png" alt="HTML5 Icon" style="width:1.5em;"></img> WSH</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./WPG.html"><img src="./../images/wpg.png" alt="HTML5 Icon" style="width:1.5em;"></img> WPG</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-2">NWHL ▾</a>
+            <div id="item-2" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-3">CWHL ▾</a>
+            <div id="item-3" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-4">AHL ▾</a>
+            <div id="item-4" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-5">NCAA ▾</a>
+            <div id="item-5" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <br><br><br>
+        </ul>
+      </div>
+  </div>
+  <div id="main">
+      <div class="col-md-12"><br>
+        <p class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+          </p>
+          <h1 class="text-center">2018 - 2019 NHL Coaches</h1>
+          <br>
+
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: black; color: white; font-size: 25px"><img src="./../images/ana.png" alt="HTML5 Icon" style="width:1.5em;"></img> Anaheim Ducks </caption>
+      <thead style="background: rgb(252,76,2); color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./ANA.html">Randy Carlyle</a></td>
+        <td>2016 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Marty Wilford</td>
+        <td>2018 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Mark Morrison</td>
+        <td>2017 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Rich Preston</td>
+        <td>2015 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Sudarshan Maharaj</td>
+        <td>2016 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Joe Piscotty</td>
+        <td>2011 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: black; color: white; font-size: 25px"><img src="./../images/ari.png" alt="HTML5 Icon" style="width:1.5em;"></img> Arizona Coyotes </caption>
+      <thead style="background: rgb(140,38,51); color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./ARI.html">Rick Tocchet</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>John MacLean</td>
+        <td>2017 - Present</td>
+        <td>Forwards, Power Play, Skills</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Scott Allen</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Corey Schwab</td>
+        <td>2015 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Steve Peters</td>
+        <td>1996 - Present</td>
+        <td>Video</td>
+      </tr>
+      <tr>
+        <td>Skating</td>
+        <td>Dawn Braid</td>
+        <td>2015 - Present</td>
+        <td>Skating</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: black; color: white; font-size: 25px"><img src="./../images/BOS.png" alt="HTML5 Icon" style="width:1.5em;"></img> Boston Bruins </caption>
+      <thead style="background: rgb(252,181,20); color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./BOS.html">Bruce Cassidy</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Jay Pandolfo</td>
+        <td>2016 - Present</td>
+        <td>Eye in the sky, Forwards</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td><a href="./COL.html">Joe Sacco</a></td>
+        <td>2014 - Present</td>
+        <td>Forwads, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Kevin Dean</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Bob Essensa</td>
+        <td>2003 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>J.P. Buckley</td>
+        <td>2015 - Present</td>
+        <td>Video</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: rgb(0,38,84); color: white; font-size: 25px"><img src="./../images/BUF.png" alt="HTML5 Icon" style="width:1.5em;"></img> Buffalo Sabres </caption>
+      <thead style="background: rgb(252,181,20); color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./BUF.html">Phil Housley</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td><a href="./STL.html">Davis Payne</a></td>
+        <td>2017 - Present</td>
+        <td>Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Tom Ward</td>
+        <td>2016 - Present</td>
+        <td>Eye in the sky, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Chris Hajt</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Andrew Allen </td>
+        <td>2015 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Mat Myers</td>
+        <td>2017 - Present</td>
+        <td>Video</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: rgb(200, 16, 46); color: white; font-size: 25px"><img src="./../images/CGY.png" alt="HTML5 Icon" style="width:1.5em;"></img> Calgary Flames </caption>
+      <thead style="background: rgb(241, 190, 72); color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./CGY.html">Bill Peters</a></td>
+        <td>2018 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Martin Gelinas</td>
+        <td>2012 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Geoff Ward</td>
+        <td>2018 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Ryan Huska</td>
+        <td>2018 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Jordan Sigalet</td>
+        <td>2014 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Jamie Pringle</td>
+        <td>2011 - Present</td>
+        <td>Video</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: black; color: white; font-size: 25px"><img src="./../images/CAR.png" alt="HTML5 Icon" style="width:1.5em;"></img> Carolina Hurricanes </caption>
+      <thead style="background: #CC0000; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+     <tr>
+        <td>Head</td>
+        <td><a href="./CAR.html">Rod Brind'Amour</a></td>
+        <td>2018 - Present</td>
+        <td>Head</td>
+      </tr>
+       <tr>
+        <td>Assistant</td>
+        <td>Dean Chynoweth</td>
+        <td>2018 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Jeff Daniels</td>
+        <td>2018 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Mike Bales</td>
+        <td>2017 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Chris Huffine</td>
+        <td>1997 - Present</td>
+        <td>Video</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>LJ Scarpace</td>
+        <td>2017 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #CF0A2C; color: white; font-size: 25px"><img src="./../images/CHI.png" alt="HTML5 Icon" style="width:1.5em;"></img> Chicago Blackhawks </caption>
+      <thead style="background: black; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./CHI.html">Joel Quenneville</a></td>
+        <td>2008 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Don Granato</td>
+        <td>2017 - Present</td>
+        <td>Developmental</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Ulf Samuelsson</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Kevin Dineen</td>
+        <td>2014 - Present</td>
+        <td>Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Jimmy Waite</td>
+        <td>2014 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Matt Meacham</td>
+        <td>2014 - Present</td>
+        <td>Video</td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #6F263D; color: white; font-size: 25px"><img src="./../images/COL.png" alt="HTML5 Icon" style="width:1.5em;"></img> Colorado Avalanche </caption>
+      <thead style="background: #236192; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./COL.html">Jared Bednar</a></td>
+        <td>2016 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Ray Bennett</td>
+        <td>2017 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Nolan Pratt</td>
+        <td>2016 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Jussi Parkila</td>
+        <td>2017 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Brett Heimlich</td>
+        <td>2017 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #002654; color: white; font-size: 25px"><img src="./../images/CBJ.png" alt="HTML5 Icon" style="width:1.5em;"></img> Columbus Blue Jackets </caption>
+      <thead style="background: #CE1126; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./CBJ.html">John Tortorella</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Brad Larsen</td>
+        <td>2014 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Kenny McCudden</td>
+        <td>2015 - Present</td>
+        <td>Skills</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Brad Shaw</td>
+        <td>2016 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Manny Legace</td>
+        <td>2018 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Dan Singleton</td>
+        <td>2000 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #006847; color: white; font-size: 25px"><img src="./../images/DAL.png" alt="HTML5 Icon" style="width:1.5em;"></img> Dallas Stars </caption>
+      <thead style="background: black; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./DAL.html">Jim Montgomery</a></td>
+        <td>2018 - Present</td>
+        <td>Head</td>
+      </tr>
+       <tr>
+        <td>Assistant</td>
+        <td>Todd Nelson</td>
+        <td>2018 - Present</td>
+        <td>Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Stu Barnes</td>
+        <td>2017 - Present</td>
+        <td>5-on-5 Play</td>
+      </tr>
+       <tr>
+        <td>Assistant</td>
+        <td>Rick Bowness</td>
+        <td>2018-Present</td>
+        <td>Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Jeff Reese</td>
+        <td>2015 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Kelly Forbes</td>
+        <td>2010 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #CE1126; color: white; font-size: 25px"><img src="./../images/DET.png" alt="HTML5 Icon" style="width:1.5em;"></img> Detroit Red Wings </caption>
+      <thead style="background: white; color: #CE1126;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./DET.html">Jeff Blashill</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td><a href="./BUF.html">Dan Byslma</a></td>
+        <td>2018 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Pat Fershweiler</td>
+        <td>2015 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Doug Houda</td>
+        <td>2016 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Jeff Salajko</td>
+        <td>2016 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Adam Nightingale</td>
+        <td>2017 - Present</td>
+        <td>Video</td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #041E42; color: white; font-size: 25px"><img src="./../images/EDM.png" alt="HTML5 Icon" style="width:1.5em;"></img> Edmonton Oilers </caption>
+      <thead style="background:  #FF4C00; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./EDM.html">Todd McLellan</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td><a href="./CGY.html">Glen Gulutzan</a></td>
+        <td>2018 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Manny Viveiros</td>
+        <td>2018 - Present</td>
+        <td>Eye in the sky, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Trent Yawney</td>
+        <td>2018 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Dustin Schwartz</td>
+        <td>2014 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Jeremy Coupal</td>
+        <td>2016 - Present</td>
+        <td>Video</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #C8102E; color: white; font-size: 25px"><img src="./../images/FLA.png" alt="HTML5 Icon" style="width:1.5em;"></img> Florida Panthers </caption>
+      <thead style="background: #041E42; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./FLA.html">Bob Boughner</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Associate</td>
+        <td><a href="./NYI.html">Jack Capuano</a></td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Paul McFarland</td>
+        <td>2017 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Rob Tallas</td>
+        <td>2009 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Ben Cooper</td>
+        <td>2017 - Present</td>
+        <td>Video</td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: black; color: white; font-size: 25px"><img src="./../images/LAK.png" alt="HTML5 Icon" style="width:1.5em;"></img> Los Angeles Kings </caption>
+      <thead style="background: #A2AAAD; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./LAK.html">John Stevens</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Dave Lowry</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Don Nachbaur</td>
+        <td>2017 - Present</td>
+        <td>Eye in the sky, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Bill Ranford</td>
+        <td>2006 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #154734; color: white; font-size: 25px"><img src="./../images/MIN.png" alt="HTML5 Icon" style="width:1.5em;"></img> Minnesota Wild </caption>
+      <thead style="background: #DDCBA4; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./MIN.html">Bruce Boudreau</a></td>
+        <td>2016 - Present</td>
+        <td>Head</td>
+      </tr>
+       <tr>
+        <td>Assistant</td>
+        <td>Dean Evason</td>
+        <td>2018 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Darby Hendrickson</td>
+        <td>2011 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Bob Woods</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Bob Mason</td>
+        <td>2005 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Jonas Plumb</td>
+        <td>2015 - Present</td>
+        <td>Video</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background:  #AF1E2D; color: white; font-size: 25px"><img src="./../images/MTL.png" alt="HTML5 Icon" style="width:1.5em;"></img> Montreal Canadiens </caption>
+      <thead style="background: #192168; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./MTL.html">Claude Julien</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Associate</td>
+        <td>Kirk Muller</td>
+        <td>2016 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Luke Richardson</td>
+        <td>2018 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Dominique Ducharme</td>
+        <td>2018 - Present</td>
+        <td>Roving strategist</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Stephane Waite</td>
+        <td>2013 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Mario LeBlanc</td>
+        <td>2010 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #FFB81C; color: white; font-size: 25px"><img src="./../images/NSH.png" alt="HTML5 Icon" style="width:1.5em;"></img> Nashville Predators </caption>
+      <thead style="background: #192168; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      </tr>
+       <td>Head</td>
+        <td><a href="./NSH.html">Peter Laviolette</a></td>
+        <td>2014 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Associate</td>
+        <td>Kevin McCarthy</td>
+        <td>2014 - Present</td>
+        <td>Defense, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Dan Muse</td>
+        <td>2017 - Present</td>
+        <td>Forwards, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Ben Vanderklock</td>
+        <td>2014 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Lawrence Feloney</td>
+        <td>2015 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #CE1126; color: white; font-size: 25px"><img src="./../images/NJD.png" alt="HTML5 Icon" style="width:1.5em;"></img> New Jersey Devils </caption>
+      <thead style="background: black; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./NJD.html">John Hynes</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      
+      <tr>
+        <td>Assistant</td>
+        <td>Alain Nasreddine</td>
+        <td>2015 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Rick Kowalsky</td>
+        <td>2018 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Mike Grier</td>
+        <td>2018 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Roland Melanson</td>
+        <td>2017 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #00539B; color: white; font-size: 25px"><img src="./../images/NYI.png" alt="HTML5 Icon" style="width:1.5em;"></img> New York Islanders </caption>
+      <thead style="background: #F47D30; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./NYI.html">Barry Trotz</a></td>
+        <td>2018 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Lane Lambert</td>
+        <td>2018 - Present</td>
+        <td>Forwards, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Scott Gomez</td>
+        <td>2017 - Present</td>
+        <td>Eye in the sky, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>John Gruden</td>
+        <td>2018 - Present</td>
+        <td>Defense, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Piero Greco</td>
+        <td>2018 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Matt Bertani</td>
+        <td>2013 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #0038A8; color: white; font-size: 25px"><img src="./../images/NYR.png" alt="HTML5 Icon" style="width:1.5em;"></img> New York Rangers </caption>
+      <thead style="background: #CE1126; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./NYR.html">David Quinn</a></td>
+        <td>2018 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td><a href="./DAL.html">Lindy Ruff</a></td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>David Oliver</td>
+        <td>2018 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Greg Brown</td>
+        <td>2018 - Present</td>
+        <td>Defense, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Benoit Allaire</td>
+        <td>2004 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Jerry Dineen</td>
+        <td>2003 - Present</td>
+        <td>Video</td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background:#E31837; color: white; font-size: 25px"><img src="./../images/OTT.png" alt="HTML5 Icon" style="width:1.5em;"></img> Ottawa Senators </caption>
+      <thead style="background: black; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./OTT.html">Guy Boucher</a></td>
+        <td>2016 - Present</td>
+        <td>Head, Power Play</td>
+      </tr>
+      <tr>
+        <td>Associate</td>
+        <td><a href="./DAL.html">Marc Crawford</a></td>
+        <td>2016 - Present</td>
+        <td>Defense</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Rob Cookson</td>
+        <td>2016 - Present</td>
+        <td>Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Martin Raymond</td>
+        <td>2016 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Pierre Groulx</td>
+        <td>2016 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Kristopher Young</td>
+        <td>2016 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #F74902; color: white; font-size: 25px"><img src="./../images/PHI.png" alt="HTML5 Icon" style="width:1.5em;"></img> Philadelphia Flyers </caption>
+      <thead style="background: black; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./PHI.html">Dave Hakstol</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Gord Murphy</td>
+        <td>2014 - Present</td>
+        <td>Defense</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Kris Knoblauch</td>
+        <td>2017 - Present</td>
+        <td>Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Ian Laperriere</td>
+        <td>2013 - Present</td>
+        <td>Forwards, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Kim Dillabaugh</td>
+        <td>2015 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Adam Patterson</td>
+        <td>2009 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: black; color: white; font-size: 25px"><img src="./../images/PIT.png" alt="HTML5 Icon" style="width:1.5em;"></img> Pittsburgh Penguins </caption>
+      <thead style="background: #FCB514; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+       <tr>
+        <td>Head</td>
+        <td><a href="NHL/PIT.html">Mike Sullivan</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Sergei Gonchar</td>
+        <td>2017 - Present</td>
+        <td>Defense, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Jacques Martin</td>
+        <td>2015 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Mark Recchi</td>
+        <td>2017 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Mike Buckley</td>
+        <td>2017 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Andy Saucier</td>
+        <td>2012 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #006D75; color: white; font-size: 25px"><img src="./../images/SJS.png" alt="HTML5 Icon" style="width:1.5em;"></img> San Jose Sharks </caption>
+      <thead style="background: black; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./SJS.html">Peter DeBoer</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Steve Spott</td>
+        <td>2015 - Present</td>
+        <td>Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Rob Zettler</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Dave Barr</td>
+        <td>2017 - Present</td>
+        <td>Eye in the sky, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Johan Hedberg</td>
+        <td>2015 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Dan Darrow</td>
+        <td>2015 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #002F87; color: white; font-size: 25px"><img src="./../images/STL.png" alt="HTML5 Icon" style="width:1.5em;"></img> St. Louis Blues </caption>
+      <thead style="background: #FCB514; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./STL.html">Mike Yeo</a></td>
+        <td>2016 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Associate</td>
+        <td><a href="./PHI.html">Craig Berube</a></td>
+        <td>2017 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Darryl Sydor</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Steve Ott</td>
+        <td>2017 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Daniel Tkaczuk</td>
+        <td>2017 - Present</td>
+        <td>Skills</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>David Alexander</td>
+        <td>2017 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Sean Ferrell</td>
+        <td>2013 - Present</td>
+        <td>Video</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: white; color: #002868; font-size: 25px; border: solid 1px #002868;"><img src="./../images/TBL.png" alt="HTML5 Icon" style="width:1.5em;"></img> Tampa Bay Lightning </caption>
+      <thead style="background: #002868; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./TBL.html">Jon Cooper</a></td>
+        <td>2013 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td><a href="./CBJ.html">Todd Richards</a></td>
+        <td>2016 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Derek Lalonde</td>
+        <td>2018 - Present</td>
+        <td>Eye in the Sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Jeff Halpern</td>
+        <td>2018 - Present</td>
+        <td>Forwards</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Frantz Jean</td>
+        <td>2011 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Nigel Kirwan</td>
+        <td>1996 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #003E7E; color: white; font-size: 25px"><img src="./../images/TOR.png" alt="HTML5 Icon" style="width:1.5em;"></img> Toronto Maple Leafs </caption>
+      <thead style="background: white; color: #003E7E;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./TOR.html">Mike Babcock</a></td>
+        <td>2015 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Andrew Brewer</td>
+        <td>2015 - Present</td>
+        <td>Video</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>D.J. Smith</td>
+        <td>2015 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Jim Hiller</td>
+        <td>2015 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Steve Briere</td>
+        <td>2015 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #001F5B; color: white; font-size: 25px"><img src="./../images/VAN.png" alt="HTML5 Icon" style="width:1.5em;"></img> Vancouver Canucks </caption>
+      <thead style="background: #00843D; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./VAN.html">Travis Green</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Nolan Baumgartner</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Newell Brown</td>
+        <td>2017 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Doug Jarvis</td>
+        <td>2016 - Present</td>
+        <td>Eye in the sky</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Manny Malhotra</td>
+        <td>2017 - Present</td>
+        <td>Development</td>
+      </tr>
+       <tr>
+        <td>Skills</td>
+        <td>Glenn Carnegie</td>
+        <td>2009 - Present</td>
+        <td>Skills</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Dan Cloutier</td>
+        <td>2016 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Darryl Seward</td>
+        <td>2017 - Present</td>
+        <td>Video</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #333F42; color: white; font-size: 25px"><img src="./../images/VGK.png" alt="HTML5 Icon" style="width:1.5em;"></img> Vegas Golden Knights </caption>
+      <thead style="background: #B4975A; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./VGK.html">Gerard Gallant</a></td>
+        <td>2017 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Mike Kelly</td>
+        <td>2017 - Present</td>
+        <td>Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Ryan Craig</td>
+        <td>2017 - Present</td>
+        <td>Forwards, Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Ryan McGill</td>
+        <td>2017 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>David Prior</td>
+        <td>2017 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Tommy Cruz</td>
+        <td>2017 - Present</td>
+        <td>Video</td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #C8102E; color: white; font-size: 25px"><img src="./../images/WSH.png" alt="HTML5 Icon" style="width:1.5em;"></img> Washington Capitals </caption>
+      <thead style="background: #041E42; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./WSH.html">Todd Reirden</a></td>
+        <td>2018 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Reid Cashman</td>
+        <td>2018 - Present</td>
+        <td>Defense</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Blaine Forsythe</td>
+        <td>2008 - Present</td>
+        <td>Power Play</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td><a href="./CBJ.html">Scott Arniel</a></td>
+        <td>2018 - Present</td>
+        <td>Forwards, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Scott Murray</td>
+        <td>2013 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Brett Leonhardt</td>
+        <td>2012 - Present</td>
+        <td>Video</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Tim Ohashi</td>
+        <td>2015 - Present</td>
+        <td>Video</td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <caption style="background: #041E42; color: white; font-size: 25px"><img src="./../images/WPG.png" alt="HTML5 Icon" style="width:1.5em;"></img> Winnipeg Jets </caption>
+      <thead style="background: #004C97; color: white;">
+        <th style="width:10%">Position</th>
+        <th style="width:10%">Name</th>
+        <th style="width:10%">Season</th>
+        <th style="width:10%">Role</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Head</td>
+        <td><a href="./WPG.html">Paul Maurice</a></td>
+        <td>2013 - Present</td>
+        <td>Head</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Charlie Huddy</td>
+        <td>2011 - Present</td>
+        <td>Defense, Penalty Kill</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Todd Woodcroft</td>
+        <td>2016 - Present</td>
+        <td>Skills</td>
+      </tr>
+      <tr>
+        <td>Assistant</td>
+        <td>Jamie Kompon</td>
+        <td>2016 - Present</td>
+        <td>Power Play</td>
+      </tr>
+      <tr>
+        <td>Goaltending</td>
+        <td>Wade Flaherty</td>
+        <td>2011 - Present</td>
+        <td>Goaltending</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>Matt Prefontaine</td>
+        <td>2014 - Present</td>
+        <td>Video</td>
+      </tr>
+    </table>
+    <br><br><br>
+    </div>
+  </div>
+</div><!--/row-offcanvas -->
+  
+
+  <section id="footer" class="navbar-inverse fixed">
+    <div class="container">
+      <div class="row text-center text-xs-center text-sm-left text-md-left">
+        <div class="col-xs-12 col-sm-3 col-md-3">
+          <h5><a href="./index.html" class="fa fa-angle-double-right">HHL</a></h5>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./ANA.html" >ANA</a></li>
+            <li><a href="./ARI.html" >ARI</a></li>
+            <li><a href="./BOS.html" >BOS</a></li>
+            <li><a href="./BUF.html" >BUF</a></li>
+            <li><a href="./CGY.html" >CGY</a></li>
+            <li><a href="./CAR.html" >CAR</a></li>
+            <li><a href="./CHI.html" >CHI</a></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3"><br>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./COL.html" >COL</a></li>
+            <li><a href="./CBJ.html" >CBJ</a></li>
+            <li><a href="./DAL.html" >DAL</a></li>
+            <li><a href="./DET.html" >DET</a></li>
+            <li><a href="./EDM.html" >EDM</a></li>
+            <li><a href="./FLA.html" >FLA</a></li>
+            <li><a href="./LAK.html" >LAK</a></li>
+            <li><a href="./MIN.html" >MIN</a></li>
+          </ul>
+        </div>
+         <div class="col-xs-12 col-sm-3 col-md-3"><br>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./MTL.html" >MTL</a></li>
+            <li><a href="./NSH.html" >NSH</a></li>
+            <li><a href="./NJD.html" >NJD</a></li>
+            <li><a href="./NYI.html" >NYI</a></li>
+            <li><a href="./NYR.html" >NYR</a></li>
+            <li><a href="./OTT.html" >OTT</a></li>
+            <li><a href="./PHI.html" >PHI</a></li>
+            <li><a href="./PIT.html" >PIT</a></li>
+          </ul>
+        </div>
+
+         <div class="col-xs-12 col-sm-3 col-md-3"><br>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./SJS.html" >SJS</a></li>
+            <li><a href="./STL.html" >STL</a></li>
+            <li><a href="./TBL.html" >TBL</a></li>
+            <li><a href="./TOR.html" >TOR</a></li>
+            <li><a href="./VAN.html" >VAN</a></li>
+            <li><a href="./VGK.html" >VGK</a></li>
+            <li><a href="./WSH.html" >WSH</a></li>
+            <li><a href="./WPG.html" >WPG</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+          <ul class="list-unstyled list-inline social text-center">
+            <li class="list-inline-item"><a href="https://www.twitter.com/benchBosses"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="mailto:benchbosses@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+        </div>
+        </hr>
+      </div>  
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+          <p><u><a href="http://www.behindthebenches.com/">Behind the Benches</a></u> <br>Last updated August 18, 2018 in New York, NY</p>
+        </div>
+        </hr>
+      </div>  
+    </div>
+  </section>
+
+  <script>
+    // sandbox disable popups
+    if (window.self !== window.top && window.name!="view1") {;
+      window.alert = function(){/*disable alert*/};
+      window.confirm = function(){/*disable confirm*/};
+      window.prompt = function(){/*disable prompt*/};
+      window.open = function(){/*disable open*/};
+    }
+    
+    // prevent href=# click jump
+    document.addEventListener("DOMContentLoaded", function() {
+      var links = document.getElementsByTagName("A");
+      for(var i=0; i < links.length; i++) {
+        if(links[i].href.indexOf('#')!=-1) {
+          links[i].addEventListener("click", function(e) {
+          console.debug("prevent href=# click");
+              if (this.hash) {
+                if (this.hash=="#") {
+                  e.preventDefault();
+                  return false;
+                }
+                else {
+                  /*
+                  var el = document.getElementById(this.hash.replace(/#/, ""));
+                  if (el) {
+                    el.scrollIntoView(true);
+                  }
+                  */
+                }
+              }
+              return false;
+          })
+        }
+      }
+    }, false);
+  </script>
+  <!--scripts loaded here-->
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
+  </script>
+
+</body>
+</html>

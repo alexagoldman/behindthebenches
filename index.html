@@ -1,1377 +1,393 @@
+
 <!DOCTYPE html>
 <html>
-<title>Behind The Benches</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behind the Benches</title>
+  <base target="_self">
+  <meta name="description" content="How to make a fixed sidebar and flexible content area layout with Bootstrap 3." />
+  <meta name="google" value="notranslate">
+  <link rel="icon" href="./images/behindthebenches.ico">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">body,html,.row-offcanvas {
+  height:100%;
+}
+
+body {
+  padding-top: 50px;
+}
+#sidebar {
+  width: inherit;
+  min-width: 220px;
+  max-width: 220px;
+  background-color:#f5f5f5;
+  float: left;
+  height:100%;
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+.list-unstyled {
+  font-size: 10px;
+}
+
+#BHB {
+  color: white;
+}
+
+a:hover {
+  color: purple;
+}
+
+#main {
+  height:100%;
+  overflow:auto;
+}
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+/*
+ * off Canvas sidebar
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    width:calc(100% + 220px);
+  }
+    
+  .row-offcanvas-left
+  {
+    left: -220px;
+  }
+
+  .row-offcanvas-left.active {
+    left: 0;
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+  }
+}
 </style>
-<body class="w3-light-grey">
-
-<!-- Top container -->
-<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-  <span class="w3-bar-item w3-left"><img src="behindthebenches.png" alt="HTML5 Icon" style="width:60px;height:60px;"></img></span> 
-  <span class="w3-bar-item w3-center"><h3>Behind The Benches</h3></span>
-  <span class="w3-right"><button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i></button></span>
-</div>
-
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-white w3-collapse w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
-  <div class="w3-container">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-    <h5>Leagues</h5>
-  </div>
-
-  <div class="w3-bar-block">
-    <a onclick="myFunction('NHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> NHL <i class="fa fa-caret-down"></i></a>
-    <div id="NHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="NHL/ANA.html" class="w3-bar-item w3-button w3-padding">ANA</a>
-      <a href="NHL/ARI.html" class="w3-bar-item w3-button w3-padding">ARI</a>
-      <a href="NHL/BOS.html" class="w3-bar-item w3-button w3-padding">BOS</a>
-      <a href="NHL/BUF.html" class="w3-bar-item w3-button w3-padding">BUF</a>
-      <a href="NHL/CGY.html" class="w3-bar-item w3-button w3-padding">CGY</a>
-      <a href="NHL/CAR.html" class="w3-bar-item w3-button w3-padding">CAR</a>
-      <a href="NHL/CHI.html" class="w3-bar-item w3-button w3-padding">CHI</a>
-      <a href="NHL/COL.html" class="w3-bar-item w3-button w3-padding">COL</a>
-      <a href="NHL/CBJ.html" class="w3-bar-item w3-button w3-padding">CBJ</a>
-      <a href="NHL/DAL.html" class="w3-bar-item w3-button w3-padding">DAL</a>
-      <a href="NHL/DET.html" class="w3-bar-item w3-button w3-padding">DET</a>
-      <a href="NHL/EDM.html" class="w3-bar-item w3-button w3-padding">EDM</a>
-      <a href="NHL/FLA.html" class="w3-bar-item w3-button w3-padding">FLA</a>
-      <a href="NHL/LAK.html" class="w3-bar-item w3-button w3-padding">LAK</a>
-      <a href="NHL/MIN.html" class="w3-bar-item w3-button w3-padding">MIN</a>
-      <a href="NHL/MTL.html" class="w3-bar-item w3-button w3-padding">MTL</a>
-      <a href="NHL/NSH.html" class="w3-bar-item w3-button w3-padding">NSH</a>
-      <a href="NHL/NJD.html" class="w3-bar-item w3-button w3-padding">NJD</a>
-      <a href="NHL/NYI.html" class="w3-bar-item w3-button w3-padding">NYI</a>
-      <a href="NHL/NYR.html" class="w3-bar-item w3-button w3-padding">NYR</a>
-      <a href="NHL/OTT.html" class="w3-bar-item w3-button w3-padding">OTT</a>
-      <a href="NHL/PHI.html" class="w3-bar-item w3-button w3-padding">PHI</a>
-      <a href="NHL/PIT.html" class="w3-bar-item w3-button w3-padding">PIT</a>
-      <a href="NHL/SJS.html" class="w3-bar-item w3-button w3-padding">SJS</a>
-      <a href="NHL/STL.html" class="w3-bar-item w3-button w3-padding">STL</a>
-      <a href="NHL/TBL.html" class="w3-bar-item w3-button w3-padding">TBL</a>
-      <a href="NHL/TOR.html" class="w3-bar-item w3-button w3-padding">TOR</a>
-      <a href="NHL/VAN.html" class="w3-bar-item w3-button w3-padding">VAN</a>
-      <a href="NHL/VGK.html" class="w3-bar-item w3-button w3-padding">VGK</a>
-      <a href="NHL/WSH.html" class="w3-bar-item w3-button w3-padding">WSH</a>
-      <a href="NHL/WPG.html" class="w3-bar-item w3-button w3-padding">WPG</a>
-    </div>
-
-    <a onclick="myFunction('AHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> AHL <i class="fa fa-caret-down"></i></a>
-    <div id="AHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="#" class="w3-bar-item w3-button w3-padding">Coming Soon</a>
-    </div>
-
-    <a onclick="myFunction('NWHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> NWHL <i class="fa fa-caret-down"></i></a>
-    <div id="NWHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="#" class="w3-bar-item w3-button w3-padding">Coming Soon</a>
-    </div>
-
-    <a onclick="myFunction('CWHL')" class="w3-button w3-block w3-white w3-left-align" id="myBtn"> CWHL <i class="fa fa-caret-down"></i></a>
-    <div id="CWHL" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="#" class="w3-bar-item w3-button w3-padding">Coming Soon</a>
-    </div>
-  </div>
-  <br><br><br><br>
-</nav>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:200px;margin-top:75px;">
 
 
-  <hr>
+</head>
+<body >
   
-  <div class="w3-container w3-responsive">
-    <h4 class="w3-center">2018-2017 NHL Coaches</h4>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>ANA</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/ANA.html">Randy Carlyle</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Steve Konowalchuk</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Mark Morrison</td>
-        <td>Eye in the sky</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Rich Preston</td>
-        <td>Eye in the sky</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Sudarshan Maharaj</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Joe Piscotty</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>ARI</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/ARI.html">Rick Tocchet</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>John MacLean</td>
-        <td>Forwards, Power Play, Skills</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Scott Allen</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Corey Schwab</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Steve Peters</td>
-        <td>Video</td>
-      </tr>
-      <tr>
-        <td>Skating</td>
-        <td>Dawn Braid</td>
-        <td>Skating</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>BOS</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/BOS.html">Bruce Cassidy</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Jay Pandolfo</td>
-        <td>Eye in the sky, Forwards</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Joe Sacco</td>
-        <td>Forwads, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Kevin Dean</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Bob Essensa</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>J.P. Buckley</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>BUF</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/BUF.html">Phil Housley</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Davis Payne</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Tom Ward</td>
-        <td>Eye in the sky, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Chris Hajt</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Andrew Allen </td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Mat Myers</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>CGY</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/CGY.html">Bill Peters</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Martin Gelinas</td>
-        <td>Eye in the sky</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Geoff Ward</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Ryan Huska</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Jordan Sigalet</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Jamie Pringle</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>CAR</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-     <tr>
-        <td>Head</td>
-        <td><a href="NHL/CAR.html">Rod Brind'Amour</a></td>
-        <td>Head</td>
-      </tr>
-      
-      <tr>
-        <td>Assistant</td>
-        <td>Jeff Daniels</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Steve Smith</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Mike Bales</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Chris Huffine</td>
-        <td>Video</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>LJ Scarpace</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>CHI</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/CHI.html">Joel Quenneville</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Don Granato</td>
-        <td>Developmental</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Ulf Samuelsson</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Kevin Dineen</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Jimmy Waite</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Matt Meacham</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>COL</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/COL.html">Jared Bednar</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Ray Bennett</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Nolan Pratt</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Jussi Parkila</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Brett Heimlich</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>CBJ</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/CBJ.html">John Tortorella</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Brad Larsen</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Kenny McCudden</td>
-        <td>Skills</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Brad Shaw</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Dan Singleton</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>DAL</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/DAL.html">Jim Montgomery</a></td>
-        <td>Head</td>
-      </tr>
-       <tr>
-        <td>Assistant</td>
-        <td>Todd Nelson</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Stu Barnes</td>
-        <td>5-on-5 Play</td>
-      </tr>
-       <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Jeff Reese</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Kelly Forbes</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>DET</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href=".html"></a>-</td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>-</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>-</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>EDM</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/EDM.html">Todd McLellan</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Glen Gulutzan</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Manny Viveiros</td>
-        <td>Eye in the sky, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Trent Yawney</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Dustin Schwartz</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Jeremy Coupal</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>FLA</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href=".html"></a>-</td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>-</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>-</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>LAK</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/LAK.html">John Stevens</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Dave Lowry</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Don Nachbaur</td>
-        <td>Eye in the sky, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Pierre Turgeon</td>
-        <td>Offensive coordinator</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Bill Ranford</td>
-        <td>Goaltending</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>MIN</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/MIN.html">Bruce Boudreau</a></td>
-        <td>Head</td>
-      </tr>
-       <tr>
-        <td>Assistant</td>
-        <td>Dean Evason</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Darby Hendrickson</td>
-        <td>Eye in the sky</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Bob Woods</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Bob Mason</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Jonas Plumb</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>MTL</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href=".html"></a>-</td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>-</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>-</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>NSH</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-       <td>Head</td>
-        <td><a href="NHL/NSH.html">Peter Laviolette</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Dan Muse</td>
-        <td>Forwards, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Associate</td>
-        <td>Kevin McCarthy</td>
-        <td>Defense, Power Play</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Ben Vanderklock</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Lawrence Feloney</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>NJD</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/NJD.html">John Hynes</a></td>
-        <td>Head</td>
-      </tr>
-      
-      <tr>
-        <td>Assistant</td>
-        <td>Alain Nasreddine</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Roland Melanson</td>
-        <td>Goaltending</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>NYI</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL.NYIhtml"></a>-</td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Fred Brathwaite</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Matt Bertani</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>NYR</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/NYR.html">David Quinn</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Lindy Ruff</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Benoit Allaire</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Jerry Dineen</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>OTT</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href=".html"></a>-</td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>-</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>-</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>PHI</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/PHI.html">Dave Hakstol</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Gord Murphy</td>
-        <td>Defense</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Kris Knoblauch</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Ian Laperriere</td>
-        <td>Forwards, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Kim Dillabaugh</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Adam Patterson</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>PIT</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-       <tr>
-        <td>Head</td>
-        <td><a href="NHL/PIT.html">Mike Sullivan</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Sergei Gonchar</td>
-        <td>Defense, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Jacques Martin</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Mark Recchi</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Mike Buckley</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Andy Saucier</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>SJS</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/SJS.html">Peter DeBoer</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Steve Spott</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Rob Zettler</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Dave Barr</td>
-        <td>Eye in the sky, Power Play</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Johan Hedberg</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Dan Darrow</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>STL</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/STL.html">Mike Yeo</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Associate</td>
-        <td>Craig Berube</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Darryl Sydor</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Steve Ott</td>
-        <td>Eye in the sky</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Daniel Tkaczuk</td>
-        <td>Skills</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>David Alexander</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Sean Ferrell</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>TBL</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/TBL.html">Jon Cooper</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Todd Richards</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Frantz Jean</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Nigel Kirwan</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>TOR</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href=".html"></a>-</td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>-</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>-</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>VAN</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/VAN.html">Travis Green</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Nolan Baumgartner</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Newell Brown</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Doug Jarvis</td>
-        <td>Eye in the sky</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Manny Malhotra</td>
-        <td>Development</td>
-      </tr>
-       <tr>
-        <td>Skills</td>
-        <td>Glenn Carnegie</td>
-        <td>Skills</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Dan Cloutier</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Darryl Seward</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>VGK</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/VGK.html">Gerard Gallant</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Mike Kelly</td>
-        <td>Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Ryan Craig</td>
-        <td>Forwards, Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Ryan McGill</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>David Prior</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Tommy Cruz</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>WSH</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/WSH.html"></a>-</td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Todd Reirden</td>
-        <td>Defense</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Blaine Forsythe</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Lane Lambert</td>
-        <td>Forwards, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Scott Murray</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Brett Leonhardt</td>
-        <td>Video</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Tim Ohashi</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <table class="w3-table w3-bordered w3-border w3-hoverable w3-white w3-card">
-      <tr class="w3-black"><b><u>WPG</u></b></tr>
-      <tr class="w3-black">
-        <th>Position</th>
-        <th>Name</th>
-        <th>Role</th>
-      </tr>
-      <tr>
-        <td>Head</td>
-        <td><a href="NHL/WPG.html">Paul Maurice</a></td>
-        <td>Head</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Todd Woodcroft</td>
-        <td>Skills</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Jamie Kompon</td>
-        <td>Power Play</td>
-      </tr>
-      <tr>
-        <td>Assistant</td>
-        <td>Charlie Huddy</td>
-        <td>Defense, Penalty Kill</td>
-      </tr>
-      <tr>
-        <td>Goaltending</td>
-        <td>Wade Flaherty</td>
-        <td>Goaltending</td>
-      </tr>
-      <tr>
-        <td>Video</td>
-        <td>Matt Prefontaine</td>
-        <td>Video</td>
-      </tr>
-    </table>
-    <br>
-    <br>
+  
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " id="BHB" href="./"><img src="./images/behindthebenches.png" alt="HTML5 Icon" style="width:1.5em;"></img> Behind the Benches</a>
+    </div>
+   <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="NHL/index.html">NHL</a></li>
+        <li><a href="NWHL/index.html">NWHL</a></li>
+        <li><a href="CWHL/index.html">CWHL</a></li>
+        <li><a href="AHL/index.html">AHL</a></li>
+        <li><a href="AHL/index.html">NCAA</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+</div><!--/.navbar -->
+
+
+<div class="row-offcanvas row-offcanvas-left">
+  <div id="sidebar" class="sidebar-offcanvas">
+      <div class="col-md-12">
+        <h3>Leagues</h3>
+        <ul class="nav nav-pills nav-stacked">
+        <li class="nav-item">
+          <a class="nav-link" href="./NHL/index.html">NHL Coaches</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-1">NHL Teams ▾</a>
+            <div id="item-1" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/ANA.html"><img src="./images/ana.png" alt="HTML5 Icon" style="width:1.5em;"></img> ANA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/ARI.html"><img src="./images/ari.png" alt="HTML5 Icon" style="width:1.5em;"></img> ARI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/BOS.html"><img src="./images/bos.png" alt="HTML5 Icon" style="width:1.5em;"></img> BOS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/BUF.html"><img src="./images/buf.png" alt="HTML5 Icon" style="width:1.5em;"></img> BUF</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CGY.html"><img src="./images/cgy.png" alt="HTML5 Icon" style="width:1.5em;"></img> CGY</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CAR.html"><img src="./images/car.png" alt="HTML5 Icon" style="width:1.5em;"></img> CAR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CHI.html"><img src="./images/chi.png" alt="HTML5 Icon" style="width:1.5em;"></img> CHI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/COL.html"><img src="./images/col.png" alt="HTML5 Icon" style="width:1.5em;"></img> COL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CBJ.html"><img src="./images/cbj.png" alt="HTML5 Icon" style="width:1.5em;"></img> CBJ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/DAL.html"><img src="./images/dal.png" alt="HTML5 Icon" style="width:1.5em;"></img> DAL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/DET.html"><img src="./images/det.png" alt="HTML5 Icon" style="width:1.5em;"></img> DET</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/EDM.html"><img src="./images/edm.png" alt="HTML5 Icon" style="width:1.5em;"></img> EDM</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/FLA.html"><img src="./images/fla.png" alt="HTML5 Icon" style="width:1.5em;"></img> FLA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/LAK.html"><img src="./images/lak.png" alt="HTML5 Icon" style="width:1.5em;"></img> LAK</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/MIN.html"><img src="./images/min.png" alt="HTML5 Icon" style="width:1.5em;"></img> MIN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/MTL.html"><img src="./images/mtl.png" alt="HTML5 Icon" style="width:1.5em;"></img> MTL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NSH.html"><img src="./images/nsh.png" alt="HTML5 Icon" style="width:1.5em;"></img> NSH</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NJD.html"><img src="./images/njd.png" alt="HTML5 Icon" style="width:1.5em;"></img> NJD</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NYI.html"><img src="./images/nyi.png" alt="HTML5 Icon" style="width:1.5em;"></img> NYI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NYR.html"><img src="./images/nyr.png" alt="HTML5 Icon" style="width:1.5em;"></img> NYR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/OTT.html"><img src="./images/ott.png" alt="HTML5 Icon" style="width:1.5em;"></img> OTT</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/PHI.html"><img src="./images/phi.png" alt="HTML5 Icon" style="width:1.5em;"></img> PHI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/PIT.html"><img src="./images/pit.png" alt="HTML5 Icon" style="width:1.5em;"></img> PIT</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/SJS.html"><img src="./images/sjs.png" alt="HTML5 Icon" style="width:1.5em;"></img> SJS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/STL.html"><img src="./images/stl.png" alt="HTML5 Icon" style="width:1.5em;"></img> STL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/TBL.html"><img src="./images/tbl.png" alt="HTML5 Icon" style="width:1.5em;"></img> TBL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/TOR.html"><img src="./images/tor.png" alt="HTML5 Icon" style="width:1.5em;"></img> TOR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/VAN.html"><img src="./images/van.png" alt="HTML5 Icon" style="width:1.5em;"></img> VAN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/VGK.html"><img src="./images/vgk.png" alt="HTML5 Icon" style="width:1.5em;"></img> VGK</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/WSH.html"><img src="./images/wsh.png" alt="HTML5 Icon" style="width:1.5em;"></img> WSH</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/WPG.html"><img src="./images/wpg.png" alt="HTML5 Icon" style="width:1.5em;"></img> WPG</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-2">NWHL ▾</a>
+            <div id="item-2" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-3">CWHL ▾</a>
+            <div id="item-3" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-4">AHL ▾</a>
+            <div id="item-4" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-5">NCAA ▾</a>
+            <div id="item-5" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <br><br><br>
+        </ul>
+      </div>
   </div>
-  <hr>
+  <div id="main">
+      <div class="col-md-12"><br>
+        <p class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+          </p>
+          <h1 class="text-center"> Behind the Benches </h1>
+          <br>
+          <img class="center-block" src="./images/behindthebenches.png" alt="HTML5 Icon" style="width:30%;"></img>
+          <br><br>
+      </div>
+  </div>
+</div><!--/row-offcanvas -->
+  
 
-  <!-- Footer -->
-  <footer class="w3-container w3-center w3-padding-16 w3-black">
-    <h4><a href="www.behindthebenches.com" target="_blank">Behind The Benches</a></h4>
-    <p>Twitter: <a href="https://www.twitter.com/benchBosses" target="_blank">@benchBosses</a>&nbsp;&nbsp;&nbsp;Email: <a href="mailto:example@email.com">behindthebenches@gmail.com</a></p>
-  </footer>
+  <section id="footer" class="navbar-inverse fixed">
+    <div class="container">
+      <div class="row text-center text-xs-center text-sm-left text-md-left">
+        <div class="col-xs-12 col-sm-3 col-md-3">
+          <h5><a href="./index.html" class="fa fa-angle-double-right">HHL</a></h5>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./NHL/ANA.html" >ANA</a></li>
+            <li><a href="./NHL/ARI.html" >ARI</a></li>
+            <li><a href="./NHL/BOS.html" >BOS</a></li>
+            <li><a href="./NHL/BUF.html" >BUF</a></li>
+            <li><a href="./NHL/CGY.html" >CGY</a></li>
+            <li><a href="./NHL/CAR.html" >CAR</a></li>
+            <li><a href="./NHL/CHI.html" >CHI</a></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3"><br>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./NHL/COL.html" >COL</a></li>
+            <li><a href="./NHL/CBJ.html" >CBJ</a></li>
+            <li><a href="./NHL/DAL.html" >DAL</a></li>
+            <li><a href="./NHL/DET.html" >DET</a></li>
+            <li><a href="./NHL/EDM.html" >EDM</a></li>
+            <li><a href="./NHL/FLA.html" >FLA</a></li>
+            <li><a href="./NHL/LAK.html" >LAK</a></li>
+            <li><a href="./NHL/MIN.html" >MIN</a></li>
+          </ul>
+        </div>
+         <div class="col-xs-12 col-sm-3 col-md-3"><br>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./NHL/MTL.html" >MTL</a></li>
+            <li><a href="./NHL/NSH.html" >NSH</a></li>
+            <li><a href="./NHL/NJD.html" >NJD</a></li>
+            <li><a href="./NHL/NYI.html" >NYI</a></li>
+            <li><a href="./NHL/NYR.html" >NYR</a></li>
+            <li><a href="./NHL/OTT.html" >OTT</a></li>
+            <li><a href="./NHL/PHI.html" >PHI</a></li>
+            <li><a href="./NHL/PIT.html" >PIT</a></li>
+          </ul>
+        </div>
 
-  <!-- End page content -->
-</div>
+         <div class="col-xs-12 col-sm-3 col-md-3"><br>
+          <ul class="list-unstyled quick-links">
+            <li><a href="./NHL/SJS.html" >SJS</a></li>
+            <li><a href="./NHL/STL.html" >STL</a></li>
+            <li><a href="./NHL/TBL.html" >TBL</a></li>
+            <li><a href="./NHL/TOR.html" >TOR</a></li>
+            <li><a href="./NHL/VAN.html" >VAN</a></li>
+            <li><a href="./NHL/VGK.html" >VGK</a></li>
+            <li><a href="./NHL/WSH.html" >WSH</a></li>
+            <li><a href="./NHL/WPG.html" >WPG</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+          <ul class="list-unstyled list-inline social text-center">
+            <li class="list-inline-item"><a href="https://www.twitter.com/benchBosses"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="mailto:benchbosses@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+        </div>
+        </hr>
+      </div>  
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+          <p><u><a href="http://www.behindthebenches.com/">Behind the Benches</a></u> <br>Last updated August 18, 2018 in New York, NY</p>
+        </div>
+        </hr>
+      </div>  
+    </div>
+  </section>
 
-<script>
-function myFunction(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className = 
-        x.previousElementSibling.className.replace("w3-black", "w3-red");
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-        x.previousElementSibling.className = 
-        x.previousElementSibling.className.replace("w3-red", "w3-black");
+  <script>
+    // sandbox disable popups
+    if (window.self !== window.top && window.name!="view1") {;
+      window.alert = function(){/*disable alert*/};
+      window.confirm = function(){/*disable confirm*/};
+      window.prompt = function(){/*disable prompt*/};
+      window.open = function(){/*disable open*/};
     }
-}
+    
+    // prevent href=# click jump
+    document.addEventListener("DOMContentLoaded", function() {
+      var links = document.getElementsByTagName("A");
+      for(var i=0; i < links.length; i++) {
+        if(links[i].href.indexOf('#')!=-1) {
+          links[i].addEventListener("click", function(e) {
+          console.debug("prevent href=# click");
+              if (this.hash) {
+                if (this.hash=="#") {
+                  e.preventDefault();
+                  return false;
+                }
+                else {
+                  /*
+                  var el = document.getElementById(this.hash.replace(/#/, ""));
+                  if (el) {
+                    el.scrollIntoView(true);
+                  }
+                  */
+                }
+              }
+              return false;
+          })
+        }
+      }
+    }, false);
+  </script>
+  <!--scripts loaded here-->
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-function w3_open() {
-    if (document.getElementById("mySidebar").style.display === 'block') {
-        document.getElementById("mySidebar").style.display = 'none';
-        document.getElementById("myOverlay").style.display = "none";
-    } else {
-        document.getElementById("mySidebar").style.display = 'block';
-        document.getElementById("myOverlay").style.display = "block";
-    }
-}
-
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
-</script>
+  <script>
+  $(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
+  </script>
 
 </body>
 </html>
