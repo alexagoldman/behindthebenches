@@ -1,393 +1,185 @@
 
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Behind the Benches</title>
-  <base target="_self">
-  <meta name="description" content="How to make a fixed sidebar and flexible content area layout with Bootstrap 3." />
-  <meta name="google" value="notranslate">
-  <link rel="icon" href="./images/behindthebenches.ico">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style type="text/css">body,html,.row-offcanvas {
-  height:100%;
-}
+<html lang="en">
 
-body {
-  padding-top: 50px;
-}
-#sidebar {
-  width: inherit;
-  min-width: 220px;
-  max-width: 220px;
-  background-color:#f5f5f5;
-  float: left;
-  height:100%;
-  position:relative;
-  overflow-y:auto;
-  overflow-x:hidden;
-}
-
-.list-unstyled {
-  font-size: 10px;
-}
-
-#BHB {
-  color: white;
-}
-
-a:hover {
-  color: purple;
-}
-
-#main {
-  height:100%;
-  overflow:auto;
-}
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-/*
- * off Canvas sidebar
- * --------------------------------------------------
- */
-@media screen and (max-width: 768px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-    width:calc(100% + 220px);
-  }
-    
-  .row-offcanvas-left
-  {
-    left: -220px;
-  }
-
-  .row-offcanvas-left.active {
-    left: 0;
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-  }
-}
-</style>
-
-
+<head >
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Bootstrap Admin App + jQuery">
+   <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+   <title>Angle - Bootstrap Admin Template</title>
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+   <link rel="stylesheet" href="css/fa-brands.css">
+   <link rel="stylesheet" href="css/fa-regular.css">
+   <link rel="stylesheet" href="css/fa-solid.css">
+   <link rel="stylesheet" href="css/fontawesome.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- SIMPLE LINE ICONS-->
+   <link rel="stylesheet" href="css/simple-line-icons.css">
+   <!-- ANIMATE.CSS-->
+   <link rel="stylesheet" href="css/animate.css">
+   <!-- WHIRL (spinners)-->
+   <link rel="stylesheet" href="css/whirl.css">
+   <!-- =============== PAGE VENDOR STYLES ===============-->
+   <!-- Datatables-->
+   <link rel="stylesheet" href="css/dataTables.bootstrap4.css">
+   <link rel="stylesheet" href="css/keyTable.bootstrap.css">
+   <link rel="stylesheet" href="css/responsive.bootstrap.css">
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+   <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
+   <!-- =============== APP STYLES ===============-->
+   <link rel="stylesheet" href="css/app.css" id="maincss">
 </head>
-<body >
-  
-  
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand " id="BHB" href="./"><img src="./images/behindthebenches.png" alt="HTML5 Icon" style="width:1.5em;"></img> Behind the Benches</a>
-    </div>
-   <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="./NHL/index.html">NHL</a></li>
-        <li><a href="./NWHL/index.html">NWHL</a></li>
-        <li><a href="./CWHL/index.html">CWHL</a></li>
-        <li><a href="./AHL/index.html">AHL</a></li>
-        <li><a href="./AHL/index.html">NCAA</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-</div><!--/.navbar -->
 
+<body style="background:white;">
+   <div class="wrapper">
+      <header class="topnavbar-wrapper" > <!-- top navbar-->
+         <nav class="navbar topnavbar" style="background:black;"> <!-- START Top Navbar-->
+            <div class="navbar-header" > <!-- START navbar header-->
+               <a class="navbar-brand" href="#">
+                  <div class="brand-logo" style="color:white;">
+                     <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches</img>
+                  </div>
+                  <div class="brand-logo-collapsed" style="color:white;">
+                     <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:2em;"></img>
+                  </div>
+               </a>
+            </div><!-- END navbar header-->
+            <ul class="navbar-nav mr-auto flex-row" > <!-- START Left navbar-->
+               <li class="nav-item">
+                  <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                  <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                     <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+                  <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                  <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+               </li>
+            </ul> <!-- END Left navbar-->
+            <ul class="navbar-nav flex-row" ><!-- START Right Navbar-->
+              <!--  <li class="nav-item"> --><!-- Search icon-->
+                  <!-- <a class="nav-link" href="#" data-search-open="">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                  </a>
+               </li> -->
+               <li class="nav-item d-none d-md-block">
+                  <a class="nav-link" href="https://www.twitter.com/benchBosses">
+                     <i class="fa fa-twitter" aria-hidden="true"></i>
+                  </a>
+               </li>
+               <li class="nav-item d-none d-md-block">
+                  <a class="nav-link" href="mailto:benchbosses@gmail.com" target="_blank">
+                     <i class="fa fa-envelope" aria-hidden="true"></i>
+                  </a>
+               </li>
+               <li class="nav-item d-none d-md-block"> <!-- Fullscreen (only desktops)-->
+                  <a class="nav-link" href="#" data-toggle-fullscreen="">
+                     <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                  </a>
+               </li>
+            </ul><!-- END Right Navbar-->
+            <!-- <form class="navbar-form" role="search" action="search.html" > --><!-- START Search form-->
+               <!-- <div class="form-group">
+                  <input class="form-control" type="text" placeholder="Type and hit enter ...">
+                  <div class="fa fa-times navbar-form-close" data-search-dismiss=""></div>
+               </div>
+               <button class="d-none" type="submit">Submit</button>
+            </form> --> <!-- END Search form-->
+         </nav> <!-- END Top Navbar-->
+      </header>
 
-<div class="row-offcanvas row-offcanvas-left">
-  <div id="sidebar" class="sidebar-offcanvas">
-      <div class="col-md-12">
-        <h3>Leagues</h3>
-        <ul class="nav nav-pills nav-stacked">
-        <li class="nav-item">
-          <a class="nav-link" href="./NHL/index.html">NHL Coaches</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="collapse" href="#item-1">NHL Teams ▾</a>
-            <div id="item-1" class="collapse">
-              <ul class="nav flex-column ml-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/ANA.html"><img src="./images/ANA.png" alt="HTML5 Icon" style="width:1.5em;"></img> ANA</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/ARI.html"><img src="./images/ARI.png" alt="HTML5 Icon" style="width:1.5em;"></img> ARI</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/BOS.html"><img src="./images/BOS.png" alt="HTML5 Icon" style="width:1.5em;"></img> BOS</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/BUF.html"><img src="./images/BUF.png" alt="HTML5 Icon" style="width:1.5em;"></img> BUF</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/CGY.html"><img src="./images/CGY.png" alt="HTML5 Icon" style="width:1.5em;"></img> CGY</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/CAR.html"><img src="./images/CAR.png" alt="HTML5 Icon" style="width:1.5em;"></img> CAR</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/CHI.html"><img src="./images/CHI.png" alt="HTML5 Icon" style="width:1.5em;"></img> CHI</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/COL.html"><img src="./images/COL.png" alt="HTML5 Icon" style="width:1.5em;"></img> COL</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/CBJ.html"><img src="./images/CBJ.png" alt="HTML5 Icon" style="width:1.5em;"></img> CBJ</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/DAL.html"><img src="./images/DAL.png" alt="HTML5 Icon" style="width:1.5em;"></img> DAL</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/DET.html"><img src="./images/DET.png" alt="HTML5 Icon" style="width:1.5em;"></img> DET</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/EDM.html"><img src="./images/EDM.png" alt="HTML5 Icon" style="width:1.5em;"></img> EDM</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/FLA.html"><img src="./images/FLA.png" alt="HTML5 Icon" style="width:1.5em;"></img> FLA</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/LAK.html"><img src="./images/LAK.png" alt="HTML5 Icon" style="width:1.5em;"></img> LAK</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/MIN.html"><img src="./images/MIN.png" alt="HTML5 Icon" style="width:1.5em;"></img> MIN</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/MTL.html"><img src="./images/MTL.png" alt="HTML5 Icon" style="width:1.5em;"></img> MTL</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/NSH.html"><img src="./images/NSH.png" alt="HTML5 Icon" style="width:1.5em;"></img> NSH</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/NJD.html"><img src="./images/NJD.png" alt="HTML5 Icon" style="width:1.5em;"></img> NJD</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/NYI.html"><img src="./images/NYI.png" alt="HTML5 Icon" style="width:1.5em;"></img> NYI</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/NYR.html"><img src="./images/NYR.png" alt="HTML5 Icon" style="width:1.5em;"></img> NYR</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/OTT.html"><img src="./images/OTT.png" alt="HTML5 Icon" style="width:1.5em;"></img> OTT</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/PHI.html"><img src="./images/PHI.png" alt="HTML5 Icon" style="width:1.5em;"></img> PHI</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/PIT.html"><img src="./images/PIT.png" alt="HTML5 Icon" style="width:1.5em;"></img> PIT</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/SJS.html"><img src="./images/SJS.png" alt="HTML5 Icon" style="width:1.5em;"></img> SJS</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/STL.html"><img src="./images/STL.png" alt="HTML5 Icon" style="width:1.5em;"></img> STL</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/TBL.html"><img src="./images/TBL.png" alt="HTML5 Icon" style="width:1.5em;"></img> TBL</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/TOR.html"><img src="./images/TOR.png" alt="HTML5 Icon" style="width:1.5em;"></img> TOR</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/VAN.html"><img src="./images/VAN.png" alt="HTML5 Icon" style="width:1.5em;"></img> VAN</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/VGK.html"><img src="./images/VGK.png" alt="HTML5 Icon" style="width:1.5em;"></img> VGK</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/WSH.html"><img src="./images/WSH.png" alt="HTML5 Icon" style="width:1.5em;"></img> WSH</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./NHL/WPG.html"><img src="./images/WPG.png" alt="HTML5 Icon" style="width:1.5em;"></img> WPG</a>
-                </li>
-              </ul>
+      <!-- sidebar-->
+      <aside class="aside-container" >
+         <div class="aside-inner"> <!-- START Sidebar (left)-->
+            <nav class="sidebar" data-sidebar-anyclick-close="" style="background:rgb(245,245,245);" >
+               <ul class="sidebar-nav"><!-- START sidebar nav-->
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">Leagues</span>
+                  </li>
+                  <li class=" ">
+                     <a href="./NHL/index.html" title="NHL" >
+                       <img class="img-fluid" src="./images/NHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NHL"> NHL</span>
+                     </a>
+                     <a href="./NWHL/index.html" title="NWHL" >
+                       <img class="img-fluid" src="./images/NWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NWHL"> NWHL</span>
+                     </a>
+                     <a href="./CWHL/index.html" title="CWHL" >
+                       <img class="img-fluid" src="./images/CWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CWHL"> CWHL</span>
+                     </a>
+                     <a href="./AHL/index.html" title="AHL" >
+                       <img class="img-fluid" src="./images/AHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.AHL"> AHL</span>
+                     </a>
+                     <a href="./NCAA/index.html" title="NCAA" >
+                       <img class="img-fluid" src="./images/NCAA.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NCAA"> NCAA</span>
+                     </a>
+                  </li>
+               </ul> <!-- END sidebar nav-->
+            </nav>
+         </div> <!-- END Sidebar (left)-->
+      </aside>
+
+      <!-- Main section-->
+      <section class="section-container" style="background:white;" >
+         <div class="content-wrapper"> <!-- Page content-->
+            <div class=" text-center">
+               <h1 class="text-center" style="padding:1%; color:black;">Behind the Benches<h1>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="collapse" href="#item-2">NWHL ▾</a>
-            <div id="item-2" class="collapse">
-              <ul class="nav flex-column ml-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Coming Soon</a>
-                </li>
-              </ul>
+            <div class="row">
+               <div class="col-xl-12">
+                  <p class="text-center"><img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:25em;"></p>
+               </div>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="collapse" href="#item-3">CWHL ▾</a>
-            <div id="item-3" class="collapse">
-              <ul class="nav flex-column ml-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Coming Soon</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="collapse" href="#item-4">AHL ▾</a>
-            <div id="item-4" class="collapse">
-              <ul class="nav flex-column ml-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Coming Soon</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="collapse" href="#item-5">NCAA ▾</a>
-            <div id="item-5" class="collapse">
-              <ul class="nav flex-column ml-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Coming Soon</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <br><br><br>
-        </ul>
-      </div>
+         </div>
+     </section>
+      <!-- Page footer-->
+  <footer class="footer-container">
+    <span><small>2018 - Behind the Benches</small></span>
+  </footer>
   </div>
-  <div id="main">
-      <div class="col-md-12"><br>
-        <p class="visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
-          </p>
-          <h1 class="text-center"> Behind the Benches </h1>
-          <br>
-          <img class="center-block" src="./images/behindthebenches.png" alt="HTML5 Icon" style="width:30%;"></img>
-          <br><br>
-      </div>
-  </div>
-</div><!--main -->
-  
-
-  <section id="footer" class="navbar-inverse fixed">
-    <div class="container">
-      <div class="row text-center text-xs-center text-sm-left text-md-left">
-        <div class="col-xs-12 col-sm-3 col-md-3">
-          <h5><a href="./NHL/index.html" class="fa fa-angle-double-right">NHL</a></h5>
-          <ul class="list-unstyled quick-links">
-            <li><a href="./NHL/ANA.html" >ANA</a></li>
-            <li><a href="./NHL/ARI.html" >ARI</a></li>
-            <li><a href="./NHL/BOS.html" >BOS</a></li>
-            <li><a href="./NHL/BUF.html" >BUF</a></li>
-            <li><a href="./NHL/CGY.html" >CGY</a></li>
-            <li><a href="./NHL/CAR.html" >CAR</a></li>
-            <li><a href="./NHL/CHI.html" >CHI</a></li>
-          </ul>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3"><br>
-          <ul class="list-unstyled quick-links">
-            <li><a href="./NHL/COL.html" >COL</a></li>
-            <li><a href="./NHL/CBJ.html" >CBJ</a></li>
-            <li><a href="./NHL/DAL.html" >DAL</a></li>
-            <li><a href="./NHL/DET.html" >DET</a></li>
-            <li><a href="./NHL/EDM.html" >EDM</a></li>
-            <li><a href="./NHL/FLA.html" >FLA</a></li>
-            <li><a href="./NHL/LAK.html" >LAK</a></li>
-            <li><a href="./NHL/MIN.html" >MIN</a></li>
-          </ul>
-        </div>
-         <div class="col-xs-12 col-sm-3 col-md-3"><br>
-          <ul class="list-unstyled quick-links">
-            <li><a href="./NHL/MTL.html" >MTL</a></li>
-            <li><a href="./NHL/NSH.html" >NSH</a></li>
-            <li><a href="./NHL/NJD.html" >NJD</a></li>
-            <li><a href="./NHL/NYI.html" >NYI</a></li>
-            <li><a href="./NHL/NYR.html" >NYR</a></li>
-            <li><a href="./NHL/OTT.html" >OTT</a></li>
-            <li><a href="./NHL/PHI.html" >PHI</a></li>
-            <li><a href="./NHL/PIT.html" >PIT</a></li>
-          </ul>
-        </div>
-
-         <div class="col-xs-12 col-sm-3 col-md-3"><br>
-          <ul class="list-unstyled quick-links">
-            <li><a href="./NHL/SJS.html" >SJS</a></li>
-            <li><a href="./NHL/STL.html" >STL</a></li>
-            <li><a href="./NHL/TBL.html" >TBL</a></li>
-            <li><a href="./NHL/TOR.html" >TOR</a></li>
-            <li><a href="./NHL/VAN.html" >VAN</a></li>
-            <li><a href="./NHL/VGK.html" >VGK</a></li>
-            <li><a href="./NHL/WSH.html" >WSH</a></li>
-            <li><a href="./NHL/WPG.html" >WPG</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-          <ul class="list-unstyled list-inline social text-center">
-            <li class="list-inline-item"><a href="https://www.twitter.com/benchBosses"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="mailto:benchbosses@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
-          </ul>
-        </div>
-        </hr>
-      </div>  
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-          <p><u><a href="http://www.behindthebenches.com/">Behind the Benches</a></u> <br>Last updated August 18, 2018 in New York, NY</p>
-        </div>
-        </hr>
-      </div>  
-    </div>
-  </section>
-
-  <script>
-    // sandbox disable popups
-    if (window.self !== window.top && window.name!="view1") {;
-      window.alert = function(){/*disable alert*/};
-      window.confirm = function(){/*disable confirm*/};
-      window.prompt = function(){/*disable prompt*/};
-      window.open = function(){/*disable open*/};
-    }
-    
-    // prevent href=# click jump
-    document.addEventListener("DOMContentLoaded", function() {
-      var links = document.getElementsByTagName("A");
-      for(var i=0; i < links.length; i++) {
-        if(links[i].href.indexOf('#')!=-1) {
-          links[i].addEventListener("click", function(e) {
-          console.debug("prevent href=# click");
-              if (this.hash) {
-                if (this.hash=="#") {
-                  e.preventDefault();
-                  return false;
-                }
-                else {
-                  /*
-                  var el = document.getElementById(this.hash.replace(/#/, ""));
-                  if (el) {
-                    el.scrollIntoView(true);
-                  }
-                  */
-                }
-              }
-              return false;
-          })
-        }
-      }
-    }, false);
-  </script>
-  <!--scripts loaded here-->
-  
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-  <script>
-  $(document).ready(function() {
-  $('[data-toggle=offcanvas]').click(function() {
-    $('.row-offcanvas').toggleClass('active');
-  });
-});
-  </script>
-
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- MODERNIZR-->
+   <script src="js/modernizr.custom.js"></script>
+   <!-- JQUERY-->
+   <script src="js/jquery.js"></script>
+   <!-- BOOTSTRAP-->
+   <script src="js/popper.js"></script>
+   <script src="js/bootstrap.js"></script>
+   <!-- STORAGE API-->
+   <script src="js/js.storage.js"></script>
+   <!-- JQUERY EASING-->
+   <script src="js/jquery.easing.js"></script>
+   <!-- ANIMO-->
+   <script src="js/animo.js"></script>
+   <!-- SCREENFULL-->
+   <script src="js/screenfull.js"></script>
+   <!-- LOCALIZE-->
+   <script src="js/jquery.localize.js"></script>
+   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+   <!-- Datatables-->
+   <script src="js/jquery.dataTables.js"></script>
+   <script src="js/dataTables.bootstrap4.js"></script>
+   <script src="js/dataTables.buttons.js"></script>
+   <script src="js/buttons.bootstrap.js"></script>
+   <script src="js/buttons.colVis.js"></script>
+   <script src="js/buttons.flash.js"></script>
+   <script src="js/buttons.html5.js"></script>
+   <script src="js/buttons.print.js"></script>
+   <script src="js/dataTables.keyTable.js"></script>
+   <script src="js/dataTables.responsive.js"></script>
+   <script src="js/responsive.bootstrap.js"></script>
+   <script src="js/jszip.js"></script>
+   <script src="js/pdfmake.js"></script>
+   <script src="js/vfs_fonts.js"></script>
+   <!-- =============== APP SCRIPTS ===============-->
+   <script src="js/app.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behind the Benches</title>
+  <base target="_self">
+  <meta name="description" content="How to make a fixed sidebar and flexible content area layout with Bootstrap 3." />
+  <meta name="google" value="notranslate">
+  <link rel="icon" href="../behindthebenches.ico">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <style type="text/css">body,html,.row-offcanvas {
+  height:100%;
+}
+
+body {
+  padding-top: 50px;
+}
+
+#sidebar {
+  width: inherit;
+  min-width: 220px;
+  max-width: 220px;
+  background-color:#f5f5f5;
+  float: left;
+  height:100%;
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+#main {
+  height:100%;
+  overflow:auto;
+}
+
+/*.navbar {
+    height: 10%;
+}*/
+
+/*
+ * off Canvas sidebar
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    width:calc(100% + 220px);
+  }
+    
+  .row-offcanvas-left
+  {
+    left: -220px;
+  }
+
+  .row-offcanvas-left.active {
+    left: 0;
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+  }
+
+}</style>
+
+</head>
+<body >
+  
+  
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand " href="./"><img src="../behindthebenches.png" alt="HTML5 Icon" style="width:1.5em;"></img> Behind the Benches</a>
+    </div>
+    <!-- <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div><!/.nav-collapse --> 
+</div><!--/.navbar -->
+
+<div class="row-offcanvas row-offcanvas-left">
+  <div id="sidebar" class="sidebar-offcanvas">
+      <div class="col-md-12">
+        <h3>Leagues</h3>
+        <ul class="nav nav-pills nav-stacked">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-1">NHL ▾</a>
+            <div id="item-1" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/ANA.html">ANA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/ARI.html">ARI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/BOS.html">BOS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/BUF.html">BUF</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CGY.html">CGY</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CAR.html">CAR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CHI.html">CHI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/COL.html">COL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/CBJ.html">CBJ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/DAL.html">DAL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/DET.html">DET</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/EDM.html">EDM</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/FLA.html">FLA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/LAK.html">LAK</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/MIN.html">MIN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/MTL.html">MTL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NSH.html">NSH</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NJD.html">NJD</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NYI.html">NYI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/NYR.html">NYR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/OTT.html">OTT</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/PHI.html">PHI</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/PIT.html">PIT</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/SJS.html">SJS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/STL.html">STL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/TBL.html">TBL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/TOR.html">TOR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/VAN.html">VAN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/VGK.html">VGK</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/WSH.html">WSH</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="NHL/WPG.html">WPG</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-2">NWHL ▾</a>
+            <div id="item-2" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-3">CWHL ▾</a>
+            <div id="item-3" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="collapse" href="#item-4">AHL ▾</a>
+            <div id="item-4" class="collapse">
+              <ul class="nav flex-column ml-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Coming Soon</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </div>
+  <div id="main">
+      <div class="col-md-12">
+        <p class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+          </p><br>
+          <h1 class="text-center"> BEHIND THE BENCHES </h1>
+          <br>
+          <img class="center-block" src="../behindthebenches.png" alt="HTML5 Icon" style="width:30%;"></img
+      </div>
+  </div>
+</div><!--/row-offcanvas -->
+  
+  <script>
+    // sandbox disable popups
+    if (window.self !== window.top && window.name!="view1") {;
+      window.alert = function(){/*disable alert*/};
+      window.confirm = function(){/*disable confirm*/};
+      window.prompt = function(){/*disable prompt*/};
+      window.open = function(){/*disable open*/};
+    }
+    
+    // prevent href=# click jump
+    document.addEventListener("DOMContentLoaded", function() {
+      var links = document.getElementsByTagName("A");
+      for(var i=0; i < links.length; i++) {
+        if(links[i].href.indexOf('#')!=-1) {
+          links[i].addEventListener("click", function(e) {
+          console.debug("prevent href=# click");
+              if (this.hash) {
+                if (this.hash=="#") {
+                  e.preventDefault();
+                  return false;
+                }
+                else {
+                  /*
+                  var el = document.getElementById(this.hash.replace(/#/, ""));
+                  if (el) {
+                    el.scrollIntoView(true);
+                  }
+                  */
+                }
+              }
+              return false;
+          })
+        }
+      }
+    }, false);
+  </script>
+  <!--scripts loaded here-->
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
+  </script>
+
+</body>
+</html>
