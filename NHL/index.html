@@ -41,6 +41,22 @@
     .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
       visibility: hidden;
     }
+
+   @media screen and (max-width: 768px) {
+  .row-border {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    width:calc(100% + 220px);
+    font-size: 12px;
+  }  
+
+  h1{
+    font-size: 30px;
+  }
+  }
+ 
     
     .dataTables_filter{
       padding-right: 10%;
