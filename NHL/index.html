@@ -10,18 +10,10 @@
    <link rel="icon" href="./../images/behindthebenches.ico">
    <title>NHL Coaches - Behind the Benches</title>
    <!-- =============== VENDOR STYLES ===============-->
-   <!-- FONT AWESOME-->
-   <link rel="stylesheet" href="./../css/fa-brands.css">
-   <link rel="stylesheet" href="./../css/fa-regular.css">
-   <link rel="stylesheet" href="./../css/fa-solid.css">
-   <link rel="stylesheet" href="./../css/fontawesome.css">
+    <!-- FONT AWESOME-->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <!-- SIMPLE LINE ICONS-->
-   <link rel="stylesheet" href="./../css/simple-line-icons.css">
    <!-- ANIMATE.CSS-->
    <link rel="stylesheet" href="./../css/animate.css">
-   <!-- WHIRL (spinners)-->
-   <link rel="stylesheet" href="./../css/whirl.css">
    <!-- =============== PAGE VENDOR STYLES ===============-->
    <!-- Datatables-->
    <link rel="stylesheet" href="./../css/dataTables.bootstrap4.css">
@@ -32,11 +24,12 @@
    <!-- =============== APP STYLES ===============-->
    <link rel="stylesheet" href="./../css/app.css" id="maincss">
    <link rel="stylesheet" href="./../css/NHL.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <style type="text/css" class="init">
-
-    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    html,body,h1,h2,h3,h4,h5 {
+      font-family: "Raleway", sans-serif
+    }
     
     thead,.dataTables_length, 
     .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
@@ -44,7 +37,7 @@
     }
 
    @media screen and (max-width: 980px) {
-  .row-border {
+    .row-border {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out;
@@ -54,30 +47,40 @@
     width:calc(100% + 220px);
     font-size: 12px;
   }  
-
   h1{
     font-size: 30px;
     }
   }
  
-    
-    .dataTables_filter{
-      padding-right: 10%;
-    }
-     label{
-      font-size: 16px;
-    }
-    .form-control{
-      background: rgb(245,245,245);
-    }
+  .dataTables_filter{
+    padding-right: 10%;
+  }
+  label{
+    font-size: 16px;
+  }
+  .form-control{
+    background: rgb(245,245,245);
+  }
+
+  .no-js #loader { display: none;  }
+  .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+  .se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(./../images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
+  }
   </style>
 
   <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
   <script type="text/javascript" class="init">
-  
-
-$(document).ready(function() {
+  $(document).ready(function() {
     var groupColumn = 2;
     var table = $('#example').DataTable({
         "columnDefs": [
@@ -114,13 +117,16 @@ $(document).ready(function() {
             table.order( [ groupColumn, 'asc' ] ).draw();
         }
     } );
-} );
+  } );
 
-
+  $(window).load(function() {
+      $(".se-pre-con").fadeOut("slow");;
+   });
   </script>
 </head>
 
 <body style="background:white;">
+  <div class="se-pre-con"></div>
    <div class="wrapper">
       <header class="topnavbar-wrapper" > <!-- top navbar-->
          <nav class="navbar topnavbar" style="background:black;"> <!-- START Top Navbar-->

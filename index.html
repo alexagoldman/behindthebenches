@@ -11,17 +11,9 @@
    <title>Behind the Benches</title>
    <!-- =============== VENDOR STYLES ===============-->
    <!-- FONT AWESOME-->
-   <link rel="stylesheet" href="css/fa-brands.css">
-   <link rel="stylesheet" href="css/fa-regular.css">
-   <link rel="stylesheet" href="css/fa-solid.css">
-   <link rel="stylesheet" href="css/fontawesome.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <!-- SIMPLE LINE ICONS-->
-   <link rel="stylesheet" href="css/simple-line-icons.css">
    <!-- ANIMATE.CSS-->
    <link rel="stylesheet" href="css/animate.css">
-   <!-- WHIRL (spinners)-->
-   <link rel="stylesheet" href="css/whirl.css">
    <!-- =============== PAGE VENDOR STYLES ===============-->
    <!-- Datatables-->
    <link rel="stylesheet" href="css/dataTables.bootstrap4.css">
@@ -32,19 +24,53 @@
    <!-- =============== APP STYLES ===============-->
    <link rel="stylesheet" href="css/app.css" id="maincss">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <style> 
-    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-    </style>
-    
+   <style> 
+      html,body,h1,h2,h3,h4,h5 {
+         font-family: "Raleway", sans-serif
+      }
+
+      @media screen and (max-width: 980px) {
+       .row-border {
+       position: relative;
+       -webkit-transition: all 0.25s ease-out;
+       -moz-transition: all 0.25s ease-out;
+       -o-transition: all 0.25s ease-out;
+       -ms-transition: all 0.25s ease-out;
+       transition: all 0.25s ease-out;
+       width:calc(100% + 220px);
+       font-size: 12px;
+      }  
+
+      .no-js #loader { display: none;  }
+      .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+      .se-pre-con {
+         position: fixed;
+         left: 0px;
+         top: 0px;
+         width: 100%;
+         height: 100%;
+         z-index: 9999;
+         background: url(./images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
+      }
+
+      </style>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+      <script type="text/javascript">
+      $(window).load(function() {
+         $(".se-pre-con").fadeOut("slow");;
+      });
+   </script>
 </head>
 
 <body style="background:white;">
+   <div class="se-pre-con"></div>
    <div class="wrapper">
       <header class="topnavbar-wrapper" > <!-- top navbar-->
          <nav class="navbar topnavbar" style="background:black;"> <!-- START Top Navbar-->
             <div class="navbar-header" > <!-- START navbar header-->
                <a class="navbar-brand" href="./index.html">
-                  <div class="brand-logo" style="color:white; font-size: 18px;"">
+                  <div class="brand-logo" style="color:white; font-size: 18px;">
                      <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches</img>
                   </div>
                   <div class="brand-logo-collapsed" style="color:white;">

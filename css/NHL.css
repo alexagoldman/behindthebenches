@@ -401,3 +401,23 @@
       text-align: left;
       font-size: 12px;
     }
+    .col-xl-12{
+       /*border: 3px double #8c8c8c;*/
+      border-style: outset;
+      padding: 0px; 
+    }
+    .go-top {
+      position: fixed;
+      bottom: 2em;
+      right: 2em;
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 12px;
+      padding: 1em;
+      display: none;
+    }
+
+    .go-top:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
