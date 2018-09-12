@@ -401,7 +401,7 @@
       text-align: left;
       font-size: 12px;
     }
-    .col-xl-12{
+    #tableBorder{
        /*border: 3px double #8c8c8c;*/
       border-style: outset;
       padding: 0px; 
