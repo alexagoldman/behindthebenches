@@ -72,6 +72,22 @@
     z-index: 9999;
     background: url(./../images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
   }
+
+  .go-top {
+      position: fixed;
+      bottom: 2em;
+      right: 2em;
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 12px;
+      padding: 1em;
+      display: none;
+    }
+
+    .go-top:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
   </style>
 
   <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -118,6 +134,24 @@
     } );
   } );
 
+ $(document).ready(function() {
+      // Show or hide the sticky footer button
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+          $('.go-top').fadeIn(200);
+        } else {
+          $('.go-top').fadeOut(200);
+        }
+      });
+      
+      // Animate the scroll to top
+      $('.go-top').click(function(event) {
+        event.preventDefault();
+        
+        $('html, body').animate({scrollTop: 0}, 300);
+      })
+    });
+  
   $(window).load(function() {
       $(".se-pre-con").fadeOut("slow");;
    });
@@ -1688,6 +1722,8 @@
           </table>
         </div>
       </div>
+      <a href="#" class="go-top">Go Top</a>
+          <br><br>
     </div>
   </section>
       <!-- Page footer-->
