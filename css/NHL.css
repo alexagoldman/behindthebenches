@@ -402,9 +402,11 @@
       font-size: 12px;
     }
     #tableBorder{
-       /*border: 3px double #8c8c8c;*/
-      border-style: outset;
+      border:  outset; 
       padding: 0px; 
+    }
+    #tablePadding{
+      padding: 10px;
     }
     .go-top {
       position: fixed;
