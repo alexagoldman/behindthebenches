@@ -1,127 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   <meta name="description" content="">
-   <meta name="keywords" content="">
-   <link rel="icon" href="./../images/behindthebenches.ico">
-   <title>Arizona Coyotes - Behind the Benches</title>
-   <!-- =============== VENDOR STYLES ===============-->
-    <!-- FONT AWESOME-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <!-- ANIMATE.CSS-->
-   <link rel="stylesheet" href="./../css/animate.css">
-   <!-- =============== PAGE VENDOR STYLES ===============-->
-   <!-- Datatables-->
-   <link rel="stylesheet" href="./../css/dataTables.bootstrap4.css">
-   <link rel="stylesheet" href="./../css/keyTable.bootstrap.css">
-   <link rel="stylesheet" href="./../css/responsive.bootstrap.css">
-   <!-- =============== BOOTSTRAP STYLES ===============-->
-   <link rel="stylesheet" href="./../css/bootstrap.css" id="bscss">
-   <!-- =============== APP STYLES ===============-->
-   <link rel="stylesheet" href="./../css/app.css" id="maincss">
-   <link rel="stylesheet" href="./../css/NHL.css">
-   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-   <style type="text/css" class="init">
-  @media screen and (max-width: 980px) {
-    .row-border {
-      position: relative;
-      -webkit-transition: all 0.25s ease-out;
-      -moz-transition: all 0.25s ease-out;
-      -o-transition: all 0.25s ease-out;
-      -ms-transition: all 0.25s ease-out;
-      transition: all 0.25s ease-out;
-      width:calc(100% + 220px);
-      font-size: 10px;
-    }  
-    h1{
-      font-size: 30px;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="icon" href="./../images/behindthebenches.ico">
+  <title> Arizona Coyotes | Behind the Benches</title>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== VENDOR STYLES ====================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- FONT AWESOME-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- ANIMATE.CSS-->
+  <link rel="stylesheet" href="./../css/animate.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ================== PAGE VENDOR STYLES =================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- Datatables-->
+  <link rel="stylesheet" href="./../css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="./../css/keyTable.bootstrap.css">
+  <link rel="stylesheet" href="./../css/responsive.bootstrap.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== BOOTSTRAP STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/bootstrap.css" id="bscss">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ====================== APP STYLES ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/app.css" id="maincss">
+  <link rel="stylesheet" href="./../css/NHL.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== CSS PAGE STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <style type="text/css" class="init">
+    @media screen and (max-width: 980px) {
+      .row-border {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        -o-transition: all 0.25s ease-out;
+        -ms-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+        width:calc(100% + 220px);
+        font-size: 10px;
+      }  
+      h1{
+        font-size: 30px;
+      }
     }
-  }
 
-  .tableTitle{
-    font-size: 20px;
-  }
+    .tableTitle{
+      font-size: 20px;
+    }
 
-  .no-js #loader { 
-    display: none;  
-  }
-  .js #loader { 
-    display: block;
-    position: absolute; 
-    left: 100px; 
-    top: 0; 
-  }
-  .se-pre-con {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background: url(./../images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
-  }
+    .no-js #loader { 
+      display: none;  
+    }
+
+    .js #loader { 
+      display: block;
+      position: absolute; 
+      left: 100px; 
+      top: 0; 
+    }
+
+    .se-pre-con {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: url(./../images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
+    }
   </style>
-
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== PAGE VENDER SCRIPTS ================= -->
+  <!--///////////////////////////////////////////////////////////-->
   <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ===================== PAGE SCRIPT ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
   <script type="text/javascript" class="init">
-  $(document).ready(function() {
-      // Show or hide the sticky footer button
-      $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-          $('.go-top').fadeIn(200);
-        } else {
-          $('.go-top').fadeOut(200);
-        }
+    $(document).ready(function() {
+        $(window).scroll(function() {
+          if ($(this).scrollTop() > 200) {
+            $('.go-top').fadeIn(200);
+          } else {
+            $('.go-top').fadeOut(200);
+          }
+        });
+        $('.go-top').click(function(event) {
+          event.preventDefault();
+          $('html, body').animate({scrollTop: 0}, 300);
+        })
       });
-      
-      // Animate the scroll to top
-      $('.go-top').click(function(event) {
-        event.preventDefault();
-        
-        $('html, body').animate({scrollTop: 0}, 300);
-      })
-    });
-
-  $(window).load(function() {
-      $(".se-pre-con").fadeOut("slow");;
-   });
+    $(window).load(function() {
+        $(".se-pre-con").fadeOut("slow");;
+     });
   </script>
 </head>
-
+<!--///////////////////////////////////////////////////////////-->
+<!-- ========================= BODY ========================== -->
+<!--///////////////////////////////////////////////////////////-->
 <body style="background:white;">
   <div class="se-pre-con"></div>
    <div class="wrapper">
-      <header class="topnavbar-wrapper" > <!-- top navbar-->
-         <nav class="navbar topnavbar" style="background:black;"> <!-- START Top Navbar-->
-            <div class="navbar-header" > <!-- START navbar header-->
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV START ===================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <header class="topnavbar-wrapper"> 
+         <nav class="navbar topnavbar" style="background:black;"> 
+            <div class="navbar-header"> 
                <a class="navbar-brand" href="./../index.html">
                   <div class="brand-logo" style="color:white; font-size: 18px;">
-                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches</img>
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches
                   </div>
                   <div class="brand-logo-collapsed" style="color:white;">
-                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;"></img>
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;">
                   </div>
                </a>
-            </div><!-- END navbar header-->
-            <ul class="navbar-nav mr-auto flex-row" > <!-- START Left navbar-->
+            </div>
+            <ul class="navbar-nav mr-auto flex-row" >
                <li class="nav-item">
-                  <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
                   <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
                      <i class="fa fa-bars" aria-hidden="true"></i>
                   </a>
-                  <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
                   <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                   </a>
                </li>
-            </ul> <!-- END Left navbar-->
-            <ul class="navbar-nav flex-row" ><!-- START Right Navbar-->
+            </ul>
+            <ul class="navbar-nav flex-row" >
                <li class="nav-item d-none d-md-block">
                   <a class="nav-link" href="https://www.twitter.com/BenchBosses">
                      <i class="fa fa-twitter" aria-hidden="true"></i>
@@ -132,21 +148,25 @@
                      <i class="fa fa-envelope" aria-hidden="true"></i>
                   </a>
                </li>
-               <li class="nav-item d-none d-md-block"> <!-- Fullscreen (only desktops)-->
+               <li class="nav-item d-none d-md-block">
                   <a class="nav-link" href="#" data-toggle-fullscreen="">
                      <i class="fa fa-arrows-alt" aria-hidden="true"></i>
                   </a>
                </li>
-            </ul><!-- END Right Navbar-->
-         </nav> <!-- END Top Navbar-->
+            </ul>
+         </nav>
       </header>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV END ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
 
-
-      <!-- sidebar-->
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR START ==================== -->
+      <!--///////////////////////////////////////////////////////////-->
       <aside class="aside-container">
-         <div class="aside-inner"> <!-- START Sidebar (left)-->
+         <div class="aside-inner">
             <nav class="sidebar" data-sidebar-anyclick-close="" style="background:rgb(245,245,245);" >
-               <ul class="sidebar-nav"><!-- START sidebar nav-->
+               <ul class="sidebar-nav">
                   <li class="nav-heading ">
                      <span data-localize="sidebar.heading.HEADER">NHL</span>
                   </li>
@@ -313,20 +333,27 @@
                         <span data-localize="sidebar.nav.EMAIL"> Contact us</span>
                      </a>
                   </li>
-
-               </ul><!-- END sidebar nav-->
+               </ul>
             </nav>
-         </div><!-- END Sidebar (left)-->
+         </div>
       </aside>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR END ====================== -->
+      <!--///////////////////////////////////////////////////////////-->
 
-<!-- Main section-->
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN START ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
       <section class="section-container" style="background:white;" >
-         <div class="content-wrapper"> <!-- Page content-->
+         <div class="content-wrapper">
             <div class=" text-center">
                <h1 class="text-center" style="padding:1%; color:black;"> <img src="./../images/ARI.png" style="width:1.5em"> Arizona Coyotes </h1><br>
             </div>
             <div id="tablePadding" class="row">
               <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ COACHING HISTORY START ================= -->
+                <!--///////////////////////////////////////////////////////////-->
                 <table class="table row-border" style="width:100%">
                     <tr class="Coyotes" style="font-size: 30px;">
                       <th class="tableTitle" colspan="8">Coaching History</th>
@@ -346,6 +373,9 @@
                    
                   </tbody>
                 </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ COACHING HISTORY ENDS  ================= -->
+                <!--///////////////////////////////////////////////////////////-->
                </div>
             </div>
             <br><br>
@@ -355,7 +385,11 @@
             </div>
             <div id="tablePadding" class="row">
               <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ SEASON BY SEASON START ================= -->
+                <!--///////////////////////////////////////////////////////////-->
                 <table class="table row-border" style="width:100%">
+                    <!-- ================= 2018-19 ==================== -->
                     <tr class="Coyotes" style="font-size: 12px;">
                       <th class="tableTitle" colspan="8">2018-19</th>
                     </tr>
@@ -367,9 +401,109 @@
                     </tr>
                   </thead>
                   <tbody>
+                  
                     
+                    <!-- ================= 2017-18 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2017-18</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+
+                    <!-- ================= 2016-17 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2016-17</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+                   
+                    <!-- ================= 2015-16 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2015-16</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+
+                    <!-- ================= 2014-15 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2014-15</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+
+                    <!-- ================= 2013-14 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2013-14</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+
+                    <!-- ================= 2012-13 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2012-13</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+
+                    <!-- ================= 2011-12 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2011-12</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+
+                    <!-- ================= 2010-11 ==================== -->
+                    <tr class="Coyotes" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2010-11</th>
+                    </tr>
+                    <tr class="Coyotes1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    
+
                   </tbody>
                 </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ SEASON BY SEASON END =================== -->
+                <!--///////////////////////////////////////////////////////////-->
               </div>
             </div>
           </section>
@@ -377,31 +511,33 @@
           <div class=" text-center">
                <h3 class="text-center" style="padding:1%; color:black;"> Head Coach History</h3>
           </div>
-         <section id="JimMontgomery">
+         <section id="  ">
             <div id="tablePadding" class="row">
               <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ==================  START ================== -->
+                <!--///////////////////////////////////////////////////////////-->
                 <table class="table row-border" style="width:100%">
                     <tr class="Coyotes" style="font-size: 15px;">
-                      <th class="tableTitle" colspan="10">Jim Montgomery</th>
+                      <th class="tableTitle" colspan="10">  </th>
                     </tr>
                     <tr class="Coyotes1" style="font-size: 13px;">       
                       <th>DOB</th>
                       <th>Hire Date</th>
+                      <th>Fire Date</th>
                       <th> </th>
-                      <th>2018-19 Salary</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
                     </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                      <td>June 30, 1969</td>
-                      <td>May 2, 2018</td>
-                      <td> </td>
+                    <tr>
+                      <td>August 23, 1967</td>
+                      <td>March 26, 2013</td>
                       <td>Unknown</td>
                       <td> </td>
                       <td> </td>
@@ -409,6 +545,17 @@
                       <td> </td>
                       <td> </td>
                       <td> </td>
+                      <td> </td>
+                    </tr>              
+                    <tr>
+                      <td> </td>
+                      <td> </td>
+                      <td colspan="3"><i>*Signed five year, $25,000,000 contract in February 2017</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
                     </tr>
                   </tbody>
                 </table>
@@ -416,7 +563,7 @@
                   <tbody>
                     <tr>
                       <th colspan="4"></th>
-                      <th colspan="6" class="Coyotes" style="font-size: 15px">Record</th>
+                      <th colspan="6" class="Coyotes" style="font-size: 15px;">Record</th>
                     </tr>
                     <tr class="Coyotes1" style="font-size: 13px;">
                       <th>Season</th>
@@ -430,26 +577,35 @@
                       <th>Overtime<br>Loss</th>
                       <th>Playoffs</th>
                     </tr>
-                    
+                   
+
                   </tbody>
                 </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ==================  END ==================== -->
+                <!--///////////////////////////////////////////////////////////-->
               </div>
             </div>  
           </section>
           <br><br><br>
-          <section id=" ">
+          <section id="  ">
             <div id="tablePadding" class="row">
               <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ==================  START ================== -->
+                <!--///////////////////////////////////////////////////////////-->
                 <table class="table row-border" style="width:100%">
                     <tr class="Coyotes" style="font-size: 15px;">
-                      <th class="tableTitle" colspan="10"> </th>
+                      <th class="tableTitle" colspan="10">  </th>
                     </tr>
-                    <tr class="Coyotes1" style="font-size: 13px;">
+                    <tr class="Coyotes1" style="font-size: 13px;">       
                       <th>DOB</th>
                       <th>Hire Date</th>
-                      <th>End Date</th>
-                      <th colspan="2">Stanley Cup Championship</th>
-                      <th colspan="2"> Jack Adams Award</th>
+                      <th>Fire Date</th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
                       <th> </th>
                       <th> </th>
                       <th> </th>
@@ -457,11 +613,23 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>December 17, 1951</td>
-                      <td>April 13, 2017</td>
-                      <td>April 13, 2018</td>
-                      <td colspan="2">1998-99</td>
-                      <td colspan="2">2011-12</td>
+                      <td>August 23, 1967</td>
+                      <td>March 26, 2013</td>
+                      <td>Unknown</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>              
+                    <tr>
+                      <td> </td>
+                      <td> </td>
+                      <td colspan="3"><i>*Signed five year, $25,000,000 contract in February 2017</i></td>
+                      <td> </td>
+                      <td> </td>
                       <td> </td>
                       <td> </td>
                       <td> </td>
@@ -472,7 +640,7 @@
                   <tbody>
                     <tr>
                       <th colspan="4"></th>
-                      <th colspan="6" class="Coyotes" style="font-size: 15px">Record</th>
+                      <th colspan="6" class="Coyotes" style="font-size: 15px;">Record</th>
                     </tr>
                     <tr class="Coyotes1" style="font-size: 13px;">
                       <th>Season</th>
@@ -486,26 +654,35 @@
                       <th>Overtime<br>Loss</th>
                       <th>Playoffs</th>
                     </tr>
-                    
+                   
+
                   </tbody>
                 </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ==================  END ==================== -->
+                <!--///////////////////////////////////////////////////////////-->
               </div>
             </div>  
           </section>
           <br><br><br>
-          <section id=" ">
+          <section id="  ">
             <div id="tablePadding" class="row">
               <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ==================  START ================== -->
+                <!--///////////////////////////////////////////////////////////-->
                 <table class="table row-border" style="width:100%">
                     <tr class="Coyotes" style="font-size: 15px;">
-                      <th class="tableTitle" colspan="10"> </th>
+                      <th class="tableTitle" colspan="10">  </th>
                     </tr>
-                    <tr class="Coyotes1" style="font-size: 13px;">
+                    <tr class="Coyotes1" style="font-size: 13px;">       
                       <th>DOB</th>
                       <th>Hire Date</th>
-                      <th>End Date</th>
-                      <th colspan="2">Stanley Cup Championship</th>
-                      <th colspan="2"> Jack Adams Award</th>
+                      <th>Fire Date</th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
                       <th> </th>
                       <th> </th>
                       <th> </th>
@@ -513,11 +690,23 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>December 17, 1951</td>
-                      <td>April 13, 2017</td>
-                      <td>April 13, 2018</td>
-                      <td colspan="2">1998-99</td>
-                      <td colspan="2">2011-12</td>
+                      <td>August 23, 1967</td>
+                      <td>March 26, 2013</td>
+                      <td>Unknown</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>              
+                    <tr>
+                      <td> </td>
+                      <td> </td>
+                      <td colspan="3"><i>*Signed five year, $25,000,000 contract in February 2017</i></td>
+                      <td> </td>
+                      <td> </td>
                       <td> </td>
                       <td> </td>
                       <td> </td>
@@ -528,7 +717,7 @@
                   <tbody>
                     <tr>
                       <th colspan="4"></th>
-                      <th colspan="6" class="Coyotes" style="font-size: 15px">Record</th>
+                      <th colspan="6" class="Coyotes" style="font-size: 15px;">Record</th>
                     </tr>
                     <tr class="Coyotes1" style="font-size: 13px;">
                       <th>Season</th>
@@ -542,9 +731,13 @@
                       <th>Overtime<br>Loss</th>
                       <th>Playoffs</th>
                     </tr>
-                    
+                   
+
                   </tbody>
                 </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ==================  END ==================== -->
+                <!--///////////////////////////////////////////////////////////-->
               </div>
             </div>  
           </section>
@@ -552,48 +745,57 @@
           <br><br>
         </div>
       </section>
-      <!-- Page footer-->
-  <footer class="footer-container">
-    <span><small>2018 - Behind the Benches</small></span>
-    
-  </footer>
-  </div>
-   <!-- =============== VENDOR SCRIPTS ===============-->
-   <!-- MODERNIZR-->
-   <script src="./../js/modernizr.custom.js"></script>
-   <!-- JQUERY-->
-   <script src="./../js/jquery.js"></script>
-   <!-- BOOTSTRAP-->
-   <script src="./../js/popper.js"></script>
-   <script src="./../js/bootstrap.js"></script>
-   <!-- STORAGE API-->
-   <script src="./../js/js.storage.js"></script>
-   <!-- JQUERY EASING-->
-   <script src="./../js/jquery.easing.js"></script>
-   <!-- ANIMO-->
-   <script src="./../js/animo.js"></script>
-   <!-- SCREENFULL-->
-   <script src="./../js/screenfull.js"></script>
-   <!-- LOCALIZE-->
-   <script src="./../js/jquery.localize.js"></script>
-   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-   <!-- Datatables-->
-   <script src="./../js/jquery.dataTables.js"></script>
-   <script src="./../js/dataTables.bootstrap4.js"></script>
-   <script src="./../js/dataTables.buttons.js"></script>
-   <script src="./../js/buttons.bootstrap.js"></script>
-   <script src="./../js/buttons.colVis.js"></script>
-   <script src="./../js/buttons.flash.js"></script>
-   <script src="./../js/buttons.html5.js"></script>
-   <script src="./../js/buttons.print.js"></script>
-   <script src="./../js/dataTables.keyTable.js"></script>
-   <script src="./../js/dataTables.responsive.js"></script>
-   <script src="./../js/responsive.bootstrap.js"></script>
-   <script src="./../js/jszip.js"></script>
-   <script src="./../js/pdfmake.js"></script>
-   <script src="./../js/vfs_fonts.js"></script>
-   <!-- =============== APP SCRIPTS ===============-->
-   <script src="./../js/app.js"></script>
-</body>
-
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN END ========================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <footer class="footer-container">
+        <span><small>2018 - Behind the Benches</small></span>
+      </footer>
+    </div>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- =================== VENDER SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- MODERNIZR-->
+    <script src="./../js/modernizr.custom.js"></script>
+    <!-- JQUERY-->
+    <script src="./../js/jquery.js"></script>
+    <!-- BOOTSTRAP-->
+    <script src="./../js/popper.js"></script>
+    <script src="./../js/bootstrap.js"></script>
+    <!-- STORAGE API-->
+    <script src="./../js/js.storage.js"></script>
+    <!-- JQUERY EASING-->
+    <script src="./../js/jquery.easing.js"></script>
+    <!-- ANIMO-->
+    <script src="./../js/animo.js"></script>
+    <!-- SCREENFULL-->
+    <script src="./../js/screenfull.js"></script>
+    <!-- LOCALIZE-->
+    <script src="./../js/jquery.localize.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ================= PAGE VENDER SCRIPTS =================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- Datatables-->
+    <script src="./../js/jquery.dataTables.js"></script>
+    <script src="./../js/dataTables.bootstrap4.js"></script>
+    <script src="./../js/dataTables.buttons.js"></script>
+    <script src="./../js/buttons.bootstrap.js"></script>
+    <script src="./../js/buttons.colVis.js"></script>
+    <script src="./../js/buttons.flash.js"></script>
+    <script src="./../js/buttons.html5.js"></script>
+    <script src="./../js/buttons.print.js"></script>
+    <script src="./../js/dataTables.keyTable.js"></script>
+    <script src="./../js/dataTables.responsive.js"></script>
+    <script src="./../js/responsive.bootstrap.js"></script>
+    <script src="./../js/jszip.js"></script>
+    <script src="./../js/pdfmake.js"></script>
+    <script src="./../js/vfs_fonts.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ====================== APP SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <script src="./../js/app.js"></script>
+  </body>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ======================= BODY END ======================== -->
+  <!--///////////////////////////////////////////////////////////-->
 </html>

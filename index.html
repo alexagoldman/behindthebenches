@@ -1,48 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head >
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   <meta name="description" content="">
-   <meta name="keywords" content="">
-   <link rel="icon" href="./images/behindthebenches.ico">
-   <title>Behind the Benches</title>
-   <!-- =============== VENDOR STYLES ===============-->
-   <!-- FONT AWESOME-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <!-- ANIMATE.CSS-->
-   <link rel="stylesheet" href="css/animate.css">
-   <!-- =============== PAGE VENDOR STYLES ===============-->
-   <!-- Datatables-->
-   <link rel="stylesheet" href="css/dataTables.bootstrap4.css">
-   <link rel="stylesheet" href="css/keyTable.bootstrap.css">
-   <link rel="stylesheet" href="css/responsive.bootstrap.css">
-   <!-- =============== BOOTSTRAP STYLES ===============-->
-   <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
-   <!-- =============== APP STYLES ===============-->
-   <link rel="stylesheet" href="css/app.css" id="maincss">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-   <style> 
-      html,body,h1,h2,h3,h4,h5 {
-         font-family: "Raleway", sans-serif
-      }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="icon" href="./images/behindthebenches.ico">
+  <title>Behind the Benches</title>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== VENDOR STYLES ====================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- FONT AWESOME-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- ANIMATE.CSS-->
+  <link rel="stylesheet" href="./css/animate.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ================== PAGE VENDOR STYLES =================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- Datatables-->
+  <link rel="stylesheet" href="./css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="./css/keyTable.bootstrap.css">
+  <link rel="stylesheet" href="./css/responsive.bootstrap.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== BOOTSTRAP STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./css/bootstrap.css" id="bscss">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ====================== APP STYLES ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./css/app.css" id="maincss">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== CSS PAGE STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <style type="text/css" class="init">
+    html,body,h1,h2,h3,h4,h5 {
+      font-family: "Raleway", sans-serif
+    }
 
-      @media screen and (max-width: 980px) {
-       .row-border {
-       position: relative;
-       -webkit-transition: all 0.25s ease-out;
-       -moz-transition: all 0.25s ease-out;
-       -o-transition: all 0.25s ease-out;
-       -ms-transition: all 0.25s ease-out;
-       transition: all 0.25s ease-out;
-       width:calc(100% + 220px);
-       font-size: 12px;
+    @media screen and (max-width: 980px) {
+      .row-border {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        -o-transition: all 0.25s ease-out;
+        -ms-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+        width:calc(100% + 220px);
+        font-size: 12px;
       }  
-
-      .no-js #loader { display: none;  }
-      .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+      .no-js #loader { 
+        display: none;
+      }
+      .js #loader { 
+        display: block; position: absolute; left: 100px; top: 0; 
+      }
       .se-pre-con {
          position: fixed;
          left: 0px;
@@ -53,163 +65,194 @@
          background: url(./images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
       }
 
-      </style>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-      <script type="text/javascript">
-      $(window).load(function() {
-         $(".se-pre-con").fadeOut("slow");;
-      });
-   </script>
+  </style>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== PAGE VENDER SCRIPTS ================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ===================== PAGE SCRIPT ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script type="text/javascript" class="init">
+    $(window).load(function() {
+      $(".se-pre-con").fadeOut("slow");;
+    });
+  </script>
 </head>
-
+<!--///////////////////////////////////////////////////////////-->
+<!-- ========================= BODY ========================== -->
+<!--///////////////////////////////////////////////////////////-->
 <body style="background:white;">
-   <div class="se-pre-con"></div>
-   <div class="wrapper">
-      <header class="topnavbar-wrapper" > <!-- top navbar-->
-         <nav class="navbar topnavbar" style="background:black;"> <!-- START Top Navbar-->
-            <div class="navbar-header" > <!-- START navbar header-->
-               <a class="navbar-brand" href="./index.html">
-                  <div class="brand-logo" style="color:white; font-size: 18px;">
-                     <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches</img>
-                  </div>
-                  <div class="brand-logo-collapsed" style="color:white;">
-                     <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:2em;"></img>
-                  </div>
-               </a>
-            </div><!-- END navbar header-->
-            <ul class="navbar-nav mr-auto flex-row" > <!-- START Left navbar-->
-               <li class="nav-item">
-                  <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
-                  <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
-                     <i class="fa fa-bars" aria-hidden="true"></i>
-                  </a>
-                  <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
-                  <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                  </a>
-               </li>
-            </ul> <!-- END Left navbar-->
+  <div class="se-pre-con"></div>
+    <div class="wrapper">
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV START ===================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <header class="topnavbar-wrapper">
+         <nav class="navbar topnavbar" style="background:black;">
+            <div class="navbar-header" >
+              <a class="navbar-brand" href="./index.html">                    
+                <div class="brand-logo" style="color:white; font-size: 18px;">
+                  <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches
+                </div>
+                <div class="brand-logo-collapsed" style="color:white;">
+                  <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:2em;">
+                </div>
+              </a>
+            </div>
+            <ul class="navbar-nav mr-auto flex-row" > 
+              <li class="nav-item">
+                <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+                </a>
+                <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul> 
             <ul class="navbar-nav flex-row" >
-               <li class="nav-item d-none d-md-block">
-                  <a class="nav-link" href="https://www.twitter.com/BenchBosses">
-                     <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-               </li>
-               <li class="nav-item d-none d-md-block">
-                  <a class="nav-link" href="mailto:benchbosses@gmail.com" target="_blank">
-                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                  </a>
-               </li>
-               <li class="nav-item d-none d-md-block"> <!-- Fullscreen (only desktops)-->
-                  <a class="nav-link" href="#" data-toggle-fullscreen="">
-                     <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                  </a>
-               </li>
+              <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="https://www.twitter.com/BenchBosses">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="mailto:benchbosses@gmail.com" target="_blank">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item d-none d-md-block"> 
+                <a class="nav-link" href="#" data-toggle-fullscreen="">
+                  <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                </a>
+              </li>
             </ul>
-         </nav> <!-- END Top Navbar-->
+          </nav> 
       </header>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV END ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
 
-      <!-- sidebar-->
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR START ==================== -->
+      <!--///////////////////////////////////////////////////////////-->
       <aside class="aside-container" >
-         <div class="aside-inner"> <!-- START Sidebar (left)-->
-            <nav class="sidebar" data-sidebar-anyclick-close="" style="background:rgb(245,245,245);" >
-               <ul class="sidebar-nav"><!-- START sidebar nav-->
-                  <li class="nav-heading ">
-                     <span data-localize="sidebar.heading.HEADER">Leagues</span>
-                  </li>
-                  <li class=" ">
-                     <a href="./NHL/index.html" title="NHL" >
-                       <img class="img-fluid" src="./images/NHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
-                        <span data-localize="sidebar.nav.NHL"> NHL</span>
-                     </a>
-                     <a href="./NWHL/index.html" title="NWHL" >
-                       <img class="img-fluid" src="./images/NWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
-                        <span data-localize="sidebar.nav.NWHL"> NWHL</span>
-                     </a>
-                     <a href="./CWHL/index.html" title="CWHL" >
-                       <img class="img-fluid" src="./images/CWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
-                        <span data-localize="sidebar.nav.CWHL"> CWHL</span>
-                     </a>
-                     <a href="./AHL/index.html" title="AHL" >
-                       <img class="img-fluid" src="./images/AHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
-                        <span data-localize="sidebar.nav.AHL"> AHL</span>
-                     </a>
-                     <a href="./NCAA/index.html" title="NCAA" >
-                       <img class="img-fluid" src="./images/ncaa.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
-                        <span data-localize="sidebar.nav.NCAA"> NCAA</span>
-                     </a>
-                  </li>
-                  <hr>
-                  <li class=" ">
-                     <a href="https://www.twitter.com/BenchBosses" title="twitter" >
-                       <i class="fa fa-twitter" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
-                        <span data-localize="sidebar.nav.TWITTER"> @BenchBosses</span>
-                     </a>
-                     <a href="mailto:benchbosses@gmail.com" target="_blank" title="email" >
-                       <i class="fa fa-envelope" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
-                        <span data-localize="sidebar.nav.EMAIL"> Contact us</span>
-                     </a>
-                  </li>
-               </ul> <!-- END sidebar nav-->
-            </nav>
-         </div> <!-- END Sidebar (left)-->
+        <div class="aside-inner">
+          <nav class="sidebar" data-sidebar-anyclick-close="" style="background:rgb(245,245,245);" >
+            <ul class="sidebar-nav">
+              <li class="nav-heading ">
+                <span data-localize="sidebar.heading.HEADER">Leagues</span>
+              </li>
+              <li class=" ">
+                <a href="./NHL/index.html" title="NHL" >
+                  <img class="img-fluid" src="./images/NHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                    <span data-localize="sidebar.nav.NHL"> NHL</span>
+                </a>
+                <a href="./NWHL/index.html" title="NWHL" >
+                  <img class="img-fluid" src="./images/NWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                    <span data-localize="sidebar.nav.NWHL"> NWHL</span>
+                </a>
+                <a href="./CWHL/index.html" title="CWHL" >
+                  <img class="img-fluid" src="./images/CWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                    <span data-localize="sidebar.nav.CWHL"> CWHL</span>
+                </a>
+                <a href="./AHL/index.html" title="AHL" >
+                  <img class="img-fluid" src="./images/AHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                    <span data-localize="sidebar.nav.AHL"> AHL</span>
+                </a>
+                <a href="./NCAA/index.html" title="NCAA" >
+                  <img class="img-fluid" src="./images/ncaa.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                    <span data-localize="sidebar.nav.NCAA"> NCAA</span>
+                </a>
+              </li>
+              <hr>
+              <li class=" ">
+                <a href="https://www.twitter.com/BenchBosses" title="twitter" >
+                  <i class="fa fa-twitter" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                    <span data-localize="sidebar.nav.TWITTER"> @BenchBosses</span>
+                </a>
+                <a href="mailto:benchbosses@gmail.com" target="_blank" title="email" >
+                  <i class="fa fa-envelope" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                    <span data-localize="sidebar.nav.EMAIL"> Contact us</span>
+                </a>
+              </li>
+            </ul> 
+          </nav>
+        </div> 
       </aside>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR END ====================== -->
+      <!--///////////////////////////////////////////////////////////-->
 
-      <!-- Main section-->
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN START ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
       <section class="section-container" style="background:white;" >
-         <div class="content-wrapper"> <!-- Page content-->
-            <div class=" text-center">
-               <h1 class="text-center" style="padding:1%; color:black;">Behind the Benches<h1>
+        <div class="content-wrapper">
+          <div class=" text-center">
+            <h1 class="text-center" style="padding:1%; color:black;">Behind the Benches<h1>
+          </div>
+          <div class="row">
+            <div class="col-xl-12">
+              <p class="text-center">
+                <img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:25em;">
+              </p>
             </div>
-            <div class="row">
-               <div class="col-xl-12">
-                  <p class="text-center"><img class="img-fluid" src="./images/behindthebenches.png" alt="App Logo" style="width:25em;"></p>
-               </div>
-            </div>
-         </div>
-     </section>
-      <!-- Page footer-->
-  <footer class="footer-container">
-    <span><small>2018 - Behind the Benches</small></span>
-  </footer>
-  </div>
-   <!-- =============== VENDOR SCRIPTS ===============-->
-   <!-- MODERNIZR-->
-   <script src="js/modernizr.custom.js"></script>
-   <!-- JQUERY-->
-   <script src="js/jquery.js"></script>
-   <!-- BOOTSTRAP-->
-   <script src="js/popper.js"></script>
-   <script src="js/bootstrap.js"></script>
-   <!-- STORAGE API-->
-   <script src="js/js.storage.js"></script>
-   <!-- JQUERY EASING-->
-   <script src="js/jquery.easing.js"></script>
-   <!-- ANIMO-->
-   <script src="js/animo.js"></script>
-   <!-- SCREENFULL-->
-   <script src="js/screenfull.js"></script>
-   <!-- LOCALIZE-->
-   <script src="js/jquery.localize.js"></script>
-   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-   <!-- Datatables-->
-   <script src="js/jquery.dataTables.js"></script>
-   <script src="js/dataTables.bootstrap4.js"></script>
-   <script src="js/dataTables.buttons.js"></script>
-   <script src="js/buttons.bootstrap.js"></script>
-   <script src="js/buttons.colVis.js"></script>
-   <script src="js/buttons.flash.js"></script>
-   <script src="js/buttons.html5.js"></script>
-   <script src="js/buttons.print.js"></script>
-   <script src="js/dataTables.keyTable.js"></script>
-   <script src="js/dataTables.responsive.js"></script>
-   <script src="js/responsive.bootstrap.js"></script>
-   <script src="js/jszip.js"></script>
-   <script src="js/pdfmake.js"></script>
-   <script src="js/vfs_fonts.js"></script>
-   <!-- =============== APP SCRIPTS ===============-->
-   <script src="js/app.js"></script>
-</body>
-
+          </div>
+        </div>
+      </section>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN END ========================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <footer class="footer-container">
+        <span><small>2018 - Behind the Benches</small></span>
+      </footer>
+    </div>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- =================== VENDER SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- MODERNIZR-->
+    <script src="js/modernizr.custom.js"></script>
+    <!-- JQUERY-->
+    <script src="js/jquery.js"></script>
+    <!-- BOOTSTRAP-->
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-- STORAGE API-->
+    <script src="js/js.storage.js"></script>
+    <!-- JQUERY EASING-->
+    <script src="js/jquery.easing.js"></script>
+    <!-- ANIMO-->
+    <script src="js/animo.js"></script>
+    <!-- SCREENFULL-->
+    <script src="js/screenfull.js"></script>
+    <!-- LOCALIZE-->
+    <script src="js/jquery.localize.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ================= PAGE VENDER SCRIPTS =================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- Datatables-->
+    <script src="js/jquery.dataTables.js"></script>
+    <script src="js/dataTables.bootstrap4.js"></script>
+    <script src="js/dataTables.buttons.js"></script>
+    <script src="js/buttons.bootstrap.js"></script>
+    <script src="js/buttons.colVis.js"></script>
+    <script src="js/buttons.flash.js"></script>
+    <script src="js/buttons.html5.js"></script>
+    <script src="js/buttons.print.js"></script>
+    <script src="js/dataTables.keyTable.js"></script>
+    <script src="js/dataTables.responsive.js"></script>
+    <script src="js/responsive.bootstrap.js"></script>
+    <script src="js/jszip.js"></script>
+    <script src="js/pdfmake.js"></script>
+    <script src="js/vfs_fonts.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ====================== APP SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <script src="js/app.js"></script>
+  </body>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ======================= BODY END ======================== -->
+  <!--///////////////////////////////////////////////////////////-->
 </html>
