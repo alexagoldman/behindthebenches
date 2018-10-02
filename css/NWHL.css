@@ -1,0 +1,87 @@
+    /*BOS*/
+    .Pride{
+      background: black; 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Pride1{
+      background:  #FEC52E;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*BUF*/
+    .Beauts{
+      background: #71B4DF; 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Beauts1{
+      background: black;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*CTW*/
+    .Whale{
+      background: #11814C; 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Whale1{
+      background: #03277D;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*MET*/
+    .Riveters{
+      background: rgb(241, 28, 48); 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Riveters1{
+      background: black;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*MIN*/
+    .Whitecaps{
+      background: rgb(38, 64, 127); 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Whitecaps1{
+      background: black;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    #tableBorder{
+      border:  outset; 
+      padding: 0px; 
+    }
+    #tablePadding{
+      padding: 10px;
+    }
+    .go-top {
+      position: fixed;
+      bottom: 2em;
+      right: 2em;
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 12px;
+      padding: 1em;
+      display: none;
+    }
+
+    .go-top:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }

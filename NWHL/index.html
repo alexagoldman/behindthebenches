@@ -12,6 +12,7 @@
   <!--///////////////////////////////////////////////////////////-->
   <!-- FONT AWESOME-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <!-- ANIMATE.CSS-->
   <link rel="stylesheet" href="./../css/animate.css">
   <!--///////////////////////////////////////////////////////////-->
@@ -29,25 +30,44 @@
   <!-- ====================== APP STYLES ======================= -->
   <!--///////////////////////////////////////////////////////////-->
   <link rel="stylesheet" href="./../css/app.css" id="maincss">
-  <link rel="stylesheet" href="./../css/NHL.css">
+  <link rel="stylesheet" href="./../css/NWHL.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <!--///////////////////////////////////////////////////////////-->
   <!-- ==================== CSS PAGE STYLES ==================== -->
   <!--///////////////////////////////////////////////////////////-->
   <style type="text/css" class="init">
+    thead, .dataTables_length, .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
+      visibility: hidden;
+    }
 
     @media screen and (max-width: 980px) {
       .row-border {
-        position: relative;
-        -webkit-transition: all 0.25s ease-out;
-        -moz-transition: all 0.25s ease-out;
-        -o-transition: all 0.25s ease-out;
-        -ms-transition: all 0.25s ease-out;
-        transition: all 0.25s ease-out;
-        width:calc(100% + 220px);
-        font-size: 12px;
+      position: relative;
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      -o-transition: all 0.25s ease-out;
+      -ms-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      width:calc(100% + 220px);
+      font-size: 12px;
       }  
+      h1{
+        font-size: 30px;
+        }
+    }
+ 
+    .dataTables_filter{
+      padding-right: 10%;
+    }
+
+    label{
+      font-size: 16px;
+    }
+
+    .form-control{
+      background: rgb(245,245,245);
+    }
 
     .no-js #loader { 
       display: none;  
@@ -81,9 +101,59 @@
   <!-- ===================== PAGE SCRIPT ======================= -->
   <!--///////////////////////////////////////////////////////////-->
   <script type="text/javascript" class="init">
+    $(document).ready(function() {
+      var groupColumn = 2;
+      var table = $('#example').DataTable({
+          "columnDefs": [
+              { "visible": false, "targets": groupColumn }
+          ],
+          "order": [[ groupColumn, 'asc' ]],
+          "displayLength": 1000,
+          "drawCallback": function ( settings ) {
+              var api = this.api();
+              var rows = api.rows( {page:'current'} ).nodes();
+              var last=null;
+   
+              api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                  if ( last !== group ) {
+                      $(rows).eq( i ).before(
+                           '<tr class="group"><td class="'+group+'" colspan="4"><img src="./images/'+group+'.png" alt="HTML5 Icon" style="width:1.5em;"> '+group+'</td></tr>'+
+              '<tr class="group">'+
+              '<th class="'+group+1+'">Position</th><th class="'+group+1+'">Name</th><th class="'+group+1+'">Season</th><th class="'+group+1+'">Role</th></tr></tr>'
+                      );
+   
+                      last = group;
+                  }
+              } );
+          }
+      } );
+      $('#example tbody').on( 'click', 'tr.group', function () {
+          var currentOrder = table.order()[0];
+          if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+              table.order( [ groupColumn, 'desc' ] ).draw();
+          }
+          else {
+              table.order( [ groupColumn, 'asc' ] ).draw();
+          }
+      } );
+    } );
+
+   $(document).ready(function() {
+        $(window).scroll(function() {
+          if ($(this).scrollTop() > 200) {
+            $('.go-top').fadeIn(200);
+          } else {
+            $('.go-top').fadeOut(200);
+          }
+        });
+        $('.go-top').click(function(event) {
+          event.preventDefault(); 
+          $('html, body').animate({scrollTop: 0}, 300);
+        })
+      });
     $(window).load(function() {
-      $(".se-pre-con").fadeOut("slow");;
-    });
+        $(".se-pre-con").fadeOut("slow");;
+     });
   </script>
 </head>
 <!--///////////////////////////////////////////////////////////-->
@@ -130,7 +200,7 @@
                </li>
                <li class="nav-item d-none d-md-block">
                   <a class="nav-link" href="#" data-toggle-fullscreen="">
-                     <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                     <i class="fas fa-expand-arrows-alt" aria-hidden="true"></i>
                   </a>
                </li>
             </ul>
@@ -165,22 +235,26 @@
                 </a>
                 <a href="./../AHL/index.html" title="AHL" >
                   <img class="img-fluid" src="./../images/AHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
-                    <span data-localize="sidebar.nav.AHL"> AHL</span>
+                    <span data-localize="sidebar.nav.AHL"> AHL &nbsp; -&nbsp;  <small><i>Coming Soon</i></small></span>
                 </a>
                 <a href="./../NCAA/index.html" title="NCAA" >
                   <img class="img-fluid" src="./../images/ncaa.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
-                    <span data-localize="sidebar.nav.NCAA"> NCAA</span>
+                    <span data-localize="sidebar.nav.NCAA"> NCAA - <small><i>Coming Soon</i></small></span>
                 </a>
               </li>
               <hr>
               <li class=" ">
-                <a href="https://www.twitter.com/BenchBosses" title="twitter" >
-                  <i class="fa fa-twitter" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
-                    <span data-localize="sidebar.nav.TWITTER"> @BenchBosses</span>
+                <a href="./../about.html" title="about" >
+                  <i class="fa fa-hockey-puck" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                    <span data-localize="sidebar.nav.ABOUT">  About</span>
                 </a>
                 <a href="mailto:benchbosses@gmail.com" target="_blank" title="email" >
                   <i class="fa fa-envelope" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
-                    <span data-localize="sidebar.nav.EMAIL"> Contact us</span>
+                    <span data-localize="sidebar.nav.EMAIL"> Contact Us</span>
+                </a>
+                <a href="https://www.twitter.com/BenchBosses" title="twitter" >
+                  <i class="fab fa-twitter" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                    <span data-localize="sidebar.nav.TWITTER"> @BenchBosses</span>
                 </a>
               </li>
             </ul> 
@@ -195,18 +269,141 @@
       <!-- ====================== MAIN START ======================= -->
       <!--///////////////////////////////////////////////////////////-->
       <section class="section-container" style="background:white;" >
-        <div class="content-wrapper">
-          <div class=" text-center">
-            <h1 class="text-center" style="padding:1%; color:black;">2018 - 2019 NWHL Coaches<h1>
-            <h3 class="text-center" style="padding:1%; color:black;">Coming Soon<h3>
-          </div>
-          <div class="row">
-            <div class="col-xl-12">
-              <p class="text-center">
-                <img class="img-fluid" src="./../images/NWHL.png" alt="App Logo" style="width:25em;">
-              </p>
+         <div class="content-wrapper">
+            <div class=" text-center">
+               <h1 class="text-center" style="padding:1%; color:black;"> 2018 - 2019 NWHL Coaches <h1>
             </div>
-          </div>
+            <div class="row">
+              <div class="col-xl-12">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ============== 2018 - 2019 COACHES START ================ -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table id="example" class="row-border" style="width:100%;">
+                  <thead>
+                    <tr>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>  
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ===================== BOSTON PRIDE ====================== -->
+                    <!--///////////////////////////////////////////////////////////-->
+                    <tr>
+                      <td>Head</td>
+                      <td>Paul Mara</td>
+                      <td>Boston Pride</td>
+                      <td>2018 - Present</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Marisa Gedman</td>
+                      <td>Boston Pride</td>
+                      <td>2018 - Present</td>
+                      <td>Assistant - Defense</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ===================== BUFFALO BEAUTS ==================== -->
+                    <!--///////////////////////////////////////////////////////////-->
+                    <tr>
+                      <td>Head</td>
+                      <td>Ric Seiling</td>
+                      <td>Buffalo Beauts</td>
+                      <td>2015 - Present</td>
+                      <td>Head - Offense</td>
+                    </tr>
+                    <tr>
+                      <td>Associate</td>
+                      <td>Craig Muni</td>
+                      <td>Buffalo Beauts</td>
+                      <td>2016 - Present</td>
+                      <td>Associate - Defense</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Cory Mickey</td>
+                      <td>Buffalo Beauts</td>
+                      <td>2018 - Present</td>
+                      <td>Assistant</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================== CONNECTICUT WHALE ==================== -->
+                    <!--///////////////////////////////////////////////////////////-->
+                    <tr>
+                      <td>Head</td>
+                      <td>Ryan Equale</td>
+                      <td>Connecticut Whale</td>
+                      <td>2017 - Present</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Cydney Roesler</td>
+                      <td>Connecticut Whale</td>
+                      <td>2018 - Present</td>
+                      <td>Player/Coach - Defense</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================ METROPOLITAN RIVETERS ================== -->
+                    <!--///////////////////////////////////////////////////////////-->
+                    <tr>
+                      <td>Head</td>
+                      <td>Randy Velischek</td>
+                      <td>Metropolitan Riveters</td>
+                      <td>2018 - Present</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Kate Whitman Annis</td>
+                      <td>Metropolitan Riveters</td>
+                      <td>2018 - Present</td>
+                      <td>Assistant</td>
+                    </tr>
+                    <tr>
+                      <td>Adivsor</td>
+                      <td>Chad Wiseman</td>
+                      <td>Metropolitan Riveters</td>
+                      <td>2018 - Present</td>
+                      <td>Adivsory Role</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== MINNESOTA WHITECAPS ================= -->
+                    <!--///////////////////////////////////////////////////////////-->
+                    <tr>
+                      <td>Co-Head</td>
+                      <td>Ronda (Curtin) Engelhardt</td>
+                      <td>Minnesota Whitecaps</td>
+                      <td>2018 - Present</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Co-Head</td>
+                      <td>Jack Brodt</td>
+                      <td>Minnesota Whitecaps</td>
+                      <td>2018 - Present</td>
+                      <td>Defense</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Laura Slominski</td>
+                      <td>Minnesota Whitecaps</td>
+                      <td>2018 - Present</td>
+                      <td>Assistant</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ============== 2018 - 2019 COACHES END ================== -->
+                <!--///////////////////////////////////////////////////////////-->
+              </div>
+            </div>
+          <a href="#" class="go-top">Go Top</a>
+          <br><br>
         </div>
       </section>
       <!--///////////////////////////////////////////////////////////-->

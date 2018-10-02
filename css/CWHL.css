@@ -1,0 +1,101 @@
+    /*CGY*/
+    .Inferno{
+      background:#DB1A27 ; 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Inferno1{
+      background: #FDBF12;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*MTL*/
+    .Montreal{
+      background: rgb(172, 30, 48); 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Montreal1{
+      background: rgb(30, 41, 89) ;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*MAR*/
+    .Thunder{
+      background: rgb(61, 112, 73); 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Thunder1{
+      background: black;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*SVR*/
+    .Rays{
+      background: #C5242A; 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Rays1{
+      background: black;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*TOR*/
+    .Furies{
+      background: #003975; 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Furies1{
+      background: white;
+      color: #003975;
+      text-align: left;
+      font-size: 12px;
+    }
+    /*WOR*/
+    .Blades{
+      background: rgb(245, 170, 58); 
+      color: white;
+      text-align: center;
+      font-size: 25px;
+    }
+    .Blades1{
+      background: black;
+      color: white;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    #tableBorder{
+      border:  outset; 
+      padding: 0px; 
+    }
+    #tablePadding{
+      padding: 10px;
+    }
+    .go-top {
+      position: fixed;
+      bottom: 2em;
+      right: 2em;
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 12px;
+      padding: 1em;
+      display: none;
+    }
+
+    .go-top:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
