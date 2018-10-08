@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Behind the Benches: A public database on what hockey coaches do and for how long they've been doing it.">
+  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, ANA, Anaheim Ducks, ARI, Arizona Coyotes, BOS, Boston Bruins, BUF, Buffalo Sabres, CGY, Calgary Flames, CAR, Carolina Hurricanes, CHI, Chicago Blackhawks, COL, Colorado Avalanche, CBJ, Columbus Blue Jackets, DAL, Dallas Stars, DET, Detroit Red Wings, EDM, Edmonton Oilers, FLA, Florida Panthers, LAK, Los Angeles Kings, MIN, Minnesota Wild, MTL, Montreal Canadiens, NSH, Nashville Predators, NJD, New Jersey Devils, NYI, New York Islanders, NYR, New York Rangers, OTT, Ottawa Senators, PHI, Philadelphia Flyers, PIT, Pittsburgh Penguins, SJS, San Jose Sharks, STL, St. Louis Blues, TBL, Tampa Bay Lightning, TOR, Toronto Maple Leafs, VAN, Vancouver Canucks, VGK, Vegas Golden Knights, WSH, Washington Capitals, WPG, Winnipeg Jets">
+  <link rel="icon" href="./../images/behindthebenches.ico">
+  <title>NHL General Managers | Behind the Benches</title>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== VENDOR STYLES ====================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- FONT AWESOME-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <!-- ANIMATE.CSS-->
+  <link rel="stylesheet" href="./../css/animate.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ================== PAGE VENDOR STYLES =================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- Datatables-->
+  <link rel="stylesheet" href="./../css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="./../css/keyTable.bootstrap.css">
+  <link rel="stylesheet" href="./../css/responsive.bootstrap.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== BOOTSTRAP STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/bootstrap.css" id="bscss">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ====================== APP STYLES ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/app.css" id="maincss">
+  <link rel="stylesheet" href="./../css/NHL.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== CSS PAGE STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <style type="text/css" class="init">
+    thead, .dataTables_length, .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
+      visibility: hidden;
+    }
+
+    @media screen and (max-width: 980px) {
+      .row-border {
+      position: relative;
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      -o-transition: all 0.25s ease-out;
+      -ms-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      width:calc(100% + 220px);
+      font-size: 12px;
+      }  
+      h1{
+        font-size: 30px;
+        }
+    }
+ 
+    .dataTables_filter{
+      padding-right: 10%;
+    }
+
+    label{
+      font-size: 16px;
+    }
+
+    .form-control{
+      background: rgb(245,245,245);
+    }
+
+    .no-js #loader { 
+      display: none;  
+    }
+
+    .js #loader { 
+      display: block;
+      position: absolute; 
+      left: 100px; 
+      top: 0; 
+    }
+
+    .se-pre-con {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: url(./../images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
+    }
+  </style>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== GOOGLE ANALYTICS ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126807142-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-126807142-1');
+  </script>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== PAGE VENDER SCRIPTS ================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ===================== PAGE SCRIPT ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script type="text/javascript" class="init">
+    $(document).ready(function() {
+      var groupColumn = 2;
+      var table = $('#example').DataTable({
+          "columnDefs": [
+              { "visible": false, "targets": groupColumn }
+          ],
+          "order": [[ groupColumn, 'asc' ]],
+          "displayLength": 1000,
+          "drawCallback": function ( settings ) {
+              var api = this.api();
+              var rows = api.rows( {page:'current'} ).nodes();
+              var last=null;
+   
+              api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                  if ( last !== group ) {
+                      $(rows).eq( i ).before(
+                           '<tr class="group"><td class="'+group+'" colspan="5"><img src="./images/'+group+'.png" alt="HTML5 Icon" style="width:1.5em;"> '+group+'</td></tr>'+
+              '<tr class="group">'+
+              '<th class="'+group+1+'" style="width:25%;">Position</th><th class="'+group+1+'">Name</th><th class="'+group+1+'">DOB</th><th class="'+group+1+'">Seasons</th><th class="'+group+1+'">Hire Date</th></tr></tr>'
+                      );
+   
+                      last = group;
+                  }
+              } );
+          }
+      } );
+      $('#example tbody').on( 'click', 'tr.group', function () {
+          var currentOrder = table.order()[0];
+          if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+              table.order( [ groupColumn, 'desc' ] ).draw();
+          }
+          else {
+              table.order( [ groupColumn, 'asc' ] ).draw();
+          }
+      } );
+    } );
+
+   $(document).ready(function() {
+        $(window).scroll(function() {
+          if ($(this).scrollTop() > 200) {
+            $('.go-top').fadeIn(200);
+          } else {
+            $('.go-top').fadeOut(200);
+          }
+        });
+        $('.go-top').click(function(event) {
+          event.preventDefault(); 
+          $('html, body').animate({scrollTop: 0}, 300);
+        })
+      });
+    $(window).load(function() {
+        $(".se-pre-con").fadeOut("slow");;
+     });
+  </script>
+</head>
+<!--///////////////////////////////////////////////////////////-->
+<!-- ========================= BODY ========================== -->
+<!--///////////////////////////////////////////////////////////-->
+<body style="background:white;">
+  <div class="se-pre-con"></div>
+   <div class="wrapper">
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV START ===================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <header class="topnavbar-wrapper"> 
+         <nav class="navbar topnavbar" style="background:black;"> 
+            <div class="navbar-header"> 
+               <a class="navbar-brand" href="./../index.html">
+                  <div class="brand-logo" style="color:white; font-size: 18px;">
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches
+                  </div>
+                  <div class="brand-logo-collapsed" style="color:white;">
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;">
+                  </div>
+               </a>
+            </div>
+            <ul class="navbar-nav mr-auto flex-row" >
+               <li class="nav-item">
+                  <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                     <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+                  <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+               </li>
+            </ul>
+            <ul class="navbar-nav flex-row" >
+               <li class="nav-item d-none d-md-block">
+                  <a class="nav-link" href="https://www.twitter.com/BenchBosses">
+                     <i class="fab fa-twitter" aria-hidden="true"></i>
+                  </a>
+               </li>
+               <li class="nav-item d-none d-md-block">
+                  <a class="nav-link" href="mailto:benchbosses@gmail.com" target="_blank">
+                     <i class="fa fa-envelope" aria-hidden="true"></i>
+                  </a>
+               </li>
+               <li class="nav-item d-none d-md-block">
+                  <a class="nav-link" href="#" data-toggle-fullscreen="">
+                     <i class="fas fa-expand-arrows-alt" aria-hidden="true"></i>
+                  </a>
+               </li>
+            </ul>
+         </nav>
+      </header>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV END ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
+
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR START ==================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <aside class="aside-container">
+         <div class="aside-inner">
+            <nav class="sidebar" data-sidebar-anyclick-close="" style="background:rgb(245,245,245);" >
+               <ul class="sidebar-nav">
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">NHL</span>
+                  </li>
+                  <li class=" ">
+                     <a href="./index.html" title="NHL" >
+                       <img class="img-fluid" src="./../images/NHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NHL"> NHL</span>
+                     </a>
+                     <a href="./GM.html" title="GM" >
+                       <img class="img-fluid" src="./../images/retroNHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.GM"> GM</span>
+                     </a>
+                      <a href="./ANA.html" title="ANA" >
+                       <img class="img-fluid" src="./../images/ANA.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.ANA"> ANA</span>
+                     </a>
+                     <a href="./ARI.html" title="ARI" >
+                       <img class="img-fluid" src="./../images/ARI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.ARI"> ARI</span>
+                     </a>
+                      <a href="./BOS.html" title="BOS" >
+                       <img class="img-fluid" src="./../images/BOS.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.BOS"> BOS</span>
+                     </a>
+                      <a href="./BUF.html" title="BUF" >
+                       <img class="img-fluid" src="./../images/BUF.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.BUF"> BUF</span>
+                     </a>
+                      <a href="./CGY.html" title="CGY" >
+                       <img class="img-fluid" src="./../images/CGY.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CGY"> CGY</span>
+                     </a>
+                      <a href="./CAR.html" title="CAR" >
+                       <img class="img-fluid" src="./../images/CAR.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CAR"> CAR</span>
+                     </a>
+                      <a href="./CHI.html" title="CHI" >
+                       <img class="img-fluid" src="./../images/CHI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CHI"> CHI</span>
+                     </a>
+                      <a href="./COL.html" title="COL" >
+                       <img class="img-fluid" src="./../images/COL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.COL"> COL</span>
+                     </a>
+                      <a href="./CBJ.html" title="CBJ" >
+                       <img class="img-fluid" src="./../images/CBJ.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CBJ"> CBJ</span>
+                     </a>
+                      <a href="./DAL.html" title="DAL" >
+                       <img class="img-fluid" src="./../images/DAL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.DAL"> DAL</span>
+                     </a>
+                      <a href="./DET.html" title="DET" >
+                       <img class="img-fluid" src="./../images/DET.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.DET"> DET</span>
+                     </a>
+                      <a href="./EDM.html" title="EDM" >
+                       <img class="img-fluid" src="./../images/EDM.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.EDM"> EDM</span>
+                     </a>
+                      <a href="./FLA.html" title="FLA" >
+                       <img class="img-fluid" src="./../images/FLA.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.FLA"> FLA</span>
+                     </a>
+                      <a href="./LAK.html" title="LAK" >
+                       <img class="img-fluid" src="./../images/LAK.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.LAK"> LAK</span>
+                     </a>
+                      <a href="./MIN.html" title="MIN" >
+                       <img class="img-fluid" src="./../images/MIN.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.MIN"> MIN</span>
+                     </a>
+                      <a href="./MTL.html" title="MTL" >
+                       <img class="img-fluid" src="./../images/MTL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.MTL"> MTL</span>
+                     </a>
+                      <a href="./NSH.html" title="NSH" >
+                       <img class="img-fluid" src="./../images/NSH.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NSH"> NSH</span>
+                     </a>
+                      <a href="./NJD.html" title="NJD" >
+                       <img class="img-fluid" src="./../images/NJD.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NJD"> NJD</span>
+                     </a>
+                      <a href="./NYI.html" title="NYI" >
+                       <img class="img-fluid" src="./../images/NYI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NYI"> NYI</span>
+                     </a>
+                      <a href="./NYR.html" title="NYR" >
+                       <img class="img-fluid" src="./../images/NYR.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NYR"> NYR</span>
+                     </a>
+                      <a href="./OTT.html" title="OTT" >
+                       <img class="img-fluid" src="./../images/OTT.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.OTT"> OTT</span>
+                     </a>
+                      <a href="./PHI.html" title="PHI" >
+                       <img class="img-fluid" src="./../images/PHI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.PHI"> PHI</span>
+                     </a>
+                      <a href="./PIT.html" title="PIT" >
+                       <img class="img-fluid" src="./../images/PIT.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.PIT"> PIT</span>
+                     </a>
+                      <a href="./SJS.html" title="SJS" >
+                       <img class="img-fluid" src="./../images/SJS.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.SJS"> SJS</span>
+                     </a>
+                      <a href="./STL.html" title="STL" >
+                       <img class="img-fluid" src="./../images/STL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.STL"> STL</span>
+                     </a>
+                      <a href="./TBL.html" title="TBL" >
+                       <img class="img-fluid" src="./../images/TBL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.TBL"> TBL</span>
+                     </a>
+                      <a href="./TOR.html" title="TOR" >
+                       <img class="img-fluid" src="./../images/TOR.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.TOR"> TOR</span>
+                     </a>
+                      <a href="./VAN.html" title="VAN" >
+                       <img class="img-fluid" src="./../images/VAN.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.VAN"> VAN</span>
+                     </a>
+                      <a href="./VGK.html" title="VGK" >
+                       <img class="img-fluid" src="./../images/VGK.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.VGK"> VGK</span>
+                     </a>
+                      <a href="./WSH.html" title="WSH" >
+                       <img class="img-fluid" src="./../images/WSH.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.WSH"> WSH</span>
+                     </a>
+                      <a href="./WPG.html" title="WPG" >
+                       <img class="img-fluid" src="./../images/WPG.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.WPG"> WPG</span>
+                     </a>
+                  </li>
+                  <hr>
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">Leagues</span>
+                  </li>
+                  <li class=" ">
+                     <a href="./../NWHL/index.html" title="NWHL" >
+                       <img class="img-fluid" src="./../images/NWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NWHL"> NWHL</span>
+                     </a>
+                     <a href="./../CWHL/index.html" title="CWHL" >
+                       <img class="img-fluid" src="./../images/CWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CWHL"> CWHL</span>
+                     </a>
+                     <a href="./../AHL/index.html" title="AHL" >
+                       <img class="img-fluid" src="./../images/AHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.AHL"> AHL &nbsp; -&nbsp;  <small><i>Coming Soon</i></small></span>
+                     </a>
+                     <a href="./../NCAA/index.html" title="NCAA" >
+                       <img class="img-fluid" src="./../images/ncaa.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NCAA"> NCAA - <small><i>Coming Soon</i></small></span>
+                     </a>
+                  </li>  
+                  <hr>
+                  <li class=" ">
+                    <a href="./../about.html" title="about" >
+                      <i class="fa fa-hockey-puck" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.ABOUT">  About</span>
+                    </a>
+                    <a href="mailto:benchbosses@gmail.com" target="_blank" title="email" >
+                      <i class="fa fa-envelope" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.EMAIL"> Contact Us</span>
+                    </a>
+                    <a href="https://www.twitter.com/BenchBosses" title="twitter" >
+                      <i class="fab fa-twitter" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.TWITTER"> @BenchBosses</span>
+                    </a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </aside>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR END ====================== -->
+      <!--///////////////////////////////////////////////////////////-->
+
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN START ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <section class="section-container" style="background:white;" >
+         <div class="content-wrapper">
+            <div class=" text-center">
+               <h1 class="text-center" style="padding:1%; color:black;"> 2018 - 2019 NHL General Managers <h1>
+            </div>
+            <div class="row">
+              <div class="col-xl-12">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ============== 2018 - 2019 GM START ================ -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table id="example" class="row-border" style="width:100%;">
+                  <thead>
+                    <tr>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>  
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ===================== ANAHEIM DUCKS ===================== -->
+                    <!--///////////////////////////////////////////////////////////-->
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Bob Murray</td>
+                      <td>Anaheim Ducks</td>
+                      <td>11/26/1954</td>
+                      <td>2008 - Present</td>
+                      <td>11/12/2008</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ===================== ARIZONA COYOTES =================== -->
+                    <!--///////////////////////////////////////////////////////////-->   
+                    <tr>
+                      <td>General Manager</td>
+                      <td>John Chayka</td>
+                      <td>Arizona Coyotes</td>
+                      <td>6/9/1989</td>
+                      <td>2016 - Present</td>
+                      <td>5/5/2016</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Lindsay Hofford</td>
+                      <td>Arizona Coyotes</td>
+                      <td>1963</td>
+                      <td>2018 - Present</td>
+                      <td>6/24/2018</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ===================== BOSTON BRUINS ===================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Don Sweeney</td>
+                      <td>Boston Bruins</td>
+                      <td>8/17/1966</td>
+                      <td>2015 - Present</td>
+                      <td>5/20/2015</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Scott Bradley</td>
+                      <td>Boston Bruins</td>
+                      <td>8/29/1963</td>
+                      <td>2014 - Present</td>
+                      <td>6/27/2014</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ===================== BUFFALO SABRES ==================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Jason Botterill</td>
+                      <td>Buffalo Sabres</td>
+                      <td>5/19/1976</td>
+                      <td>2017 - Present</td>
+                      <td>5/11/2017</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Randy Sexton</td>
+                      <td>Buffalo Sabres</td>
+                      <td>6/24/1979</td>
+                      <td>2017 - Present</td>
+                      <td>6/26/2017</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Steve Greeley</td>
+                      <td>Buffalo Sabres</td>
+                      <td>9/26/1980</td>
+                      <td>2017 - Present</td>
+                      <td>6/26/2017</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== CALGARY FLAMES ====================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Brad Treliving</td>
+                      <td>Calgary Flames</td>
+                      <td>10/18/1969</td>
+                      <td>2014 - Present</td>
+                      <td>4/28/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Craig Conroy</td>
+                      <td>Calgary Flames</td>
+                      <td>9/4/1971</td>
+                      <td>2014 - Present</td>
+                      <td>6/6/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Brad Pascall</td>
+                      <td>Calgary Flames</td>
+                      <td>6/29/1970</td>
+                      <td>2014 - Present</td>
+                      <td>6/6/2014</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================ CAROLINA HURRICANES ==================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Don Waddell</td>
+                      <td>Carolina Hurricanes</td>
+                      <td>8/19/1958</td>
+                      <td>2018 - Present</td>
+                      <td>5/8/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Brian Tatum</td>
+                      <td>Carolina Hurricanes</td>
+                      <td> </td>
+                      <td>2014 - Present</td>
+                      <td>4/28/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Mike Vellucci</td>
+                      <td>Carolina Hurricanes</td>
+                      <td>8/11/1966</td>
+                      <td>2014 - Present</td>
+                      <td>4/29/2014</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== CHICAGO BLACKHAWKS ================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Stan Bowman</td>
+                      <td>Chicago Blackhawks</td>
+                      <td>6/28/1973</td>
+                      <td>2009 - Present</td>
+                      <td>7/14/2009</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Norm Maciver</td>
+                      <td>Chicago Blackhawks</td>
+                      <td>9/8/1964</td>
+                      <td>2012 - Present</td>
+                      <td>5/7/2012</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================= COLORADO AVALANCGE ==================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Joe Sakic</td>
+                      <td>Colorado Avalanche</td>
+                      <td>7/7/1969</td>
+                      <td>2014 - Present</td>
+                      <td>9/19/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Craig Billington</td>
+                      <td>Colorado Avalanche</td>
+                      <td>9/11/1964</td>
+                      <td>2013 - Present</td>
+                      <td>6/24/2013</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Chris MacFarland</td>
+                      <td>Colorado Avalanche</td>
+                      <td>3/28/1970</td>
+                      <td>2015 - Present</td>
+                      <td>5/18/2015</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================ COLUMBUS BLUE JACKETS ================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Jarmo Kekäläinen</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>7/3/1966</td>
+                      <td>2013 - Present</td>
+                      <td>2/13/2013</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Bill Zito</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>9/16/1964</td>
+                      <td>2013 - Present</td>
+                      <td>8/12/2013</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ==================== DALLAS STARS ======================= -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Jim Nill</td>
+                      <td>Dallas Stars</td>
+                      <td>4/11/1958</td>
+                      <td>2013 - Present</td>
+                      <td>4/29/2013</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Scott White</td>
+                      <td>Dallas Stars</td>
+                      <td>3/15/1968</td>
+                      <td>2016 - Present</td>
+                      <td>8/31/2016</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Mark Janko</td>
+                      <td>Dallas Stars</td>
+                      <td>1976</td>
+                      <td>2016 - Present</td>
+                      <td>8/31/2016</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== DETROIT RED WINGS =================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Ken Holland</td>
+                      <td>Detroit Red Wings</td>
+                      <td>11/10/1955</td>
+                      <td>1997 - Present</td>
+                      <td>5/18/1997</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Ryan Martin</td>
+                      <td>Detroit Red Wings</td>
+                      <td> </td>
+                      <td>2010 - Present</td>
+                      <td>2010</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== EDMONTON OILERS ===================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Peter Chiarelli</td>
+                      <td>Edmonton Oilers</td>
+                      <td>8/5/1964</td>
+                      <td>2015 - Present</td>
+                      <td>4/24/2015</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Keith Gretzky</td>
+                      <td>Edmonton Oilers</td>
+                      <td>2/16/1967</td>
+                      <td>2016 - Present</td>
+                      <td>6/2/2016</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== FLORIDA PANTHERS ==================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Dale Tallon</td>
+                      <td>Florida Panthers</td>
+                      <td>10/19/1950</td>
+                      <td>2017 - Present</td>
+                      <td>4/10/2017</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Eric Joyce</td>
+                      <td>Florida Panthers</td>
+                      <td>9/16/1978</td>
+                      <td>2016 - Present</td>
+                      <td>5/7/2016</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== LOS ANGELES KINGS =================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Rob Blake</td>
+                      <td>Los Angeles Kings</td>
+                      <td>12/10/1969</td>
+                      <td>2017 - Present</td>
+                      <td>4/10/2017</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Michael Futa</td>
+                      <td>Los Angeles Kings</td>
+                      <td>10/28/1967</td>
+                      <td>2017 - Present</td>
+                      <td>4/12/2017</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== MINNESOTA WILD ====================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Paul Fenton</td>
+                      <td>Minnesota Wild</td>
+                      <td>12/22/1959</td>
+                      <td>2018 - Present</td>
+                      <td>5/21/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Tom Kurvers</td>
+                      <td>Minnesota Wild</td>
+                      <td>10/14/1962</td>
+                      <td>2018 - Present</td>
+                      <td>6/26/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Shep Harder</td>
+                      <td>Minnesota Wild</td>
+                      <td>2/24/1976</td>
+                      <td>2017 - Present</td>
+                      <td>6/1/2017</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== MONTREAL CANADIENS ================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Marc Bergevin</td>
+                      <td>Montreal Canadiens</td>
+                      <td>10/11/1965</td>
+                      <td>2012 - Present</td>
+                      <td>5/2/2012</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Scott Mellanby</td>
+                      <td>Montreal Canadiens</td>
+                      <td>6/11/1966</td>
+                      <td>2014 - Present</td>
+                      <td>7/30/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Trevor Timmins</td>
+                      <td>Montreal Canadiens</td>
+                      <td>1/5/1968</td>
+                      <td>2017 - Present</td>
+                      <td>7/5/2017</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================== NASHVILLE PREDATORS ================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>David Poile</td>
+                      <td>Nashville Predators</td>
+                      <td>2/14/1950</td>
+                      <td>1997 - Present</td>
+                      <td>7/9/1997</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Jeff Kealty</td>
+                      <td>Nashville Predators</td>
+                      <td>4/9/1976</td>
+                      <td>2018 - Present</td>
+                      <td>5/22/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Brian Poile</td>
+                      <td>Nashville Predators</td>
+                      <td> </td>
+                      <td>2018 - Present</td>
+                      <td>5/22/2018</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== NEW JERSEY DEVILS =================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Ray Shero</td>
+                      <td>New Jersey Devils</td>
+                      <td>7/28/1962</td>
+                      <td>2015 - Present</td>
+                      <td>5/4/2015</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== NEW YORK ISLANDERS ================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Lou Lamoriello</td>
+                      <td>New York Islanders</td>
+                      <td>10/21/1942</td>
+                      <td>2018 - Present</td>
+                      <td>5/21/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Chris Lamoriello</td>
+                      <td>New York Islanders</td>
+                      <td>1972</td>
+                      <td>2017 - Present</td>
+                      <td>8/26/2016</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Stephen Pellegrini</td>
+                      <td>New York Islanders</td>
+                      <td> </td>
+                      <td>2018 - Present</td>
+                      <td>6/12/2018</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== NEW YORK RANGERS ==================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Jeff Gorton</td>
+                      <td>New York Rangers</td>
+                      <td>1969</td>
+                      <td>2015 - Present</td>
+                      <td>7/1/2015</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Chris Drury</td>
+                      <td>New York Rangers</td>
+                      <td>8/20/1976</td>
+                      <td>2016 - Present</td>
+                      <td>9/2/2016</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Jim Schoenfield</td>
+                      <td>New York Rangers</td>
+                      <td>9/4/1952</td>
+                      <td>2007 - Present</td>
+                      <td>7/23/2007</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== OTTAWA SENATORS ===================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Pierre Dorion</td>
+                      <td>Ottawa Senators</td>
+                      <td>6/6/1972</td>
+                      <td>2017 - Present</td>
+                      <td>4/10/2016</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Peter MacTavish</td>
+                      <td>Ottawa Senators</td>
+                      <td> </td>
+                      <td>2018 - Present</td>
+                      <td>9/17/2018</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== PHILADELPHIA FLYERS ================= -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Ron Hextall</td>
+                      <td>Philadelphia Flyers</td>
+                      <td>5/3/1964</td>
+                      <td>2014 - Present</td>
+                      <td>5/7/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Barry Hanrahan</td>
+                      <td>Philadelphia Flyers</td>
+                      <td>1968</td>
+                      <td>2005 - Present</td>
+                      <td>2005</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Chris Pryor</td>
+                      <td>Philadelphia Flyers</td>
+                      <td>1/23/1961</td>
+                      <td>2016 - Present</td>
+                      <td>8/10/2016</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== PITTSBURGH PENGUINS ================= -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Jim Rutherford</td>
+                      <td>Pittsburgh Penguins</td>
+                      <td>2/17/1949</td>
+                      <td>2014 - Present</td>
+                      <td>6/6/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Bill Guerin</td>
+                      <td>Pittsburgh Penguins</td>
+                      <td>11/9/1970</td>
+                      <td>2014 - Present</td>
+                      <td>6/6/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Jason Karmanos</td>
+                      <td>Pittsburgh Penguins</td>
+                      <td>5/22/1974</td>
+                      <td>2017 - Present</td>
+                      <td>6/16/2017</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== SAN JOSE SHARKS ===================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Doug Wilson</td>
+                      <td>San Jose Sharks</td>
+                      <td>6/5/1957</td>
+                      <td>2003 - Present</td>
+                      <td>5/13/2003</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Tim Burke</td>
+                      <td>San Jose Sharks</td>
+                      <td>5/29/1955</td>
+                      <td>2018 - Present</td>
+                      <td>7/7/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Joe Will</td>
+                      <td>San Jose Sharks</td>
+                      <td> </td>
+                      <td>2011 - Present</td>
+                      <td>9/10/2011</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== ST. LOUIS BLUES ===================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Doug Armstrong</td>
+                      <td>St. Louis Blues</td>
+                      <td>9/24/1964</td>
+                      <td>2010 - Present</td>
+                      <td>7/1/2010</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Bill Armstrong</td>
+                      <td>St. Louis Blues</td>
+                      <td>4/18/1970</td>
+                      <td>2018 - Present</td>
+                      <td>8/28/2018</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== TAMPA BAY LIGHTNING ================= -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Julien Brisebois</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>1/24/1977</td>
+                      <td>2018 - Present</td>
+                      <td>9/11/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Pat Verbeek</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>5/24/1964</td>
+                      <td>2011 - Present</td>
+                      <td>7/1/2011</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== TORONTO MAPLE LEAFS ================= -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Kyle Dubas</td>
+                      <td>Toronto Maple Leafs</td>
+                      <td>11/29/1985</td>
+                      <td>2018 - Present</td>
+                      <td>5/11/2018</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Brandon Pridham</td>
+                      <td>Toronto Maple Leafs</td>
+                      <td>3/18/1974</td>
+                      <td>2014 - Present</td>
+                      <td>8/19/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Laurence Gilman</td>
+                      <td>Toronto Maple Leafs</td>
+                      <td>1965</td>
+                      <td>2018 - Present</td>
+                      <td>5/24/2018</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- =================== VANCOUVER CANUCKS =================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Jim Benning</td>
+                      <td>Vancouver Canucks</td>
+                      <td>4/29/1963</td>
+                      <td>2014 - Present</td>
+                      <td>5/21/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>John Weisbrod</td>
+                      <td>Vancouver Canucks</td>
+                      <td>11/6/1968</td>
+                      <td>2015 - Present</td>
+                      <td>8/4/2015</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================== VEGAS GOLDEN KNIGHTS ================= -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>George McPhee</td>
+                      <td>Vegas Golden Knights</td>
+                      <td>6/2/1958</td>
+                      <td>2016 - Present</td>
+                      <td>7/13/2016</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Kelly McCrimmon</td>
+                      <td>Vegas Golden Knights</td>
+                      <td>10/13/1960</td>
+                      <td>2016 - Present</td>
+                      <td>8/2/2016</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ================== WASHINGTON CAPITALS ================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Brian MacLellan</td>
+                      <td>Washington Capitals</td>
+                      <td>10/27/1958</td>
+                      <td>2014 - Present</td>
+                      <td>5/26/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Ross Mahoney</td>
+                      <td>Washington Capitals</td>
+                      <td>6/21/1956</td>
+                      <td>2014 - Present</td>
+                      <td>6/16/2014</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Don Fishman</td>
+                      <td>Washington Capitals</td>
+                      <td>1970</td>
+                      <td>2007 - Present</td>
+                      <td>2007</td>
+                    </tr>
+                    <!--///////////////////////////////////////////////////////////-->
+                    <!-- ===================== WINNIPEG JETS ===================== -->
+                    <!--///////////////////////////////////////////////////////////--> 
+                    <tr>
+                      <td>General Manager</td>
+                      <td>Kevin Cheveldayoff</td>
+                      <td>Winnipeg Jets</td>
+                      <td>2/4/1970</td>
+                      <td>2011 - Present</td>
+                      <td>6/8/2011</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Craig Heisinger</td>
+                      <td>Winnipeg Jets</td>
+                      <td>10/16/1962</td>
+                      <td>2011 - Present</td>
+                      <td>6/8/2011</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant General Manager</td>
+                      <td>Larry Simmons</td>
+                      <td>Winnipeg Jets</td>
+                      <td>1973</td>
+                      <td>2004 - Present</td>
+                      <td>2004</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ============== 2018 - 2019 GM END ================== -->
+                <!--///////////////////////////////////////////////////////////-->
+              </div>
+            </div>
+          <a href="#" class="go-top">Go Top</a>
+          <br><br>
+        </div>
+      </section>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN END ========================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <footer class="footer-container">
+        <span><small>2018 - Behind the Benches</small></span>
+      </footer>
+    </div>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- =================== VENDER SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- MODERNIZR-->
+    <script src="./../js/modernizr.custom.js"></script>
+    <!-- JQUERY-->
+    <script src="./../js/jquery.js"></script>
+    <!-- BOOTSTRAP-->
+    <script src="./../js/popper.js"></script>
+    <script src="./../js/bootstrap.js"></script>
+    <!-- STORAGE API-->
+    <script src="./../js/js.storage.js"></script>
+    <!-- JQUERY EASING-->
+    <script src="./../js/jquery.easing.js"></script>
+    <!-- ANIMO-->
+    <script src="./../js/animo.js"></script>
+    <!-- SCREENFULL-->
+    <script src="./../js/screenfull.js"></script>
+    <!-- LOCALIZE-->
+    <script src="./../js/jquery.localize.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ================= PAGE VENDER SCRIPTS =================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- Datatables-->
+    <script src="./../js/jquery.dataTables.js"></script>
+    <script src="./../js/dataTables.bootstrap4.js"></script>
+    <script src="./../js/dataTables.buttons.js"></script>
+    <script src="./../js/buttons.bootstrap.js"></script>
+    <script src="./../js/buttons.colVis.js"></script>
+    <script src="./../js/buttons.flash.js"></script>
+    <script src="./../js/buttons.html5.js"></script>
+    <script src="./../js/buttons.print.js"></script>
+    <script src="./../js/dataTables.keyTable.js"></script>
+    <script src="./../js/dataTables.responsive.js"></script>
+    <script src="./../js/responsive.bootstrap.js"></script>
+    <script src="./../js/jszip.js"></script>
+    <script src="./../js/pdfmake.js"></script>
+    <script src="./../js/vfs_fonts.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ====================== APP SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <script src="./../js/app.js"></script>
+  </body>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ======================= BODY END ======================== -->
+  <!--///////////////////////////////////////////////////////////-->
+</html>
