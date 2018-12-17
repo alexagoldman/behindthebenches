@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Behind the Benches: A public database on what hockey coaches do and for how long they've been doing it. NHL | AHL | CWHL | NWHL | NCAA">
-  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, ANA, Anaheim Ducks, ARI, Arizona Coyotes, BOS, Boston Bruins, BUF, Buffalo Sabres, CGY, Calgary Flames, CAR, Carolina Hurricanes, CHI, Chicago Blackhawks, COL, Colorado Avalanche, CBJ, Columbus Blue Jackets, DAL, Dallas Stars, DET, Detroit Red Wings, EDM, Edmonton Oilers, FLA, Florida Panthers, LAK, Los Angeles Kings, MIN, Minnesota Wild, MTL, Montreal Canadiens, NSH, Nashville Predators, NJD, New Jersey Devils, NYI, New York Islanders, NYR, New York Rangers, OTT, Ottawa Senators, PHI, Philadelphia Flyers, PIT, Pittsburgh Penguins, SJS, San Jose Sharks, STL, St. Louis Blues, TBL, Tampa Bay Lightning, TOR, Toronto Maple Leafs, VAN, Vancouver Canucks, VGK, Vegas Golden Knights, WSH, Washington Capitals, WPG, Winnipeg Jets">
+  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, CBJ, Columbus Blue Jackets">
   <link rel="icon" href="./../images/behindthebenches.ico">
-  <title>NHL Coaches | Behind the Benches</title>
+  <title> Columbus Blue Jackets | Behind the Benches</title>
   <!--///////////////////////////////////////////////////////////-->
   <!-- ==================== VENDOR STYLES ====================== -->
   <!--///////////////////////////////////////////////////////////-->
@@ -37,36 +37,24 @@
   <!-- ==================== CSS PAGE STYLES ==================== -->
   <!--///////////////////////////////////////////////////////////-->
   <style type="text/css" class="init">
-    thead, .dataTables_length, .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
-      visibility: hidden;
-    }
-
     @media screen and (max-width: 980px) {
       .row-border {
-      position: relative;
-      -webkit-transition: all 0.25s ease-out;
-      -moz-transition: all 0.25s ease-out;
-      -o-transition: all 0.25s ease-out;
-      -ms-transition: all 0.25s ease-out;
-      transition: all 0.25s ease-out;
-      width:calc(100% + 220px);
-      font-size: 12px;
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        -o-transition: all 0.25s ease-out;
+        -ms-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+        width:calc(100% + 220px);
+        font-size: 10px;
       }  
       h1{
         font-size: 30px;
-        }
-    }
- 
-    .dataTables_filter{
-      padding-right: 10%;
+      }
     }
 
-    label{
-      font-size: 16px;
-    }
-
-    .form-control{
-      background: rgb(245,245,245);
+    .tableTitle{
+      font-size: 20px;
     }
 
     .no-js #loader { 
@@ -113,43 +101,6 @@
   <!--///////////////////////////////////////////////////////////-->
   <script type="text/javascript" class="init">
     $(document).ready(function() {
-      var groupColumn = 2;
-      var table = $('#example').DataTable({
-          "columnDefs": [
-              { "visible": false, "targets": groupColumn }
-          ],
-          "order": [[ groupColumn, 'asc' ]],
-          "displayLength": 1000,
-          "drawCallback": function ( settings ) {
-              var api = this.api();
-              var rows = api.rows( {page:'current'} ).nodes();
-              var last=null;
-   
-              api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
-                  if ( last !== group ) {
-                      $(rows).eq( i ).before(
-                           '<tr class="group"><td class="'+group+'" colspan="4"><img src="./images/'+group+'.png" alt="HTML5 Icon" style="width:1.5em;"> '+group+'</td></tr>'+
-              '<tr class="group">'+
-              '<th class="'+group+1+'">Position</th><th class="'+group+1+'">Name</th><th class="'+group+1+'">Seasons</th><th class="'+group+1+'">Role</th></tr></tr>'
-                      );
-   
-                      last = group;
-                  }
-              } );
-          }
-      } );
-      $('#example tbody').on( 'click', 'tr.group', function () {
-          var currentOrder = table.order()[0];
-          if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
-              table.order( [ groupColumn, 'desc' ] ).draw();
-          }
-          else {
-              table.order( [ groupColumn, 'asc' ] ).draw();
-          }
-      } );
-    } );
-
-   $(document).ready(function() {
         $(window).scroll(function() {
           if ($(this).scrollTop() > 200) {
             $('.go-top').fadeIn(200);
@@ -158,7 +109,7 @@
           }
         });
         $('.go-top').click(function(event) {
-          event.preventDefault(); 
+          event.preventDefault();
           $('html, body').animate({scrollTop: 0}, 300);
         })
       });
@@ -245,7 +196,7 @@
                        <img class="img-fluid" src="./../images/retroNHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
                         <span data-localize="sidebar.nav.GM"> GM</span>
                      </a>
-                     <a href="./ANA.html" title="ANA" >
+                      <a href="./ANA.html" title="ANA" >
                        <img class="img-fluid" src="./../images/ANA.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
                         <span data-localize="sidebar.nav.ANA"> ANA</span>
                      </a>
@@ -425,1412 +376,1735 @@
       <section class="section-container" style="background:white;" >
          <div class="content-wrapper">
             <div class=" text-center">
-               <h1 class="text-center" style="padding:1%; color:black;"> 2018 - 2019 NHL Coaches <h1>
+               <h1 class="text-center" style="padding:1%; color:black;"> <img src="./../images/CBJ.png" style="width:1.5em"> Columbus Blue Jackets </h1><br>
             </div>
-            <div class="row">
-              <div class="col-xl-12">
+            <div id="tablePadding" class="row">
+              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
                 <!--///////////////////////////////////////////////////////////-->
-                <!-- ============== 2018 - 2019 COACHES START ================ -->
+                <!-- ================ COACHING HISTORY START ================= -->
                 <!--///////////////////////////////////////////////////////////-->
-                <table id="example" class="row-border" style="width:100%;">
-                  <thead>
-                    <tr>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>  
+                <table class="table row-border" style="width:100%">
+                    <tr class="Jackets" style="font-size: 30px;">
+                      <th class="tableTitle" colspan="8">Coaching History</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>DOB </th>
+                      <th>Specialty </th> 
+                      <th>Hire Date </th>
+                      <th>End Date </th> 
+                      <th>Fired? </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ===================== ANAHEIM DUCKS ===================== -->
-                    <!--///////////////////////////////////////////////////////////-->
                     <tr>
                       <td>Head</td>
-                      <td><a href="./ANA.html">Randy Carlyle</a></td>
-                      <td>Anaheim Ducks</td>
-                      <td>2016 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Marty Wilford</td>
-                      <td>Anaheim Ducks</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mark Morrison</td>
-                      <td>Anaheim Ducks</td>
-                      <td>2017 - Present</td>
-                      <td>Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Rich Preston</td>
-                      <td>Anaheim Ducks</td>
+                      <td><a href="#JohnTortorella">John Tortorella</a></td>
                       <td>2015 - Present</td>
-                      <td>Eye in the Sky</td>
+                      <td>6/24/1958</td>
+                      <td>Head</td>
+                      <td>10/21/2015</td>
+                      <td> </td>
+                      <td> </td>
                     </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Sudarshan Maharaj</td>
-                      <td>Anaheim Ducks</td>
-                      <td>2016 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Joe Piscotty</td>
-                      <td>Anaheim Ducks</td>
-                      <td>2011 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ===================== ARIZONA COYOTES =================== -->
-                    <!--///////////////////////////////////////////////////////////-->   
                     <tr>
                       <td>Head</td>
-                      <td><a href="./ARI.html">Rick Tocchet</a></td>
-                      <td>Arizona Coyotes</td>
-                      <td>2017 - Present</td>
+                      <td><a href="#ToddRichards">Todd Richards</a></td>
+                      <td>2012 - 2015</td>
+                      <td>10/20/1966</td>
                       <td>Head</td>
+                      <td>1/9/2012</td>
+                      <td>10/21/2015</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td><a href="#ScottArniel">Scott Arniel</a></td>
+                      <td>2010 - 2012</td>
+                      <td>9/17/1962</td>
+                      <td>Head</td>
+                      <td>6/8/2010</td>
+                      <td>1/9/2012</td>
+                      <td>Y</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>John MacLean</td>
-                      <td>Arizona Coyotes</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play, Skills</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Scott Allen</td>
-                      <td>Arizona Coyotes</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Corey Schwab</td>
-                      <td>Arizona Coyotes</td>
-                      <td>2015 - Present</td>
-                      <td>Goaltending, Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Steve Peters</td>
-                      <td>Arizona Coyotes</td>
-                      <td>1996 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <tr>
-                      <td>Skating</td>
-                      <td>Dawn Braid</td>
-                      <td>Arizona Coyotes</td>
-                      <td>2015 - Present</td>
-                      <td>Skating</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ===================== BOSTON BRUINS ===================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./BOS.html">Bruce Cassidy</a></td>
-                      <td>Boston Bruins</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Jay Pandolfo</td>
-                      <td>Boston Bruins</td>
-                      <td>2016 - Present</td>
-                      <td>Eye in the Sky, Forwards</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td><a href="./COL.html">Joe Sacco</a></td>
-                      <td>Boston Bruins</td>
+                      <td>Brad Larsen</td>
                       <td>2014 - Present</td>
-                      <td>Forwards, Power Play</td>
+                      <td>6/28/1977</td>
+                      <td>Forwards/Defense/Forwards, Power Play</td>
+                      <td>6/16/2014</td>
+                      <td> </td>
+                      <td> </td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Kevin Dean</td>
-                      <td>Boston Bruins</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Bob Essensa</td>
-                      <td>Boston Bruins</td>
-                      <td>2003 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>J.P. Buckley</td>
-                      <td>Boston Bruins</td>
-                      <td>2015 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ===================== BUFFALO SABRES ==================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./BUF.html">Phil Housley</a></td>
-                      <td>Buffalo Sabres</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td><a href="./STL.html">Davis Payne</a></td>
-                      <td>Buffalo Sabres</td>
-                      <td>2017 - Present</td>
-                      <td>Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Tom Ward</td>
-                      <td>Buffalo Sabres</td>
+                      <td>Brad Shaw</td>
                       <td>2016 - Present</td>
-                      <td>Eye in the Sky, Power Play</td>
+                      <td>4/28/1964</td>
+                      <td>Defense/Forwards/Defense, Penalty Kill</td>
+                      <td>6/17/2016</td>
+                      <td> </td>
+                      <td> </td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Chris Hajt</td>
-                      <td>Buffalo Sabres</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Steve Smith</td>
-                      <td>Buffalo Sabres</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Andrew Allen </td>
-                      <td>Buffalo Sabres</td>
+                      <td>Kenny McCudden</td>
                       <td>2015 - Present</td>
-                      <td>Goaltending</td>
+                      <td>5/15/1905</td>
+                      <td>Skills</td>
+                      <td>6/18/2015</td>
+                      <td> </td>
+                      <td> </td>
                     </tr>
                     <tr>
-                      <td>Video</td>
-                      <td>Mat Myers</td>
-                      <td>Buffalo Sabres</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== CALGARY FLAMES ====================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./CGY.html">Bill Peters</a></td>
-                      <td>Calgary Flames</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Martin Gelinas</td>
-                      <td>Calgary Flames</td>
-                      <td>2012 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Geoff Ward</td>
-                      <td>Calgary Flames</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Huska</td>
-                      <td>Calgary Flames</td>
-                      <td>2018 - Present</td>
+                      <td>Associate</td>
+                      <td>Craig Hartsburg</td>
+                      <td>2012 - 2016</td>
+                      <td>6/29/1959</td>
                       <td>Defense, Penalty Kill</td>
+                      <td>6/20/2012</td>
+                      <td>4/13/2016</td>
+                      <td>N</td>
                     </tr>
                     <tr>
-                      <td>Goaltending</td>
-                      <td>Jordan Sigalet</td>
-                      <td>Calgary Flames</td>
-                      <td>2014 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Jamie Pringle</td>
-                      <td>Calgary Flames</td>
-                      <td>2011 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ================ CAROLINA HURRICANES ==================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./CAR.html">Rod Brind'Amour</a></td>
-                      <td>Carolina Hurricanes</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                     <tr>
                       <td>Assistant</td>
-                      <td>Dean Chynoweth</td>
-                      <td>Carolina Hurricanes</td>
-                      <td>2018 - Present</td>
+                      <td>Dan Hinote</td>
+                      <td>2010 - 2014</td>
+                      <td>1/30/1977</td>
+                      <td>Eye in the Sky, Penalty Kill</td>
+                      <td>6/1/2010</td>
+                      <td>6/4/2014</td>
+                      <td>N</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Keith Acton</td>
+                      <td>2012 - 2013</td>
+                      <td>4/15/1958</td>
+                      <td>Forwards, Power Play, Penalty Kill</td>
+                      <td>6/20/2012</td>
+                      <td>6/28/2013</td>
+                      <td>N</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Brad Berry</td>
+                      <td>2010 - 2012</td>
+                      <td>4/1/1965</td>
                       <td>Defense, Penalty Kill</td>
+                      <td>6/23/2010</td>
+                      <td>6/13/2012</td>
+                      <td>N</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Jeff Daniels</td>
-                      <td>Carolina Hurricanes</td>
-                      <td>2018 - Present</td>
+                      <td>Todd Richards</td>
+                      <td>2011 - 2012</td>
+                      <td>10/20/1966</td>
                       <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Mike Bales</td>
-                      <td>Carolina Hurricanes</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Chris Huffine</td>
-                      <td>Carolina Hurricanes</td>
-                      <td>1997 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>L.J. Scarpace</td>
-                      <td>Carolina Hurricanes</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== CHICAGO BLACKHAWKS ================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./CHI.html">Jermey Colliton</a></td>
-                      <td>Chicago Blackhawks</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
+                      <td>6/1/2011</td>
+                      <td>1/9/2012</td>
+                      <td>N</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Don Granato</td>
-                      <td>Chicago Blackhawks</td>
-                      <td>2017 - Present</td>
-                      <td>Development</td>
+                      <td><a href="./FLA.html#BobBoughner">Bob Boughner</a></td>
+                      <td>2010 - 2011</td>
+                      <td>3/8/1971</td>
+                      <td>Forwards, Power Play</td>
+                      <td>7/5/2010</td>
+                      <td>5/18/2011</td>
+                      <td>N</td>
                     </tr>
                     <tr>
-                      <td>Assistant</td>
-                      <td>Barry Smith</td>
-                      <td>Chicago Blackhawks</td>
+                      <td>Goaltending</td>
+                      <td>Manny Legace</td>
                       <td>2018 - Present</td>
+                      <td>3/5/1974</td>
+                      <td>Goaltending</td>
+                      <td>7/5/2018</td>
+                      <td> </td>
                       <td> </td>
                     </tr>
                     <tr>
                       <td>Goaltending</td>
-                      <td>Jimmy Waite</td>
-                      <td>Chicago Blackhawks</td>
-                      <td>2014 - Present</td>
+                      <td>Ian Clark</td>
+                      <td>2011 - 2018</td>
+                      <td>5/12/1966</td>
                       <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Matt Meacham</td>
-                      <td>Chicago Blackhawks</td>
-                      <td>2014 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ================= COLORADO AVALANCGE ==================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./COL.html">Jared Bednar</a></td>
-                      <td>Colorado Avalanche</td>
-                      <td>2016 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ray Bennett</td>
-                      <td>Colorado Avalanche</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Nolan Pratt</td>
-                      <td>Colorado Avalanche</td>
-                      <td>2016 - Present</td>
-                      <td>Defense, Penalty Kill</td>
+                      <td>6/6/2011</td>
+                      <td>5/11/2018</td>
+                      <td>N</td>
                     </tr>
                     <tr>
                       <td>Goaltending</td>
-                      <td>Jussi Parkila</td>
-                      <td>Colorado Avalanche</td>
-                      <td>2017 - Present</td>
+                      <td>Dave Rook</td>
+                      <td>2009 - 2011</td>
+                      <td>6/26/1967</td>
                       <td>Goaltending</td>
+                      <td>6/11/2009</td>
+                      <td>4/14/2011</td>
+                      <td>Y</td>
                     </tr>
                     <tr>
                       <td>Video</td>
-                      <td>Brett Heimlich</td>
-                      <td>Colorado Avalanche</td>
-                      <td>2017 - Present</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td> </td>
                       <td>Video</td>
+                      <td>2000</td>
+                      <td> </td>
+                      <td> </td>
                     </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ================ COLUMBUS BLUE JACKETS ================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
+                  </tbody>
+                </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ COACHING HISTORY ENDS  ================= -->
+                <!--///////////////////////////////////////////////////////////-->
+               </div>
+            </div>
+            <br><br>
+            <section>
+            <div class=" text-center">
+               <h3 class="text-center" style="padding:1%; color:black;"> Season by Season </h3>
+            </div>
+            <div id="tablePadding" class="row">
+              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ SEASON BY SEASON START ================= -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table class="table row-border" style="width:100%">
+                    <!-- ================= 2018-19 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2018-19</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                  </thead>
+                  <tbody>
                     <tr>
                       <td>Head</td>
-                      <td><a href="./CBJ.html">John Tortorella</a></td>
-                      <td>Columbus Blue Jackets</td>
+                      <td>John Tortorella</td>
                       <td>2015 - Present</td>
                       <td>Head</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
                       <td>Brad Larsen</td>
-                      <td>Columbus Blue Jackets</td>
                       <td>2014 - Present</td>
-                      <td>Defense, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Kenny McCudden</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>2015 - Present</td>
-                      <td>Skills</td>
+                      <td>Defense/Forwards, Power Play</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
                       <td>Brad Shaw</td>
-                      <td>Columbus Blue Jackets</td>
                       <td>2016 - Present</td>
-                      <td>Power Play, Penalty Kill</td>
+                      <td>Forwards/Defense, Penatly Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Kenny McCudden</td>
+                      <td>2015 - Present</td>
+                      <td>Skills</td>
                     </tr>
                     <tr>
                       <td>Goaltending</td>
                       <td>Manny Legace</td>
-                      <td>Columbus Blue Jackets</td>
                       <td>2018 - Present</td>
                       <td>Goaltending</td>
                     </tr>
                     <tr>
                       <td>Video</td>
                       <td>Dan Singleton</td>
-                      <td>Columbus Blue Jackets</td>
                       <td>2000 - Present</td>
-                      <td>Video</td>
+                      <td>Assistant Video</td>
                     </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ==================== DALLAS STARS ======================= -->
-                    <!--///////////////////////////////////////////////////////////--> 
+                    <!-- ================= 2017-18 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2017-18</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
                     <tr>
                       <td>Head</td>
-                      <td><a href="./DAL.html">Jim Montgomery</a></td>
-                      <td>Dallas Stars</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                     <tr>
-                      <td>Assistant</td>
-                      <td>Todd Nelson</td>
-                      <td>Dallas Stars</td>
-                      <td>2018 - Present</td>
-                      <td>Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Stu Barnes</td>
-                      <td>Dallas Stars</td>
-                      <td>2017 - Present</td>
-                      <td>5-on-5 Play</td>
-                    </tr>
-                     <tr>
-                      <td>Assistant</td>
-                      <td>Rick Bowness</td>
-                      <td>Dallas Stars</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Vernon Fiddler</td>
-                      <td>Dallas Stars</td>
-                      <td>2018 - Present</td>
-                      <td>Skills, Development</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Jeff Reese</td>
-                      <td>Dallas Stars</td>
-                      <td>2015 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Kelly Forbes</td>
-                      <td>Dallas Stars</td>
-                      <td>2010 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== DETROIT RED WINGS =================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./DET.html">Jeff Blashill</a></td>
-                      <td>Detroit Red Wings</td>
+                      <td>John Tortorella</td>
                       <td>2015 - Present</td>
                       <td>Head</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td><a href="./BUF.html">Dan Byslma</a></td>
-                      <td>Detroit Red Wings</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Doug Houda</td>
-                      <td>Detroit Red Wings</td>
-                      <td>2016 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Pat Fershweiler</td>
-                      <td>Detroit Red Wings</td>
-                      <td>2015 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Jeff Salajko</td>
-                      <td>Detroit Red Wings</td>
-                      <td>2016 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Adam Nightingale</td>
-                      <td>Detroit Red Wings</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== EDMONTON OILERS ===================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./EDM.html">Ken Hitchcock</a></td>
-                      <td>Edmonton Oilers</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td><a href="./CGY.html">Glen Gulutzan</a></td>
-                      <td>Edmonton Oilers</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Trent Yawney</td>
-                      <td>Edmonton Oilers</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Manny Viveiros</td>
-                      <td>Edmonton Oilers</td>
-                      <td>2018 - Present</td>
-                      <td>Eye in the Sky, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Dustin Schwartz</td>
-                      <td>Edmonton Oilers</td>
+                      <td>Brad Larsen</td>
                       <td>2014 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Jeremy Coupal</td>
-                      <td>Edmonton Oilers</td>
-                      <td>2016 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== FLORIDA PANTHERS ==================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./FLA.html">Bob Boughner</a></td>
-                      <td>Florida Panthers</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Associate</td>
-                      <td><a href="./NYI.html">Jack Capuano</a></td>
-                      <td>Florida Panthers</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Paul McFarland</td>
-                      <td>Florida Panthers</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Rob Tallas</td>
-                      <td>Florida Panthers</td>
-                      <td>2009 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Ben Cooper</td>
-                      <td>Florida Panthers</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== LOS ANGELES KINGS =================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./LAK.html">Willie Desjardins</a></td>
-                      <td>Los Angeles Kings</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Dave Lowry</td>
-                      <td>Los Angeles Kings</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Marco Sturm</td>
-                      <td>Los Angeles Kings</td>
-                      <td>2018 - Present</td>
-                      <td>Eye in the Sky, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Bill Ranford</td>
-                      <td>Los Angeles Kings</td>
-                      <td>2006 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== MINNESOTA WILD ====================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./MIN.html">Bruce Boudreau</a></td>
-                      <td>Minnesota Wild</td>
-                      <td>2016 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Darby Hendrickson</td>
-                      <td>Minnesota Wild</td>
-                      <td>2011 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                     <tr>
-                      <td>Assistant</td>
-                      <td>Dean Evason</td>
-                      <td>Minnesota Wild</td>
-                      <td>2018 - Present</td>
                       <td>Forwards, Power Play</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Bob Woods</td>
-                      <td>Minnesota Wild</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Bob Mason</td>
-                      <td>Minnesota Wild</td>
-                      <td>2005 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Jonas Plumb</td>
-                      <td>Minnesota Wild</td>
-                      <td>2015 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== MONTREAL CANADIENS ================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./MTL.html">Claude Julien</a></td>
-                      <td>Montreal Canadiens</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Associate</td>
-                      <td>Kirk Muller</td>
-                      <td>Montreal Canadiens</td>
-                      <td>2016 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Luke Richardson</td>
-                      <td>Montreal Canadiens</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Dominique Ducharme</td>
-                      <td>Montreal Canadiens</td>
-                      <td>2018 - Present</td>
-                      <td>Roving Strategist</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Stephane Waite</td>
-                      <td>Montreal Canadiens</td>
-                      <td>2013 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Mario LeBlanc</td>
-                      <td>Montreal Canadiens</td>
-                      <td>2010 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ================== NASHVILLE PREDATORS ================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    </tr>
-                     <td>Head</td>
-                      <td><a href="./NSH.html">Peter Laviolette</a></td>
-                      <td>Nashville Predators</td>
-                      <td>2014 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Associate</td>
-                      <td>Kevin McCarthy</td>
-                      <td>Nashville Predators</td>
-                      <td>2014 - Present</td>
-                      <td>Defense, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Dan Muse</td>
-                      <td>Nashville Predators</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Ben Vanderklock</td>
-                      <td>Nashville Predators</td>
-                      <td>2014 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Lawrence Feloney</td>
-                      <td>Nashville Predators</td>
-                      <td>2015 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== NEW JERSEY DEVILS =================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./NJD.html">John Hynes</a></td>
-                      <td>New Jersey Devils</td>
-                      <td>2015 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Alain Nasreddine</td>
-                      <td>New Jersey Devils</td>
-                      <td>2015 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Rick Kowalsky</td>
-                      <td>New Jersey Devils</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mike Grier</td>
-                      <td>New Jersey Devils</td>
-                      <td>2018 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Roland Melanson</td>
-                      <td>New Jersey Devils</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Mike Regan</td>
-                      <td>New Jersey Devils</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== NEW YORK ISLANDERS ================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./NYI.html">Barry Trotz</a></td>
-                      <td>New York Islanders</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Lane Lambert</td>
-                      <td>New York Islanders</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Scott Gomez</td>
-                      <td>New York Islanders</td>
-                      <td>2017 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>John Gruden</td>
-                      <td>New York Islanders</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Piero Greco</td>
-                      <td>New York Islanders</td>
-                      <td>2018 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td> </td>
-                      <td>New York Islanders</td>
-                      <td> </td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== NEW YORK RANGERS ==================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./NYR.html">David Quinn</a></td>
-                      <td>New York Rangers</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td><a href="./DAL.html">Lindy Ruff</a></td>
-                      <td>New York Rangers</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>David Oliver</td>
-                      <td>New York Rangers</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Greg Brown</td>
-                      <td>New York Rangers</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Benoit Allaire</td>
-                      <td>New York Rangers</td>
-                      <td>2004 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Jerry Dineen</td>
-                      <td>New York Rangers</td>
-                      <td>2003 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== OTTAWA SENATORS ===================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./OTT.html">Guy Boucher</a></td>
-                      <td>Ottawa Senators</td>
-                      <td>2016 - Present</td>
-                      <td>Head, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Associate</td>
-                      <td><a href="./DAL.html">Marc Crawford</a></td>
-                      <td>Ottawa Senators</td>
-                      <td>2016 - Present</td>
-                      <td>Defense</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Rob Cookson</td>
-                      <td>Ottawa Senators</td>
-                      <td>2016 - Present</td>
-                      <td>Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Martin Raymond</td>
-                      <td>Ottawa Senators</td>
-                      <td>2016 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Pierre Groulx</td>
-                      <td>Ottawa Senators</td>
-                      <td>2016 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Kristopher Young</td>
-                      <td>Ottawa Senators</td>
-                      <td>2016 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== PHILADELPHIA FLYERS ================= -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./PHI.html">Dave Hakstol</a></td>
-                      <td>Philadelphia Flyers</td>
-                      <td>2015 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Rick Wilson</td>
-                      <td>Philadelphia Flyers</td>
-                      <td>2018 - Present</td>
-                      <td>Defense</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Kris Knoblauch</td>
-                      <td>Philadelphia Flyers</td>
-                      <td>2017 - Present</td>
-                      <td>Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ian Laperriere</td>
-                      <td>Philadelphia Flyers</td>
-                      <td>2013 - Present</td>
-                      <td>Forwards, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Kim Dillabaugh</td>
-                      <td>Philadelphia Flyers</td>
-                      <td>2015 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Adam Patterson</td>
-                      <td>Philadelphia Flyers</td>
-                      <td>2009 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== PITTSBURGH PENGUINS ================= -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                     <tr>
-                      <td>Head</td>
-                      <td><a href="./PIT.html">Mike Sullivan</a></td>
-                      <td>Pittsburgh Penguins</td>
-                      <td>2015 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Sergei Gonchar</td>
-                      <td>Pittsburgh Penguins</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Jacques Martin</td>
-                      <td>Pittsburgh Penguins</td>
-                      <td>2015 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mark Recchi</td>
-                      <td>Pittsburgh Penguins</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Mike Buckley</td>
-                      <td>Pittsburgh Penguins</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Andy Saucier</td>
-                      <td>Pittsburgh Penguins</td>
-                      <td>2012 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== SAN JOSE SHARKS ===================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./SJS.html">Peter DeBoer</a></td>
-                      <td>San Jose Sharks</td>
-                      <td>2015 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Steve Spott</td>
-                      <td>San Jose Sharks</td>
-                      <td>2015 - Present</td>
-                      <td>Defense, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Rob Zettler</td>
-                      <td>San Jose Sharks</td>
-                      <td>2017 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Dave Barr</td>
-                      <td>San Jose Sharks</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Johan Hedberg</td>
-                      <td>San Jose Sharks</td>
-                      <td>2015 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Dan Darrow</td>
-                      <td>San Jose Sharks</td>
-                      <td>2015 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== ST. LOUIS BLUES ===================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./STL.html">Craig Berube</a></td>
-                      <td>St. Louis Blues</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant </td>
-                      <td>Mike Van Ryn </td>
-                      <td>St. Louis Blues</td>
-                      <td>2018 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Steve Ott</td>
-                      <td>St. Louis Blues</td>
-                      <td>2017 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Larry Robinson</td>
-                      <td>St. Louis Blues</td>
-                      <td>2018 - Present</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Alexander</td>
-                      <td>St. Louis Blues</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Sean Ferrell</td>
-                      <td>St. Louis Blues</td>
-                      <td>2013 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== TAMPA BAY LIGHTNING ================= -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./TBL.html">Jon Cooper</a></td>
-                      <td>Tampa Bay Lightning</td>
-                      <td>2013 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td><a href="./CBJ.html">Todd Richards</a></td>
-                      <td>Tampa Bay Lightning</td>
+                      <td>Brad Shaw</td>
                       <td>2016 - Present</td>
                       <td>Defense, Penalty Kill</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Derek Lalonde</td>
-                      <td>Tampa Bay Lightning</td>
-                      <td>2018 - Present</td>
-                      <td>Eye in the Sky, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Jeff Halpern</td>
-                      <td>Tampa Bay Lightning</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Frantz Jean</td>
-                      <td>Tampa Bay Lightning</td>
-                      <td>2010 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Nigel Kirwan</td>
-                      <td>Tampa Bay Lightning</td>
-                      <td>1996 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== TORONTO MAPLE LEAFS ================= -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./TOR.html">Mike Babcock</a></td>
-                      <td>Toronto Maple Leafs</td>
+                      <td>Kenny McCudden</td>
                       <td>2015 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Andrew Brewer</td>
-                      <td>Toronto Maple Leafs</td>
-                      <td>2015 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>D.J. Smith</td>
-                      <td>Toronto Maple Leafs</td>
-                      <td>2015 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Jim Hiller</td>
-                      <td>Toronto Maple Leafs</td>
-                      <td>2015 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Steve Briere</td>
-                      <td>Toronto Maple Leafs</td>
-                      <td>2015 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- =================== VANCOUVER CANUCKS =================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./VAN.html">Travis Green</a></td>
-                      <td>Vancouver Canucks</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Nolan Baumgartner</td>
-                      <td>Vancouver Canucks</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Newell Brown</td>
-                      <td>Vancouver Canucks</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Doug Jarvis</td>
-                      <td>Vancouver Canucks</td>
-                      <td>2016 - Present</td>
-                      <td>Eye in the Sky</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Manny Malhotra</td>
-                      <td>Vancouver Canucks</td>
-                      <td>2017 - Present</td>
-                      <td>Development</td>
-                    </tr>
-                     <tr>
-                      <td>Skills</td>
-                      <td>Glenn Carnegie</td>
-                      <td>Vancouver Canucks</td>
-                      <td>2009 - Present</td>
                       <td>Skills</td>
                     </tr>
                     <tr>
                       <td>Goaltending</td>
                       <td>Ian Clark</td>
-                      <td>Vancouver Canucks</td>
-                      <td>2018 - Present</td>
+                      <td>2011 - 2018</td>
                       <td>Goaltending</td>
                     </tr>
                     <tr>
                       <td>Video</td>
-                      <td>Darryl Seward</td>
-                      <td>Vancouver Canucks</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
                     </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ================== VEGAS GOLDEN KNIGHTS ================= -->
-                    <!--///////////////////////////////////////////////////////////--> 
+                    <!-- ================= 2016-17 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2016-17</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
                     <tr>
                       <td>Head</td>
-                      <td><a href="./VGK.html">Gerard Gallant</a></td>
-                      <td>Vegas Golden Knights</td>
-                      <td>2017 - Present</td>
+                      <td>John Tortorella</td>
+                      <td>2015 - Present</td>
                       <td>Head</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Mike Kelly</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>2017 - Present</td>
-                      <td>Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Craig</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>2017 - Present</td>
+                      <td>Brad Larsen</td>
+                      <td>2014 - Present</td>
                       <td>Forwards, Power Play</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Ryan McGill</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Prior</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Tommy Cruz</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ================== WASHINGTON CAPITALS ================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./WSH.html">Todd Reirden</a></td>
-                      <td>Washington Capitals</td>
-                      <td>2018 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Reid Cashman</td>
-                      <td>Washington Capitals</td>
-                      <td>2018 - Present</td>
-                      <td>Defense</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Blaine Forsythe</td>
-                      <td>Washington Capitals</td>
-                      <td>2008 - Present</td>
-                      <td>Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td><a href="./CBJ.html">Scott Arniel</a></td>
-                      <td>Washington Capitals</td>
-                      <td>2018 - Present</td>
-                      <td>Forwards, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>Scott Murray</td>
-                      <td>Washington Capitals</td>
-                      <td>2013 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Brett Leonhardt</td>
-                      <td>Washington Capitals</td>
-                      <td>2012 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Tim Ohashi</td>
-                      <td>Washington Capitals</td>
+                      <td>Kenny McCudden</td>
                       <td>2015 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!--///////////////////////////////////////////////////////////-->
-                    <!-- ===================== WINNIPEG JETS ===================== -->
-                    <!--///////////////////////////////////////////////////////////--> 
-                    <tr>
-                      <td>Head</td>
-                      <td><a href="./WPG.html">Paul Maurice</a></td>
-                      <td>Winnipeg Jets</td>
-                      <td>2013 - Present</td>
-                      <td>Head</td>
+                      <td>Skills</td>
                     </tr>
                     <tr>
                       <td>Assistant</td>
-                      <td>Todd Woodcroft</td>
-                      <td>Winnipeg Jets</td>
+                      <td>Brad Shaw</td>
                       <td>2016 - Present</td>
-                      <td>Eye in the Sky, Faceoffs</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Jamie Kompon</td>
-                      <td>Winnipeg Jets</td>
-                      <td>2016 - Present</td>
-                      <td>Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Charlie Huddy</td>
-                      <td>Winnipeg Jets</td>
-                      <td>2011 - Present</td>
                       <td>Defense, Penalty Kill</td>
                     </tr>
                     <tr>
                       <td>Goaltending</td>
-                      <td>Wade Flaherty</td>
-                      <td>Winnipeg Jets</td>
-                      <td>2011 - Present</td>
+                      <td>Ian Clark</td>
+                      <td>2011 - 2018</td>
                       <td>Goaltending</td>
                     </tr>
                     <tr>
                       <td>Video</td>
-                      <td>Matt Prefontaine</td>
-                      <td>Winnipeg Jets</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
+                    </tr>
+                    <!-- ================= 2015-16 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2015-16</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>John Tortorella</td>
+                      <td>2015 - Present</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>Todd Richards</td>
+                      <td>2012 - 2015</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Brad Larsen</td>
                       <td>2014 - Present</td>
+                      <td>Forwards, Power Play</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Kenny McCudden</td>
+                      <td>2015 - Present</td>
+                      <td>Skills</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Craig Hartsburg</td>
+                      <td>2012 - 2016</td>
+                      <td>Defense, Penalty Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Goaltending</td>
+                      <td>Ian Clark</td>
+                      <td>2011 - 2018</td>
+                      <td>Goaltending</td>
+                    </tr>
+                    <tr>
                       <td>Video</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
+                    </tr>
+                    <!-- ================= 2014-15 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2014-15</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>Todd Richards</td>
+                      <td>2012 - 2015</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Brad Larsen</td>
+                      <td>2014 - Present</td>
+                      <td>Forwards, Power Play</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Craig Hartsburg</td>
+                      <td>2012 - 2016</td>
+                      <td>Defense, Penalty Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Goaltending</td>
+                      <td>Ian Clark</td>
+                      <td>2011 - 2018</td>
+                      <td>Goaltending</td>
+                    </tr>
+                    <tr>
+                      <td>Video</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
+                    </tr>
+                    <!-- ================= 2013-14 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2013-14</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>Todd Richards</td>
+                      <td>2012 - 2015</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Dan Hinote</td>
+                      <td>2010 - 2014</td>
+                      <td>Forwards, Power Play</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Craig Hartsburg</td>
+                      <td>2012 - 2016</td>
+                      <td>Defense, Penalty Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Goaltending</td>
+                      <td>Ian Clark</td>
+                      <td>2011 - 2018</td>
+                      <td>Goaltending</td>
+                    </tr>
+                    <tr>
+                      <td>Video</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
+                    </tr>
+                    <!-- ================= 2012-13 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2012-13</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>Todd Richards</td>
+                      <td>2012 - 2015</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Dan Hinote</td>
+                      <td>2010 - 2014</td>
+                      <td>Forwards, Power Play</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Craig Hartsburg</td>
+                      <td>2012 - 2016</td>
+                      <td>Defense, Penalty Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Keith Acton</td>
+                      <td>2012 - 2013</td>
+                      <td>Forwards, Power Play, Penalty Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Goaltending</td>
+                      <td>Ian Clark</td>
+                      <td>2011 - 2018</td>
+                      <td>Goaltending</td>
+                    </tr>
+                    <tr>
+                      <td>Video</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
+                    </tr>
+                    <!-- ================= 2011-12 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2011-12</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>Todd Richards</td>
+                      <td>2012 - 2015</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>Scott Arniel</td>
+                      <td>2010 - 2012</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Todd Richards</td>
+                      <td>2011 - 2012</td>
+                      <td>Forwards, Power Play</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Dan Hinote</td>
+                      <td>2010 - 2014</td>
+                      <td>Forwards, Power Play</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Brad Berry</td>
+                      <td>2010 - 2012</td>
+                      <td>Defense, Penalty Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Goaltending</td>
+                      <td>Ian Clark</td>
+                      <td>2011 - 2018</td>
+                      <td>Goaltending</td>
+                    </tr>
+                    <tr>
+                      <td>Video</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
+                    </tr>
+                    <!-- ================= 2010-11 ==================== -->
+                    <tr class="Jackets" style="font-size: 12px;">
+                      <th class="tableTitle" colspan="8">2010-11</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Position </th>
+                      <th>Name </th>
+                      <th>Seasons </th>
+                      <th>Specialty </th> 
+                    </tr>
+                    <tr>
+                      <td>Head</td>
+                      <td>Scott Arniel</td>
+                      <td>2010 - 2012</td>
+                      <td>Head</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Dan Hinote</td>
+                      <td>2010 - 2014</td>
+                      <td>Eye in the Sky</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Brad Berry</td>
+                      <td>2010 - 2012</td>
+                      <td>Defense, Penalty Kill</td>
+                    </tr>
+                    <tr>
+                      <td>Assistant</td>
+                      <td>Bob Boughner</td>
+                      <td>2010 - 2011</td>
+                      <td>Forwards, Power Play</td>
+                    </tr>
+                    <tr>
+                      <td>Goaltending</td>
+                      <td>Dave Rook</td>
+                      <td>2009 - 2011</td>
+                      <td>Goaltending</td>
+                    </tr>
+                    <tr>
+                      <td>Video</td>
+                      <td>Dan Singleton</td>
+                      <td>2000 - Present</td>
+                      <td>Assistant Video</td>
                     </tr>
                   </tbody>
                 </table>
                 <!--///////////////////////////////////////////////////////////-->
-                <!-- ============== 2018 - 2019 COACHES END ================== -->
+                <!-- ================ SEASON BY SEASON END =================== -->
                 <!--///////////////////////////////////////////////////////////-->
               </div>
             </div>
+          </section>
+          <br><br>
+          <div class=" text-center">
+               <h3 class="text-center" style="padding:1%; color:black;"> Head Coach History</h3>
+          </div>
+          <section id="JohnTortorella">
+            <div id="tablePadding" class="row">
+              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================= JOHN TORTORELLA START ================= -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table class="table row-border" style="width:100%">
+                    <tr class="Jackets" style="font-size: 15px;">
+                      <th class="tableTitle" colspan="10"> John Tortorella </th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">       
+                      <th>DOB</th>
+                      <th>Hire Date</th>
+                      <th> </th>
+                      <th>2018-19 Salary</th>
+                      <th>2019-20 Salary</th>
+                      <th colspan="2">Stanley Cup Championship</th>
+                      <th colspan="2">Jack Adams Award</th>
+                      <th> </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>July 24, 1958</td>
+                      <td>October 21, 2015</td>
+                      <td> </td>
+                      <td>$2,000,000</td>
+                      <td>Unknown</td>
+                      <td>2003-04</td>
+                      <td> </td>
+                      <td>2016-17</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>   
+                    <tr>
+                      <td> </td>
+                      <td colspan="3"><i>*Signed two year extension in September 2018 </i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>           
+                  </tbody>
+                </table>
+                <table class="table row-border" style="width:100%">
+                  <tbody>
+                    <tr>
+                      <th colspan="4"></th>
+                      <th colspan="6" class="Jackets" style="font-size: 15px;">Record</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Season</th>
+                      <th>Team</th>
+                      <th>League</th>
+                      <th>Position</th>
+                      <th>Games<br>Played</th>
+                      <th>Win</th>
+                      <th>Loss</th>
+                      <th>Tie</th>
+                      <th>Overtime<br>Loss</th>
+                      <th>Playoffs</th>
+                    </tr>
+                    <tr>
+                      <td>1986-87</td>
+                      <td>Virginia Lancers</td>
+                      <td>ACHL</td>
+                      <td>Head</td>
+                      <td>58</td>
+                      <td>36</td>
+                      <td>19</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>Won Championship</td>
+                    </tr>
+                    <tr>
+                      <td>1987-88</td>
+                      <td>Virginia Lancers</td>
+                      <td>AAHL</td>
+                      <td>Head</td>
+                      <td>43</td>
+                      <td>37</td>
+                      <td>5</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1988-89</td>
+                      <td>New Haven Nighthawks</td>
+                      <td>AHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1989-90</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1990-91</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1991-92</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1992-93</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1993-94</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1994-95</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1995-96</td>
+                      <td>Rochester Americans</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>37</td>
+                      <td>34</td>
+                      <td>5</td>
+                      <td>4</td>
+                      <td>Won Calder Cup Final</td>
+                    </tr>
+                    <tr>
+                      <td>1996-97</td>
+                      <td>Rochester Americans</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>40</td>
+                      <td>30</td>
+                      <td>9</td>
+                      <td>1</td>
+                      <td>Lost in Round 2</td>
+                    </tr>
+                    <tr>
+                      <td>1997-98</td>
+                      <td>Phoenix Coyotes</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1998-99</td>
+                      <td>Phoenix Coyotes</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1999-00</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1999-00</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td colspan="3" style="text-align: center; "><i>*Hired as interim head coach in April 2000</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2000-01</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>43</td>
+                      <td>12</td>
+                      <td>27</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td colspan="3" style="text-align: center; "><i>*Hired in 2000</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2001-02</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>27</td>
+                      <td>40</td>
+                      <td>11</td>
+                      <td>4</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2002-03</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>36</td>
+                      <td>25</td>
+                      <td>16</td>
+                      <td>5</td>
+                      <td>Lost in Round 2</td>
+                    </tr>
+                    <tr>
+                      <td>2003-04</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>46</td>
+                      <td>22</td>
+                      <td>8</td>
+                      <td>6</td>
+                      <td>Won Stanley Cup</td>
+                    </tr>
+                    <tr>
+                      <td>2005-06</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>43</td>
+                      <td>33</td>
+                      <td>0</td>
+                      <td>6</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2006-07</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>44</td>
+                      <td>33</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2007-08</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>31</td>
+                      <td>42</td>
+                      <td>0</td>
+                      <td>9</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2008-09</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>21</td>
+                      <td>12</td>
+                      <td>7</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td colspan="3" style="text-align: center; "><i>*Hired February 23, 2009</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2009-10</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>38</td>
+                      <td>33</td>
+                      <td>0</td>
+                      <td>11</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2010-11</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>44</td>
+                      <td>33</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2011-12</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>51</td>
+                      <td>24</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Lost in Round 3</td>
+                    </tr>
+                    <tr>
+                      <td>2012-13</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>48</td>
+                      <td>26</td>
+                      <td>18</td>
+                      <td>0</td>
+                      <td>4</td>
+                      <td>Lost in Round 2</td>
+                    </tr>
+                    <tr>
+                      <td>2013-14</td>
+                      <td>Vancouver Canucks</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>36</td>
+                      <td>35</td>
+                      <td>0</td>
+                      <td>11</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>75</td>
+                      <td>34</td>
+                      <td>33</td>
+                      <td>0</td>
+                      <td>8</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td colspan="3" style="text-align: center; "><i>*Hired October 21, 2015</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>50</td>
+                      <td>24</td>
+                      <td>0</td>
+                      <td>8</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>45</td>
+                      <td>30</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================== JOHN TORTORELLA END ================== -->
+                <!--///////////////////////////////////////////////////////////-->
+              </div>
+            </div>  
+          </section>
+          <br><br><br>
+          <section id="ToddRichards">
+            <div id="tablePadding" class="row">
+              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================== TODD RICHARDS START ================== -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table class="table row-border" style="width:100%">
+                    <tr class="Jackets" style="font-size: 15px;">
+                      <th class="tableTitle" colspan="10"> Todd Richards </th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">       
+                      <th>DOB</th>
+                      <th>Hire Date</th>
+                      <th>Fire Date</th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>October 20, 1966</td>
+                      <td>January 9, 2012</td>
+                      <td>October 21, 2015</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr> 
+                  </tbody>
+                </table>
+                <table class="table row-border" style="width:100%">
+                  <tbody>
+                    <tr>
+                      <th colspan="4"></th>
+                      <th colspan="6" class="Jackets" style="font-size: 15px;">Record</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Season</th>
+                      <th>Team</th>
+                      <th>League</th>
+                      <th>Position</th>
+                      <th>Games<br>Played</th>
+                      <th>Win</th>
+                      <th>Loss</th>
+                      <th>Tie</th>
+                      <th>Overtime<br>Loss</th>
+                      <th>Playoffs</th>
+                    </tr>
+                    <tr>
+                      <td>2002-03</td>
+                      <td>Milwaukee Admirals</td>
+                      <td>AHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2003-04</td>
+                      <td>Milwaukee Admirals</td>
+                      <td>AHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2004-05</td>
+                      <td>Milwaukee Admirals</td>
+                      <td>AHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2005-06</td>
+                      <td>Milwaukee Admirals</td>
+                      <td>AHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2006-07</td>
+                      <td>Wilkes-Barre/Scranton Penguins</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>51</td>
+                      <td>23</td>
+                      <td>0</td>
+                      <td>6</td>
+                      <td>Lost in Round 2</td>
+                    </tr>
+                    <tr>
+                      <td>2007-08</td>
+                      <td>Wilkes-Barre/Scranton Penguins</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>47</td>
+                      <td>26</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Lost in Calder Cup Final</td>
+                    </tr>
+                    <tr>
+                      <td>2008-09</td>
+                      <td>San Jose Sharks</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2009-10</td>
+                      <td>Minnesota Wild</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>38</td>
+                      <td>36</td>
+                      <td>0</td>
+                      <td>8</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2010-11</td>
+                      <td>Minnesota Wild</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>39</td>
+                      <td>35</td>
+                      <td>0</td>
+                      <td>8</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2011-12</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2011-12</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>41</td>
+                      <td>18</td>
+                      <td>21</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td colspan="3" style="text-align: center; "><i>*Promoted January 9, 2012</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2012-13</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>48</td>
+                      <td>24</td>
+                      <td>17</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2013-14</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>43</td>
+                      <td>32</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2014-15</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>42</td>
+                      <td>35</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>7</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td colspan="3" style="text-align: center; "><i>*Fired October 21, 2015</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================== TODD RICHARDS END ==================== -->
+                <!--///////////////////////////////////////////////////////////-->
+              </div>
+            </div>  
+          </section>
+          <br><br><br>
+          <section id="ScottArniel">
+            <div id="tablePadding" class="row">
+              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================== SCOTT ARNIEL START =================== -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table class="table row-border" style="width:100%">
+                    <tr class="Jackets" style="font-size: 15px;">
+                      <th class="tableTitle" colspan="10"> Scott Arniel </th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">       
+                      <th>DOB</th>
+                      <th>Hire Date</th>
+                      <th>Fire Date</th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                      <th> </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>September 17, 1962</td>
+                      <td>June 7, 2010</td>
+                      <td>January 9, 2012</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>              
+                  </tbody>
+                </table>
+                <table class="table row-border" style="width:100%">
+                  <tbody>
+                    <tr>
+                      <th colspan="4"></th>
+                      <th colspan="6" class="Jackets" style="font-size: 15px;">Record</th>
+                    </tr>
+                    <tr class="Jackets1" style="font-size: 13px;">
+                      <th>Season</th>
+                      <th>Team</th>
+                      <th>League</th>
+                      <th>Position</th>
+                      <th>Games<br>Played</th>
+                      <th>Win</th>
+                      <th>Loss</th>
+                      <th>Tie</th>
+                      <th>Overtime<br>Loss</th>
+                      <th>Playoffs</th>
+                    </tr>
+                    <tr>
+                      <td>1995-96</td>
+                      <td>Houston Aeros</td>
+                      <td>IHL</td>
+                      <td>Player-Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2000-01</td>
+                      <td>Manitoba Moose</td>
+                      <td>IHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2001-02</td>
+                      <td>Manitoba Moose</td>
+                      <td>AHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2002-03</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2003-04</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2005-06</td>
+                      <td>Buffalo Sabres</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2006-07</td>
+                      <td>Manitoba Moose</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>45</td>
+                      <td>23</td>
+                      <td>0</td>
+                      <td>12</td>
+                      <td>Lost in Round 2</td>
+                    </tr>
+                    <tr>
+                      <td>2007-08</td>
+                      <td>Manitoba Moose</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>46</td>
+                      <td>27</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2008-09</td>
+                      <td>Manitoba Moose</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>50</td>
+                      <td>23</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Lost in Calder Cup Final</td>
+                    </tr>
+                    <tr>
+                      <td>2009-10</td>
+                      <td>Manitoba Moose</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>80</td>
+                      <td>40</td>
+                      <td>33</td>
+                      <td>0</td>
+                      <td>7</td>
+                      <td>Lost in Round 1</td>
+                    </tr>
+                    <tr>
+                      <td>2010-11</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>82</td>
+                      <td>34</td>
+                      <td>35</td>
+                      <td>0</td>
+                      <td>13</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2011-12</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>NHL</td>
+                      <td>Head</td>
+                      <td>41</td>
+                      <td>11</td>
+                      <td>25</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td colspan="3" style="text-align: center; "><i>*Fired January 9, 2012</i></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2012-13</td>
+                      <td>Chicago Wolves</td>
+                      <td>AHL</td>
+                      <td>Head</td>
+                      <td>76</td>
+                      <td>37</td>
+                      <td>30</td>
+                      <td>0</td>
+                      <td>9</td>
+                      <td>Missed Playoffs</td>
+                    </tr>
+                    <tr>
+                      <td>2013-14</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Associate</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2014-15</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Associate</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Associate</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Associate</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>New York Rangers</td>
+                      <td>NHL</td>
+                      <td>Associate</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>Washington Capitals</td>
+                      <td>NHL</td>
+                      <td>Assistant</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- =================== SCOTT ARNIEL END ==================== -->
+                <!--///////////////////////////////////////////////////////////-->
+              </div>
+            </div>  
+          </section>
           <a href="#" class="go-top">Go Top</a>
           <br><br>
         </div>
