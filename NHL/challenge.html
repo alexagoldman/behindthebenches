@@ -1,0 +1,2861 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Behind the Benches: A public database on what hockey coaches do and for how long they've been doing it. NHL | AHL | CWHL | NWHL | NCAA">
+  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, ANA, Anaheim Ducks, ARI, Arizona Coyotes, BOS, Boston Bruins, BUF, Buffalo Sabres, CGY, Calgary Flames, CAR, Carolina Hurricanes, CHI, Chicago Blackhawks, COL, Colorado Avalanche, CBJ, Columbus Blue Jackets, DAL, Dallas Stars, DET, Detroit Red Wings, EDM, Edmonton Oilers, FLA, Florida Panthers, LAK, Los Angeles Kings, MIN, Minnesota Wild, MTL, Montreal Canadiens, NSH, Nashville Predators, NJD, New Jersey Devils, NYI, New York Islanders, NYR, New York Rangers, OTT, Ottawa Senators, PHI, Philadelphia Flyers, PIT, Pittsburgh Penguins, SJS, San Jose Sharks, STL, St. Louis Blues, TBL, Tampa Bay Lightning, TOR, Toronto Maple Leafs, VAN, Vancouver Canucks, VGK, Vegas Golden Knights, WSH, Washington Capitals, WPG, Winnipeg Jets">
+  <link rel="icon" href="./../images/behindthebenches.ico">
+  <title>NHL Coaches Challenge | Behind the Benches</title>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== VENDOR STYLES ====================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- FONT AWESOME-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <!-- ANIMATE.CSS-->
+  <link rel="stylesheet" href="./../css/animate.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ================== PAGE VENDOR STYLES =================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- Datatables-->
+  <!-- <link rel="stylesheet" href="./../css/dataTables.bootstrap4.css"> -->
+  <!-- <link rel="stylesheet" href="./../css/keyTable.bootstrap.css"> -->
+  <link rel="stylesheet" href="./../css/responsive.bootstrap.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== BOOTSTRAP STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/bootstrap.css" id="bscss">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ====================== APP STYLES ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/app.css" id="maincss">
+  <link rel="stylesheet" href="./../css/NHL.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== CSS PAGE STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <style type="text/css" class="init">
+   .dataTables_length, .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
+      visibility: hidden;
+    }
+
+    @media screen and (max-width: 980px) {
+      .row-border {
+      position: relative;
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      -o-transition: all 0.25s ease-out;
+      -ms-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      width:calc(100% + 220px);
+      font-size: 12px;
+      }  
+      h1{
+        font-size: 30px;
+        }
+    }
+ 
+    div.col-sm-12.col-md-6, .example_filter,.dataTables_filter{
+     visibility:hidden;
+     line-height: 0px;
+     font-size: 0px;
+     height: 30px;
+    }
+    #filters th{
+      border-bottom: 1px solid #fff;
+    }
+
+    .no-js #loader { 
+      display: none;  
+    }
+
+    .js #loader { 
+      display: block;
+      position: absolute; 
+      left: 100px; 
+      top: 0; 
+    }
+
+    .se-pre-con {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: url(./../images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
+    }
+  </style>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== GOOGLE ANALYTICS ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126807142-1"></script> -->
+ <!--  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-126807142-1');
+  </script> -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== PAGE VENDER SCRIPTS ================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ===================== PAGE SCRIPT ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script type="text/javascript" class="init">
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $("#filters").find("th").eq(column.index()) )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        },
+      "paging": false
+    } );
+} );
+
+
+   $(document).ready(function() {
+        $(window).scroll(function() {
+          if ($(this).scrollTop() > 200) {
+            $('.go-top').fadeIn(200);
+          } else {
+            $('.go-top').fadeOut(200);
+          }
+        });
+        $('.go-top').click(function(event) {
+          event.preventDefault(); 
+          $('html, body').animate({scrollTop: 0}, 300);
+        })
+      });
+    $(window).load(function() {
+        $(".se-pre-con").fadeOut("slow");;
+     });
+  </script>
+</head>
+<!--///////////////////////////////////////////////////////////-->
+<!-- ========================= BODY ========================== -->
+<!--///////////////////////////////////////////////////////////-->
+<body style="background:white;">
+  <div class="se-pre-con"></div>
+   <div class="wrapper">
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV START ===================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <header class="topnavbar-wrapper"> 
+         <nav class="navbar topnavbar" style="background:black;"> 
+            <div class="navbar-header"> 
+               <a class="navbar-brand" href="./../index.html">
+                  <div class="brand-logo" style="color:white; font-size: 18px;">
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;"> Behind the Benches
+                  </div>
+                  <div class="brand-logo-collapsed" style="color:white;">
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="App Logo" style="width:2em;">
+                  </div>
+               </a>
+            </div>
+            <ul class="navbar-nav mr-auto flex-row" >
+               <li class="nav-item">
+                  <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                     <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+                  <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+               </li>
+            </ul>
+            <ul class="navbar-nav flex-row" >
+              <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="https://www.twitter.com/BenchBosses">
+                  <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
+                <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="mailto:benchbosses@gmail.com" target="_blank">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="https://www.patreon.com/behindthebenches">
+                  <i class="fab fa-patreon" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item d-none d-md-block"> 
+                <a class="nav-link" href="#" data-toggle-fullscreen="">
+                  <i class="fas fa-expand-arrows-alt" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+         </nav>
+      </header>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV END ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
+
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR START ==================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <aside class="aside-container">
+         <div class="aside-inner">
+            <nav class="sidebar" data-sidebar-anyclick-close="" style="background:rgb(245,245,245);" >
+               <ul class="sidebar-nav">
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">NHL</span>
+                  </li>
+                  <li class=" ">
+                     <a href="./index.html" title="NHL" >
+                       <img class="img-fluid" src="./../images/NHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NHL"> NHL</span>
+                     </a>
+                     <a href="./GM.html" title="GM" >
+                       <img class="img-fluid" src="./../images/retroNHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.GM"> GM</span>
+                     </a>
+                     <a href="./challenge.html" title="Challenge" >
+                       <img class="img-fluid" src="./../images/challenge.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.Challenge"> Challenge</span>
+                     </a>
+                     <a href="./ANA.html" title="ANA" >
+                       <img class="img-fluid" src="./../images/ANA.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.ANA"> ANA</span>
+                     </a>
+                     <a href="./ARI.html" title="ARI" >
+                       <img class="img-fluid" src="./../images/ARI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.ARI"> ARI</span>
+                     </a>
+                      <a href="./BOS.html" title="BOS" >
+                       <img class="img-fluid" src="./../images/BOS.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.BOS"> BOS</span>
+                     </a>
+                      <a href="./BUF.html" title="BUF" >
+                       <img class="img-fluid" src="./../images/BUF.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.BUF"> BUF</span>
+                     </a>
+                      <a href="./CGY.html" title="CGY" >
+                       <img class="img-fluid" src="./../images/CGY.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CGY"> CGY</span>
+                     </a>
+                      <a href="./CAR.html" title="CAR" >
+                       <img class="img-fluid" src="./../images/CAR.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CAR"> CAR</span>
+                     </a>
+                      <a href="./CHI.html" title="CHI" >
+                       <img class="img-fluid" src="./../images/CHI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CHI"> CHI</span>
+                     </a>
+                      <a href="./COL.html" title="COL" >
+                       <img class="img-fluid" src="./../images/COL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.COL"> COL</span>
+                     </a>
+                      <a href="./CBJ.html" title="CBJ" >
+                       <img class="img-fluid" src="./../images/CBJ.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CBJ"> CBJ</span>
+                     </a>
+                      <a href="./DAL.html" title="DAL" >
+                       <img class="img-fluid" src="./../images/DAL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.DAL"> DAL</span>
+                     </a>
+                      <a href="./DET.html" title="DET" >
+                       <img class="img-fluid" src="./../images/DET.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.DET"> DET</span>
+                     </a>
+                      <a href="./EDM.html" title="EDM" >
+                       <img class="img-fluid" src="./../images/EDM.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.EDM"> EDM</span>
+                     </a>
+                      <a href="./FLA.html" title="FLA" >
+                       <img class="img-fluid" src="./../images/FLA.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.FLA"> FLA</span>
+                     </a>
+                      <a href="./LAK.html" title="LAK" >
+                       <img class="img-fluid" src="./../images/LAK.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.LAK"> LAK</span>
+                     </a>
+                      <a href="./MIN.html" title="MIN" >
+                       <img class="img-fluid" src="./../images/MIN.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.MIN"> MIN</span>
+                     </a>
+                      <a href="./MTL.html" title="MTL" >
+                       <img class="img-fluid" src="./../images/MTL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.MTL"> MTL</span>
+                     </a>
+                      <a href="./NSH.html" title="NSH" >
+                       <img class="img-fluid" src="./../images/NSH.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NSH"> NSH</span>
+                     </a>
+                      <a href="./NJD.html" title="NJD" >
+                       <img class="img-fluid" src="./../images/NJD.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NJD"> NJD</span>
+                     </a>
+                      <a href="./NYI.html" title="NYI" >
+                       <img class="img-fluid" src="./../images/NYI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NYI"> NYI</span>
+                     </a>
+                      <a href="./NYR.html" title="NYR" >
+                       <img class="img-fluid" src="./../images/NYR.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NYR"> NYR</span>
+                     </a>
+                      <a href="./OTT.html" title="OTT" >
+                       <img class="img-fluid" src="./../images/OTT.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.OTT"> OTT</span>
+                     </a>
+                      <a href="./PHI.html" title="PHI" >
+                       <img class="img-fluid" src="./../images/PHI.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.PHI"> PHI</span>
+                     </a>
+                      <a href="./PIT.html" title="PIT" >
+                       <img class="img-fluid" src="./../images/PIT.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.PIT"> PIT</span>
+                     </a>
+                      <a href="./SJS.html" title="SJS" >
+                       <img class="img-fluid" src="./../images/SJS.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.SJS"> SJS</span>
+                     </a>
+                      <a href="./STL.html" title="STL" >
+                       <img class="img-fluid" src="./../images/STL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.STL"> STL</span>
+                     </a>
+                      <a href="./TBL.html" title="TBL" >
+                       <img class="img-fluid" src="./../images/TBL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.TBL"> TBL</span>
+                     </a>
+                      <a href="./TOR.html" title="TOR" >
+                       <img class="img-fluid" src="./../images/TOR.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.TOR"> TOR</span>
+                     </a>
+                      <a href="./VAN.html" title="VAN" >
+                       <img class="img-fluid" src="./../images/VAN.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.VAN"> VAN</span>
+                     </a>
+                      <a href="./VGK.html" title="VGK" >
+                       <img class="img-fluid" src="./../images/VGK.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.VGK"> VGK</span>
+                     </a>
+                      <a href="./WSH.html" title="WSH" >
+                       <img class="img-fluid" src="./../images/WSH.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.WSH"> WSH</span>
+                     </a>
+                      <a href="./WPG.html" title="WPG" >
+                       <img class="img-fluid" src="./../images/WPG.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.WPG"> WPG</span>
+                     </a>
+                  </li>
+                  <hr>
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">Leagues</span>
+                  </li>
+                  <li class=" ">
+                     <a href="./../NWHL/index.html" title="NWHL" >
+                       <img class="img-fluid" src="./../images/NWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NWHL"> NWHL</span>
+                     </a>
+                     <a href="./../CWHL/index.html" title="CWHL" >
+                       <img class="img-fluid" src="./../images/CWHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CWHL"> CWHL</span>
+                     </a>
+                     <a href="./../AHL/index.html" title="AHL" >
+                       <img class="img-fluid" src="./../images/AHL.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.AHL"> AHL &nbsp; -&nbsp;  <small><i>Coming Soon</i></small></span>
+                     </a>
+                     <a href="./../NCAA/index.html" title="NCAA" >
+                       <img class="img-fluid" src="./../images/ncaa.png" alt="App Logo" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NCAA"> NCAA - <small><i>Coming Soon</i></small></span>
+                     </a>
+                  </li>  
+                  <hr>
+                  <li class=" ">
+                    <a href="./../about.html" title="about" >
+                      <i class="fa fa-hockey-puck" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.ABOUT">  About</span>
+                    </a>
+                    <a href="mailto:benchbosses@gmail.com" target="_blank" title="email" >
+                      <i class="fa fa-envelope" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.EMAIL"> Contact Us</span>
+                    </a>
+                    <a href="https://www.twitter.com/BenchBosses" title="twitter" >
+                      <i class="fab fa-twitter" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.TWITTER"> BenchBosses</span>
+                    </a>
+                    <a href="https://www.patreon.com/behindthebenches" title="patreon" >
+                      <i class="fab fa-patreon" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.PATREON"> Support Us</span>
+                    </a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </aside>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR END ====================== -->
+      <!--///////////////////////////////////////////////////////////-->
+
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN START ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <section class="section-container" style="background:white;" >
+         <div class="content-wrapper">
+            <div class=" text-center">
+               <h1 class="text-center" style="padding:1%; color:black;"> NHL Coaches Challenge <h1>
+            </div>
+            <div class="row" style="overflow: scroll; max-width: 100%;" >
+              <div class="col-xl-12" >
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ COACHES CHALLENGE START ================ -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table id="example" class="row-border" style="width:100%;">
+                  <thead>
+                    <tr id="filters" bgcolor="#006D75" style="background: #006D75; color: #ffffff; border-bottom: 1px solid #fff;">
+                      <th> </th>
+                      <th> </th>
+                      <th colspan="14"> </th>
+                    </tr>
+                    <tr bgcolor="#000" style="background: #000; color: #ffffff;">
+                      <th>Season</th>
+                      <th>Team</th>
+                      <th>Coach</th>
+                      <th>Total Challenges</th>
+                      <th>Total Wins</th>
+                      <th>Total Losses</th>
+                      <th>Total Win +/-</th>
+                      <th>Challenge Win%</th>
+                      <th>Interference</th>
+                      <th>Interference Wins</th>
+                      <th>Interference Losses</th>
+                      <th>Interference +/-</th>
+                      <th>Offsides</th>
+                      <th>Offsides Wins</th>
+                      <th>Offsides Losses</th>
+                      <th>Offsides Win +/-</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>ANA</td>
+                      <td>Bruce Boudreau</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>0.333</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>ARI</td>
+                      <td>Dave Tippett</td>
+                      <td>7</td>
+                      <td>3</td>
+                      <td>4</td>
+                      <td>-1</td>
+                      <td>0.429</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>BOS</td>
+                      <td>Claude Julien</td>
+                      <td>10</td>
+                      <td>1</td>
+                      <td>9</td>
+                      <td>-8</td>
+                      <td>0.100</td>
+                      <td>8</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>BUF</td>
+                      <td>Dan Bylsma</td>
+                      <td>13</td>
+                      <td>3</td>
+                      <td>10</td>
+                      <td>-7</td>
+                      <td>0.231</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>CAR</td>
+                      <td>Bill Peters</td>
+                      <td>9</td>
+                      <td>3</td>
+                      <td>6</td>
+                      <td>-3</td>
+                      <td>0.333</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>CBJ</td>
+                      <td>John Tortorella</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                      <td>0.222</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>CGY</td>
+                      <td>Bob Hartley</td>
+                      <td>11</td>
+                      <td>2</td>
+                      <td>9</td>
+                      <td>-7</td>
+                      <td>0.182</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>CHI</td>
+                      <td>Joel Qunneville</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0.250</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>COL</td>
+                      <td>Patrick Roy</td>
+                      <td>7</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                      <td>0.143</td>
+                      <td>6</td>
+                      <td>0</td>
+                      <td>6</td>
+                      <td>-6</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>DAL</td>
+                      <td>Lindy Ruff</td>
+                      <td>9</td>
+                      <td>4</td>
+                      <td>5</td>
+                      <td>-1</td>
+                      <td>0.444</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>DET</td>
+                      <td>Jeff Blashill</td>
+                      <td>10</td>
+                      <td>2</td>
+                      <td>8</td>
+                      <td>-6</td>
+                      <td>0.200</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>EDM</td>
+                      <td>Todd McLellan</td>
+                      <td>9</td>
+                      <td>3</td>
+                      <td>6</td>
+                      <td>-3</td>
+                      <td>0.333</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>FLA</td>
+                      <td>Gerard Gallant</td>
+                      <td>12</td>
+                      <td>6</td>
+                      <td>6</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>7</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>LAK</td>
+                      <td>Darryl Sutter</td>
+                      <td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>-4</td>
+                      <td>0.167</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>MIN</td>
+                      <td>Mike Yeo</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>0.250</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>MIN</td>
+                      <td>John Torchetti</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>0.000</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>MTL</td>
+                      <td>Michel Therrien</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>0.333</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>NJD</td>
+                      <td>John Hynes</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0.250</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>NSH</td>
+                      <td>Peter Laviolette</td>
+                      <td>8</td>
+                      <td>1</td>
+                      <td>7</td>
+                      <td>-6</td>
+                      <td>0.125</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>NYI</td>
+                      <td>Jack Capuano</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>0.000</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>NYR</td>
+                      <td>Alain Vigneault</td>
+                      <td>8</td>
+                      <td>3</td>
+                      <td>5</td>
+                      <td>-2</td>
+                      <td>0.375</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>OTT</td>
+                      <td>Dave Cameron</td>
+                      <td>8</td>
+                      <td>3</td>
+                      <td>5</td>
+                      <td>-2</td>
+                      <td>0.375</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>PHI</td>
+                      <td>Dave Hakstol</td>
+                      <td>6</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>PIT</td>
+                      <td>Mike Sullivan</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0.250</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>SJS</td>
+                      <td>Pete DeBoer</td>
+                      <td>15</td>
+                      <td>3</td>
+                      <td>12</td>
+                      <td>-9</td>
+                      <td>0.200</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>7</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>STL</td>
+                      <td>Ken Hitchcock</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0.000</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>TBL</td>
+                      <td>Jon Cooper</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>0.200</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>TOR</td>
+                      <td>Mike Babock</td>
+                      <td>16</td>
+                      <td>8</td>
+                      <td>8</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>11</td>
+                      <td>4</td>
+                      <td>7</td>
+                      <td>-3</td>
+                      <td>5</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>VAN</td>
+                      <td>Willie Desjardins</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>0.250</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>WPG</td>
+                      <td>Paul Maurice</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0.250</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2015-16</td>
+                      <td>WSH</td>
+                      <td>Barry Trotz</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>0.250</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>ANA</td>
+                      <td>Randy Carlyle</td>
+                      <td>7</td>
+                      <td>2</td>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>0.286</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>ARI</td>
+                      <td>Dave Tippett</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>0.250</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>BOS</td>
+                      <td>Claude Julien</td>
+                      <td>5</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>-5</td>
+                      <td>0.000</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>BOS</td>
+                      <td>Bruce Cassidy</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>0.333</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>BUF</td>
+                      <td>Dan Bylsma</td>
+                      <td>11</td>
+                      <td>2</td>
+                      <td>9</td>
+                      <td>-7</td>
+                      <td>0.182</td>
+                      <td>7</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>CAR</td>
+                      <td>Bill Peters</td>
+                      <td>14</td>
+                      <td>0</td>
+                      <td>14</td>
+                      <td>-14</td>
+                      <td>0.000</td>
+                      <td>6</td>
+                      <td>0</td>
+                      <td>6</td>
+                      <td>-6</td>
+                      <td>8</td>
+                      <td>0</td>
+                      <td>8</td>
+                      <td>-8</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>CBJ</td>
+                      <td>John Tortorella</td>
+                      <td>11</td>
+                      <td>4</td>
+                      <td>7</td>
+                      <td>-3</td>
+                      <td>0.364</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>CGY</td>
+                      <td>Glen Gulutzan</td>
+                      <td>10</td>
+                      <td>2</td>
+                      <td>8</td>
+                      <td>-6</td>
+                      <td>0.200</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>CHI</td>
+                      <td>Joel Qunneville</td>
+                      <td>8</td>
+                      <td>3</td>
+                      <td>5</td>
+                      <td>-2</td>
+                      <td>0.375</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>COL</td>
+                      <td>Jared Bednar</td>
+                      <td>8</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>0.625</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>DAL</td>
+                      <td>Lindy Ruff</td>
+                      <td>6</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0.667</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>DET</td>
+                      <td>Jeff Blashill</td>
+                      <td>16</td>
+                      <td>5</td>
+                      <td>11</td>
+                      <td>-6</td>
+                      <td>0.313</td>
+                      <td>10</td>
+                      <td>4</td>
+                      <td>6</td>
+                      <td>-2</td>
+                      <td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>-4</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>EDM</td>
+                      <td>Todd McLellan</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                      <td>0.222</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>FLA</td>
+                      <td>Gerard Gallant</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>0.000</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>FLA</td>
+                      <td>Tom Rowe</td>
+                      <td>10</td>
+                      <td>3</td>
+                      <td>7</td>
+                      <td>-4</td>
+                      <td>0.300</td>
+                      <td>8</td>
+                      <td>1</td>
+                      <td>7</td>
+                      <td>-6</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>LAK</td>
+                      <td>Darryl Sutter</td>
+                      <td>8</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>MIN</td>
+                      <td>Bruce Boudreau</td>
+                      <td>11</td>
+                      <td>5</td>
+                      <td>6</td>
+                      <td>-1</td>
+                      <td>0.455</td>
+                      <td>7</td>
+                      <td>2</td>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>MTL</td>
+                      <td>Michel Therrien</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0.000</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>NJD</td>
+                      <td>John Hynes</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                      <td>0.222</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>NSH</td>
+                      <td>Peter Laviolette</td>
+                      <td>8</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>NYI</td>
+                      <td>Jack Capuano</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>0.750</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>NYI</td>
+                      <td>Doug Weight</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>0.600</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>NYR</td>
+                      <td>Alain Vigneault</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>OTT</td>
+                      <td>Guy Boucher</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>10</td>
+                      <td>-8</td>
+                      <td>0.167</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>PHI</td>
+                      <td>Dave Hakstol</td>
+                      <td>12</td>
+                      <td>2</td>
+                      <td>10</td>
+                      <td>-8</td>
+                      <td>0.167</td>
+                      <td>7</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>PIT</td>
+                      <td>Mike Sullivan</td>
+                      <td>13</td>
+                      <td>3</td>
+                      <td>10</td>
+                      <td>-7</td>
+                      <td>0.231</td>
+                      <td>8</td>
+                      <td>3</td>
+                      <td>5</td>
+                      <td>-2</td>
+                      <td>5</td>
+                      <td>0</td>
+                      <td></td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>SJS</td>
+                      <td>Pete DeBoer</td>
+                      <td>9</td>
+                      <td>1</td>
+                      <td>8</td>
+                      <td>-7</td>
+                      <td>0.111</td>
+                      <td>7</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>STL</td>
+                      <td>Ken Hitchcock</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>4</td>
+                      <td>-4</td>
+                      <td>0.000</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>STL</td>
+                      <td>Mike Yeo</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>1.000</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>TBL</td>
+                      <td>Jon Cooper</td>
+                      <td>11</td>
+                      <td>4</td>
+                      <td>7</td>
+                      <td>-3</td>
+                      <td>0.364</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>8</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>TOR</td>
+                      <td>Mike Babock</td>
+                      <td>8</td>
+                      <td>0</td>
+                      <td>8</td>
+                      <td>-8</td>
+                      <td>0.000</td>
+                      <td>6</td>
+                      <td>0</td>
+                      <td>6</td>
+                      <td>-6</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>VAN</td>
+                      <td>Willie Desjardins</td>
+                      <td>10</td>
+                      <td>4</td>
+                      <td>6</td>
+                      <td>-2</td>
+                      <td>0.400</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>6</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>WPG</td>
+                      <td>Paul Maurice</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>0.333</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2016-17</td>
+                      <td>WSH</td>
+                      <td>Barry Trotz</td>
+                      <td>10</td>
+                      <td>5</td>
+                      <td>5</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>ANA</td>
+                      <td>Randy Carlyle</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>ARI</td>
+                      <td>Rick Tocchett</td>
+                      <td>12</td>
+                      <td>6</td>
+                      <td>6</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>10</td>
+                      <td>4</td>
+                      <td>6</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>BOS</td>
+                      <td>Bruce Cassidy</td>
+                      <td>10</td>
+                      <td>4</td>
+                      <td>6</td>
+                      <td>-2</td>
+                      <td>0.400</td>
+                      <td>8</td>
+                      <td>3</td>
+                      <td>5</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>BUF</td>
+                      <td>Phil Housley</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0.250</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>CAR</td>
+                      <td>Bill Peters</td>
+                      <td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>-4</td>
+                      <td>0.167</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>CBJ</td>
+                      <td>John Tortorella</td>
+                      <td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>-4</td>
+                      <td>0.167</td>
+                      <td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>-4</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>CGY</td>
+                      <td>Glen Gulutzan</td>
+                      <td>6</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>CHI</td>
+                      <td>Joel Qunneville</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>0.200</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>COL</td>
+                      <td>Jared Bednar</td>
+                      <td>7</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>0.571</td>
+                      <td>5</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>DAL</td>
+                      <td>Ken Hitchcock</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>DET</td>
+                      <td>Jeff Blashill</td>
+                      <td>16</td>
+                      <td>5</td>
+                      <td>11</td>
+                      <td>-6</td>
+                      <td>0.313</td>
+                      <td>15</td>
+                      <td>5</td>
+                      <td>10</td>
+                      <td>-5</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>EDM</td>
+                      <td>Todd McLellan</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>0.333</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>FLA</td>
+                      <td>Bob Boughner</td>
+                      <td>13</td>
+                      <td>8</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>0.615</td>
+                      <td>9</td>
+                      <td>4</td>
+                      <td>5</td>
+                      <td>-1</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>4</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>LAK</td>
+                      <td>John Stevens</td>
+                      <td>9</td>
+                      <td>3</td>
+                      <td>6</td>
+                      <td>-3</td>
+                      <td>0.333</td>
+                      <td>7</td>
+                      <td>2</td>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>MIN</td>
+                      <td>Bruce Boudreau</td>
+                      <td>12</td>
+                      <td>3</td>
+                      <td>9</td>
+                      <td>-6</td>
+                      <td>0.250</td>
+                      <td>9</td>
+                      <td>3</td>
+                      <td>6</td>
+                      <td>-3</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>MTL</td>
+                      <td>Claude Julien</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>0.400</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>NJD</td>
+                      <td>John Hynes</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>4</td>
+                      <td>-4</td>
+                      <td>0.000</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>NSH</td>
+                      <td>Peter Laviolette</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>0.600</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>NYI</td>
+                      <td>Jack Capuano</td>
+                      <td>9</td>
+                      <td>4</td>
+                      <td>5</td>
+                      <td>-1</td>
+                      <td>0.444</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>NYR</td>
+                      <td>Alain Vigneault</td>
+                      <td>8</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>0.750</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>OTT</td>
+                      <td>Guy Boucher</td>
+                      <td>9</td>
+                      <td>2</td>
+                      <td>7</td>
+                      <td>-5</td>
+                      <td>0.222</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>PHI</td>
+                      <td>Dave Hakstol</td>
+                      <td>8</td>
+                      <td>3</td>
+                      <td>5</td>
+                      <td>-2</td>
+                      <td>0.375</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>PIT</td>
+                      <td>Mike Sullivan</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>0.600</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>SJS</td>
+                      <td>Pete DeBoer</td>
+                      <td>10</td>
+                      <td>2</td>
+                      <td>8</td>
+                      <td>-6</td>
+                      <td>0.200</td>
+                      <td>8</td>
+                      <td>1</td>
+                      <td>7</td>
+                      <td>-6</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>STL</td>
+                      <td>Mike Yeo</td>
+                      <td>8</td>
+                      <td>2</td>
+                      <td>6</td>
+                      <td>-4</td>
+                      <td>0.250</td>
+                      <td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>-4</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>TBL</td>
+                      <td>Jon Cooper</td>
+                      <td>7</td>
+                      <td>2</td>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>0.286</td>
+                      <td>7</td>
+                      <td>2</td>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>TOR</td>
+                      <td>Mike Babock</td>
+                      <td>7</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                      <td>0.143</td>
+                      <td>6</td>
+                      <td>0</td>
+                      <td>6</td>
+                      <td>-6</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>VAN</td>
+                      <td>Travis Green</td>
+                      <td>7</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>0.571</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>VGK</td>
+                      <td>Gerard Gallant</td>
+                      <td>13</td>
+                      <td>5</td>
+                      <td>8</td>
+                      <td>-3</td>
+                      <td>0.385</td>
+                      <td>9</td>
+                      <td>1</td>
+                      <td>8</td>
+                      <td>-7</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>4</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>WPG</td>
+                      <td>Paul Maurice</td>
+                      <td>9</td>
+                      <td>3</td>
+                      <td>6</td>
+                      <td>-3</td>
+                      <td>0.333</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>2017-18</td>
+                      <td>WSH</td>
+                      <td>Barry Trotz</td>
+                      <td>6</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0.667</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>ANA</td>
+                      <td>Randy Carlyle</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>0.333</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>ARI</td>
+                      <td>Rick Tocchett</td>
+                      <td>8</td>
+                      <td>3</td>
+                      <td>5</td>
+                      <td>-2</td>
+                      <td>0.375</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>BOS</td>
+                      <td>Bruce Cassidy</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>0.400</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>BUF</td>
+                      <td>Phil Housley</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>0.333</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>CAR</td>
+                      <td>Rod Brind’Amour</td>
+                      <td>7</td>
+                      <td>2</td>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>0.286</td>
+                      <td>5</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>-5</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>CBJ</td>
+                      <td>John Tortorella</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>0.750</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>CGY</td>
+                      <td>Bill Peters</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>CHI</td>
+                      <td>Jeremy Colliton</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>COL</td>
+                      <td>Jared Bednar</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>0.400</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>DAL</td>
+                      <td>Jim Montgomery</td>
+                      <td>5</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>0.800</td>
+                      <td>5</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>DET</td>
+                      <td>Jeff Blashill</td>
+                      <td>13</td>
+                      <td>2</td>
+                      <td>11</td>
+                      <td>-9</td>
+                      <td>0.154</td>
+                      <td>10</td>
+                      <td>1</td>
+                      <td>9</td>
+                      <td>-8</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>EDM</td>
+                      <td>Ken Hitchcock</td>
+                      <td>8</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>0.500</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>FLA</td>
+                      <td>Bob Boughner</td>
+                      <td>11</td>
+                      <td>3</td>
+                      <td>8</td>
+                      <td>-5</td>
+                      <td>0.273</td>
+                      <td>10</td>
+                      <td>2</td>
+                      <td>8</td>
+                      <td>-6</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>LAK</td>
+                      <td>John Stevens</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0.250</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>LAK</td>
+                      <td>Willie Desjardins</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>0.250</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>MIN</td>
+                      <td>Bruce Boudreau</td>
+                      <td>7</td>
+                      <td>1</td>
+                      <td>6</td>
+                      <td>-5</td>
+                      <td>0.143</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>MTL</td>
+                      <td>Claude Julien</td>
+                      <td>7</td>
+                      <td>2</td>
+                      <td>5</td>
+                      <td>-3</td>
+                      <td>0.286</td>
+                      <td>5</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>-5</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>NJD</td>
+                      <td>John Hynes</td>
+                      <td>6</td>
+                      <td>2</td>
+                      <td>4</td>
+                      <td>-2</td>
+                      <td>0.333</td>
+                      <td>4</td>
+                      <td>1</td>
+                      <td>3</td>
+                      <td>-2</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>NSH</td>
+                      <td>Peter Laviolette</td>
+                      <td>6</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>0.833</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>4</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>NYI</td>
+                      <td>Barry Trotz</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0.667</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>NYR</td>
+                      <td>David Quinn</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>0.000</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>OTT</td>
+                      <td>Guy Boucher</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0.000</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>PHI</td>
+                      <td>Dave Hakstol</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0.000</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>PHI</td>
+                      <td>Scott Gordon</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>1.000</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>PIT</td>
+                      <td>Mike Sullivan</td>
+                      <td>11</td>
+                      <td>6</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>0.545</td>
+                      <td>6</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>SJS</td>
+                      <td>Pete DeBoer</td>
+                      <td>6</td>
+                      <td>4</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0.667</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>STL</td>
+                      <td>Mike Yeo</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                      <td>0.000</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>STL</td>
+                      <td>Craig Berube</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>4</td>
+                      <td>-4</td>
+                      <td>0.000</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>TBL</td>
+                      <td>Jon Cooper</td>
+                      <td>5</td>
+                      <td>2</td>
+                      <td>3</td>
+                      <td>-1</td>
+                      <td>0.400</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>TOR</td>
+                      <td>Mike Babock</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>0.000</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>-2</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>VAN</td>
+                      <td>Travis Green</td>
+                      <td>5</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>0.600</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>-1</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>VGK</td>
+                      <td>Gerard Gallant</td>
+                      <td>9</td>
+                      <td>4</td>
+                      <td>5</td>
+                      <td>-1</td>
+                      <td>0.444</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>4</td>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>WPG</td>
+                      <td>Paul Maurice</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0.667</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>2018-19</td>
+                      <td>WSH</td>
+                      <td>Todd Reirden</td>
+                      <td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>-3</td>
+                      <td>0.200</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>-3</td>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                  </tbody>
+                   <caption style="color: #656565;">&nbsp;<b> *Data as of Feb. 7, 2019. All data through Dec. 2018 via Prashanth Iyer, data from Jan. 2019 - Present via <a style="color: #656565; text-decoration:underline; text-underline-position: under;" href="Evolving-Hockey.com">Evolving-Hockey.com</a></b></caption>
+                </table>
+
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ================ COACHES CHALLENGE END ================== -->
+                <!--///////////////////////////////////////////////////////////-->
+              </div>
+            </div>
+          <a href="#" class="go-top">Go Top</a>
+          <br><br>
+        </div>
+      </section>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN END ========================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <footer class="footer-container">
+        <span><small>2019 - Behind the Benches</small></span>
+      </footer>
+    </div>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- =================== VENDER SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- MODERNIZR-->
+    <script src="./../js/modernizr.custom.js"></script>
+    <!-- JQUERY-->
+    <script src="./../js/jquery.js"></script>
+    <!-- BOOTSTRAP-->
+    <script src="./../js/popper.js"></script>
+    <script src="./../js/bootstrap.js"></script>
+    <!-- STORAGE API-->
+    <script src="./../js/js.storage.js"></script>
+    <!-- JQUERY EASING-->
+    <script src="./../js/jquery.easing.js"></script>
+    <!-- ANIMO-->
+    <script src="./../js/animo.js"></script>
+    <!-- SCREENFULL-->
+    <script src="./../js/screenfull.js"></script>
+    <!-- LOCALIZE-->
+    <script src="./../js/jquery.localize.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ================= PAGE VENDER SCRIPTS =================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- Datatables-->
+    <script src="./../js/jquery.dataTables.js"></script>
+    <script src="./../js/dataTables.bootstrap4.js"></script>
+    <script src="./../js/dataTables.buttons.js"></script>
+    <script src="./../js/buttons.bootstrap.js"></script>
+    <script src="./../js/buttons.colVis.js"></script>
+    <script src="./../js/buttons.flash.js"></script>
+    <script src="./../js/buttons.html5.js"></script>
+    <script src="./../js/buttons.print.js"></script>
+    <!-- <script src="./../js/dataTables.keyTable.js"></script> -->
+    <script src="./../js/dataTables.responsive.js"></script>
+    <script src="./../js/responsive.bootstrap.js"></script>
+    <script src="./../js/jszip.js"></script>
+    <script src="./../js/pdfmake.js"></script>
+    <script src="./../js/vfs_fonts.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ====================== APP SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <script src="./../js/app.js"></script>
+  </body>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ======================= BODY END ======================== -->
+  <!--///////////////////////////////////////////////////////////-->
+</html>
