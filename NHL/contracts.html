@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Behind the Benches: A public database on what hockey coaches do and for how long they've been doing it. NHL | AHL | CWHL | NWHL | NCAA">
-  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, VGK, Vegas Golden Knights">
+  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, ANA, Anaheim Ducks, ARI, Arizona Coyotes, BOS, Boston Bruins, BUF, Buffalo Sabres, CGY, Calgary Flames, CAR, Carolina Hurricanes, CHI, Chicago Blackhawks, COL, Colorado Avalanche, CBJ, Columbus Blue Jackets, DAL, Dallas Stars, DET, Detroit Red Wings, EDM, Edmonton Oilers, FLA, Florida Panthers, LAK, Los Angeles Kings, MIN, Minnesota Wild, MTL, Montreal Canadiens, NSH, Nashville Predators, NJD, New Jersey Devils, NYI, New York Islanders, NYR, New York Rangers, OTT, Ottawa Senators, PHI, Philadelphia Flyers, PIT, Pittsburgh Penguins, SJS, San Jose Sharks, STL, St. Louis Blues, TBL, Tampa Bay Lightning, TOR, Toronto Maple Leafs, VAN, Vancouver Canucks, VGK, Vegas Golden Knights, WSH, Washington Capitals, WPG, Winnipeg Jets, Stanley, StanleyCup, Stanley Cup, finals, playoffs, contacts, Salary, salaries">
   <link rel="icon" href="./../images/behindthebenches.ico">
-  <title> Vegas Golden Knights | Behind the Benches</title>
+  <title>NHL Contracts | Behind the Benches</title>
   <!--///////////////////////////////////////////////////////////-->
   <!-- ==================== VENDOR STYLES ====================== -->
   <!--///////////////////////////////////////////////////////////-->
@@ -37,24 +37,44 @@
   <!-- ==================== CSS PAGE STYLES ==================== -->
   <!--///////////////////////////////////////////////////////////-->
   <style type="text/css" class="init">
+    .dataTables_length, .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
+      visibility: hidden;
+    }
+    table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc_disabled:before {
+    right: .5em;
+    content: "";
+}
+
     @media screen and (max-width: 980px) {
       .row-border {
-        position: relative;
-        -webkit-transition: all 0.25s ease-out;
-        -moz-transition: all 0.25s ease-out;
-        -o-transition: all 0.25s ease-out;
-        -ms-transition: all 0.25s ease-out;
-        transition: all 0.25s ease-out;
-        width:calc(100% + 220px);
-        font-size: 10px;
+      position: relative;
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      -o-transition: all 0.25s ease-out;
+      -ms-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      width:calc(100% + 220px);
+      font-size: 12px;
       }  
       h1{
         font-size: 30px;
-      }
+        }
+      .bottom{font-size: 12px!important;}
+      .top{font-size: 9px!important;}
+    }
+    .dataTables_filter{
+      padding-right: 10%;
     }
 
-    .tableTitle{
-      font-size: 20px;
+    td,th {padding:12px!important;}
+
+    label{
+      font-size: 16px;
+    }
+
+    .form-control{
+      background: rgb(245,245,245);
     }
 
     .no-js #loader { 
@@ -101,6 +121,28 @@
   <!--///////////////////////////////////////////////////////////-->
   <script type="text/javascript" class="init">
     $(document).ready(function() {
+      $('#example').DataTable( {
+        "order": [[ 0, "asc" ], [ 1, "asc" ], [ 2, "asc" ]],
+        "paging":   false,
+        "info":     false,
+        columnDefs: [{
+          orderable: false,
+          targets: "no-sort"
+        }, {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 2 ],
+            orderData: [ 1, 2 ]
+        } ],
+        "searching": false
+    } );
+    } );
+
+   $(document).ready(function() {
         $(window).scroll(function() {
           if ($(this).scrollTop() > 200) {
             $('.go-top').fadeIn(200);
@@ -109,7 +151,7 @@
           }
         });
         $('.go-top').click(function(event) {
-          event.preventDefault();
+          event.preventDefault(); 
           $('html, body').animate({scrollTop: 0}, 300);
         })
       });
@@ -393,283 +435,31 @@
       <section class="section-container" style="background:white;" >
          <div class="content-wrapper">
             <div class=" text-center">
-               <h1 class="text-center" style="padding:1%; color:black;"> <img src="./../images/VGK.png" style="width:1.5em"> Vegas Golden Knights </h1><br>
+               <h1 class="text-center" style="padding:1%; color:black;line-height: 32px;">Head Coach Contracts<h1><br>
             </div>
-            <div id="tablePadding" class="row">
-              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+            <div class="row" style="overflow: scroll; max-width: 100%;">
+              <div class="col-xl-12">
                 <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ COACHING HISTORY START ================= -->
+                <!-- ==================== CONTRACTS START ==================== -->
                 <!--///////////////////////////////////////////////////////////-->
-                <table class="table row-border" style="width:100%">
-                    <tr class="Knights" style="font-size: 30px;">
-                      <th class="tableTitle" colspan="8">Coaching History</th>
+                <table id="example" class="row-border" style="width:100%;">
+                  <thead>
+                    <tr class="Stars" style="text-align:center;font-size:20px;">
+                      <th class="tableTitle" colspan="7">Current NHL Coach Contracts</th>
                     </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th>Position </th>
-                      <th>Name </th>
-                      <th>Seasons </th>
-                      <th>DOB </th>
-                      <th>Specialty </th> 
-                      <th>Hire Date </th>
-                      <th>End Date </th> 
-                      <th>Fired? </th>
+                    <tr style="font-size: 14px; text-align: left;" class="Stars1 bottom">
+                        <th width="20%">Team</th>
+                        <th width="15%">Coach</th>
+                        <th width="13%">2019-20 Salary</th>
+                        <th width="10%">Term</th>
+                        <th width="10%">Years</th>
+                        <th width="15%">Signing Date</th>
+                        <th width="17%">Contract Type</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Head</td>
-                      <td><a href="#GerardGallant">Gerard Gallant</a></td>
-                      <td>2017 - Present</td>
-                      <td>9/2/1963</td>
-                      <td>Head</td>
-                      <td>4/13/2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mike Kelly</td>
-                      <td>2017 - Present</td>
-                      <td>1/17/1960</td>
-                      <td>Penalty Kill</td>
-                      <td>6/8/2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Craig</td>
-                      <td>2017 - Present</td>
-                      <td>1/6/1982</td>
-                      <td>Forwards, Power Play</td>
-                      <td>6/9/2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan McGill</td>
-                      <td>2017 - Present</td>
-                      <td>2/28/1969</td>
-                      <td>Defense, Penalty Kill</td>
-                      <td>6/29/2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Prior</td>
-                      <td>2017 - Present</td>
-                      <td> </td>
-                      <td>Goaltending</td>
-                      <td>2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Tommy Cruz</td>
-                      <td>2017 - Present</td>
-                      <td>3/9/1994</td>
-                      <td>Video</td>
-                      <td>2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ COACHING HISTORY ENDS  ================= -->
-                <!--///////////////////////////////////////////////////////////-->
-               </div>
-            </div>
-            <br><br>
-            <section>
-            <div class=" text-center">
-               <h3 class="text-center" style="padding:1%; color:black;"> Season by Season </h3>
-            </div>
-            <div id="tablePadding" class="row">
-              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ SEASON BY SEASON START ================= -->
-                <!--///////////////////////////////////////////////////////////-->
-                <table class="table row-border" style="width:100%">
-                    <!-- ================= 2018-19 ==================== -->
-                    <tr class="Knights" style="font-size: 12px;">
-                      <th class="tableTitle" colspan="8">2018-19</th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th width="25%">Position </th>
-                      <th width="25%">Name </th>
-                      <th width="25%">Seasons </th>
-                      <th width="25%">Specialty </th> 
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Head</td>
-                      <td>Gerard Gallant</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mike Kelly</td>
-                      <td>2017 - Present</td>
-                      <td>Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Craig</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan McGill</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Prior</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Tommy Cruz</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!-- ================= 2017-18 ==================== -->
-                    <tr class="Knights" style="font-size: 12px;">
-                      <th class="tableTitle" colspan="8">2017-18</th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th>Position </th>
-                      <th>Name </th>
-                      <th>Seasons </th>
-                      <th>Specialty </th> 
-                    </tr>
-                    <tr>
-                      <td>Head</td>
-                      <td>Gerard Gallant</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mike Kelly</td>
-                      <td>2017 - Present</td>
-                      <td>Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Craig</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan McGill</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Prior</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Tommy Cruz</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ SEASON BY SEASON END =================== -->
-                <!--///////////////////////////////////////////////////////////-->
-              </div>
-            </div>
-          </section>
-          <br><br>
-          <div class=" text-center">
-               <h3 class="text-center" style="padding:1%; color:black;"> Head Coach History</h3>
-          </div>
-         <section id="GerardGallant">
-            <div id="tablePadding" class="row">
-              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================== GERARD GALLANT START ================= -->
-                <!--///////////////////////////////////////////////////////////-->
-                <table class="table row-border" style="width:100%">
-                    <tr class="Knights" style="font-size: 15px;">
-                      <th class="tableTitle" colspan="10"> Gerard Gallant </th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">       
-                      <th>DOB</th>
-                      <th>Hire Date</th>
-                      <th> </th>
-                      <th>2018-19 Salary</th>
-                      <th colspan="2">Jack Adams Award</th>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>September 2, 1963</td>
-                      <td>April 13, 2017</td>
-                      <td> </td>
-                      <td>Unknown</td>
-                      <td>2017-18</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>              
-                    <tr>
-                      <td> </td>
-                      <td colspan="3"><i>*Signed four year contract in April 2017 </i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table class="table row-border" style="width:100%">
-                  <tbody>
-                    <tr>
-                      <th colspan="4"></th>
-                      <th colspan="6" class="Knights" style="font-size: 15px;">Record</th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th>Season</th>
-                      <th>Team</th>
-                      <th>League</th>
-                      <th>Position</th>
-                      <th>Games<br>Played</th>
-                      <th>Win</th>
-                      <th>Loss</th>
-                      <th>Tie</th>
-                      <th>Overtime<br>Loss</th>
-                      <th>Playoffs</th>
-                    </tr>
-                    <tr>
-                      <td>1998-99</td>
-                      <td>Fort Wayne Komets</td>
-                      <td>IHL</td>
-                      <td>Assistant</td>
+                      <td><span style="font-size: 0;">ANA</span><img class="img-fluid" src="./../images/ANA.png" alt="ANA" style="width:3.25em; padding-right:3%;">&emsp;Anaheim&nbsp;Ducks</td>
                       <td> </td>
                       <td> </td>
                       <td> </td>
@@ -678,271 +468,282 @@
                       <td> </td>
                     </tr>
                     <tr>
-                      <td>1999-00</td>
-                      <td>Louisville Panthers</td>
-                      <td>AHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2001-02</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2002-03</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2003-04</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2003-04</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>45</td>
-                      <td>16</td>
-                      <td>25</td>
+                      <td><span style="font-size: 0;">ARI</span><img class="img-fluid" src="./../images/ARI.png" alt="ARI" style="width:3.25em; padding-right:3%;">&emsp;Arizona&nbsp;Coyotes</td>
+                      <td>Rick Tocchet</td>
+                      <td>$1,500,000</td>
                       <td>4</td>
-                      <td>0</td>
-                      <td>Missed Playoffs</td>
+                      <td>2017 - 2020</td>
+                      <td>July 11, 2017</td>
+                      <td>Signing</td>
                     </tr>
                     <tr>
+                      <td><span style="font-size: 0;">BOS</span><img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:3.25em; padding-right:3%;">&emsp;Boston&nbsp;Bruins</td>
+                      <td>Bruce Cassidy</td>
                       <td> </td>
-                      <td colspan="3" style="text-align: center; "><i>*Promoted January 1, 2004</i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
+                      <td></td>
+                      <td>2017 -</td>
+                      <td>April 26, 2017</td>
+                      <td>Extension</td>
                     </tr>
                     <tr>
-                      <td>2005-06</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>35</td>
-                      <td>43</td>
-                      <td>0</td>
+                      <td><span style="font-size: 0;">BUF</span><img class="img-fluid" src="./../images/BUF.png" alt="BUF" style="width:3.25em; padding-right:3%;">&emsp;Buffalo&nbsp;Sabres</td>
+                      <td>Ralph Krueger</td>
+                      <td>$4,000,000</td>
+                      <td>3</td>
+                      <td>2019 -</td>
+                      <td>May 15, 2019</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">CGY</span><img class="img-fluid" src="./../images/CGY.png" alt="CGY" style="width:3.25em; padding-right:3%;">&emsp;Calgary&nbsp;Flames</td>
+                      <td>Bill Peters</td>
+                      <td>$2,000,000</td>
+                      <td>3</td>
+                      <td>2018 - 2021</td>
+                      <td>April 23, 2018</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">CAR</span><img class="img-fluid" src="./../images/CAR.png" alt="CAR" style="width:3.25em; padding-right:3%;">&emsp;Carolina&nbsp;Hurricanes</td>
+                      <td>Rod Brind&#39;Amour</td>
+                      <td> </td>
+                      <td>3</td>
+                      <td>2018 - 2021</td>
+                      <td>May 8, 2018</td>
+                      <td>Promotion</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">CHI</span><img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:3.25em; padding-right:3%;">&emsp;Chicago&nbsp;Blackhawks</td>
+                      <td>Jeremy Colliton</td>
+                      <td>$1,400,000</td>
+                      <td>3</td>
+                      <td>2018 - 2021</td>
+                      <td>November 6, 2018</td>
+                      <td>Promotion</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">COL</span><img class="img-fluid" src="./../images/COL.png" alt="COL" style="width:3.25em; padding-right:3%;">&emsp;Colorado&nbsp;Avalanche</td>
+                      <td>Jared Bednar</td>
+                      <td> </td>
                       <td>4</td>
-                      <td>Missed Playoffs</td>
+                      <td>2016 - 2020</td>
+                      <td>August 25, 2016</td>
+                      <td>Signing</td>
                     </tr>
                     <tr>
-                      <td>2006-07</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>15</td>
+                      <td><span style="font-size: 0;">CBJ</span><img class="img-fluid" src="./../images/CBJ.png" alt="CBJ" style="width:3.25em; padding-right:3%;">&emsp;Columbus&nbsp;Blue&nbsp;Jackets</td>
+                      <td>John Tortorella</td>
+                      <td> </td>
+                      <td>2</td>
+                      <td>2019 - 2021</td>
+                      <td>September 12, 2018</td>
+                      <td>Extension</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">DAL</span><img class="img-fluid" src="./../images/DAL.png" alt="DAL" style="width:3.25em; padding-right:3%;">&emsp;Dallas&nbsp;Stars&emsp;&emsp;</td>
+                      <td>Jim Montgomery</td>
+                      <td> </td>
+                      <td>4</td>
+                      <td>2018 - 2022</td>
+                      <td>May 2, 2018</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;Detroit&nbsp;Red&nbsp;Wings</td>
+                      <td>Jeff Blashill</td>
+                      <td> </td>
+                      <td>2</td>
+                      <td>2019 - 2021</td>
+                      <td>April 2, 2019</td>
+                      <td>Extension</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">EDM</span><img class="img-fluid" src="./../images/EDM.png" alt="EDM" style="width:3.25em; padding-right:3%;">&emsp;Edmonton&nbsp;Oilers</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">FLA</span><img class="img-fluid" src="./../images/FLA.png" alt="FLA" style="width:3.25em; padding-right:3%;">&emsp;Florida&nbsp;Panthers</td>
+                      <td>Joel Quenneville</td>
+                      <td>$5,250,000</td>
                       <td>5</td>
-                      <td>9</td>
-                      <td>0</td>
-                      <td>1</td>
+                      <td>2019 - 2024</td>
+                      <td>April 8, 2019</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">LAK</span><img class="img-fluid" src="./../images/LAK.png" alt="LAK" style="width:3.25em; padding-right:3%;">&emsp;Los&nbsp;Angeles&nbsp;Kings</td>
+                      <td>Todd McLellan</td>
+                      <td>$5,000,000</td>
+                      <td>5</td>
+                      <td>2019 - 2024</td>
+                      <td>April 16, 2019</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">MIN</span><img class="img-fluid" src="./../images/MIN.png" alt="MIN" style="width:3.25em; padding-right:3%;">&emsp;Minnesota&nbsp;Wild</td>
+                      <td>Bruce Boudreau</td>
+                      <td>$2,625,000</td>
+                      <td>4</td>
+                      <td>2016 - 2020</td>
+                      <td>May 7, 2016</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;Montreal&nbsp;Canadiens</td>
+                      <td>Claude Julien</td>
+                      <td>$5,000,000</td>
+                      <td>5</td>
+                      <td>2017 - 2021</td>
+                      <td>January 14, 2017</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">NSH</span><img class="img-fluid" src="./../images/NSH.png" alt="NSH" style="width:3.25em; padding-right:3%;">&emsp;Nashville&nbsp;Predators</td>
+                      <td>Peter Laviolette</td>
+                      <td> </td>
+                      <td>2</td>
+                      <td>2019 - 2021</td>
+                      <td>October 1, 2016</td>
+                      <td>Extension</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">NJD</span><img class="img-fluid" src="./../images/NJD.png" alt="NJD" style="width:3.25em; padding-right:3%;">&emsp;New&nbsp;Jersey&nbsp;Devils</td>
+                      <td>John Hynes</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td>January 3, 2019</td>
+                      <td>Extension</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">NYI</span><img class="img-fluid" src="./../images/NYI.png" alt="NYI" style="width:3.25em; padding-right:3%;">&emsp;New&nbsp;York&nbsp;Islanders</td>
+                      <td>Barry Trotz</td>
+                      <td>$4,000,000</td>
+                      <td>5</td>
+                      <td>2018 - 2023</td>
+                      <td>June 21, 2018</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">NYR</span><img class="img-fluid" src="./../images/NYR.png" alt="NYR" style="width:3.25em; padding-right:3%;">&emsp;New&nbsp;York&nbsp;Rangers</td>
+                      <td>David Quinn</td>
+                      <td>$2,400,000</td>
+                      <td>5</td>
+                      <td>2018 - 2023</td>
+                      <td>May 23, 2018</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">OTT</span><img class="img-fluid" src="./../images/OTT.png" alt="OTT" style="width:3.25em; padding-right:3%;">&emsp;Ottawa&nbsp;Senators</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
                       <td> </td>
                     </tr>
                     <tr>
-                      <td> </td>
-                      <td colspan="3" style="text-align: center; "><i>*Fired November 13, 2006</i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
+                      <td><span style="font-size: 0;">PHI</span><img class="img-fluid" src="./../images/PHI.png" alt="PHI" style="width:3.25em; padding-right:3%;">&emsp;Philadelphia&nbsp;Flyers</td>
+                      <td>Alain Vigneault</td>
+                      <td>$5,000,000</td>
+                      <td>5</td>
+                      <td>2019 - 2024</td>
+                      <td>April 15, 2019</td>
+                      <td>Signing</td>
                     </tr>
                     <tr>
-                      <td>2007-08</td>
-                      <td>New York Islanders</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
+                      <td><span style="font-size: 0;">PIT</span><img class="img-fluid" src="./../images/PIT.png" alt="PIT" style="width:3.25em; padding-right:3%;">&emsp;Pittsburgh&nbsp;Penguins</td>
+                      <td>Mike Sullivan</td>
                       <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2008-09</td>
-                      <td>New York Islanders</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2009-10</td>
-                      <td>Saint John Sea Dogs</td>
-                      <td>QMJHL</td>
-                      <td>Head</td>
-                      <td>68</td>
-                      <td>53</td>
-                      <td>12</td>
-                      <td>0</td>
                       <td>3</td>
-                      <td> </td>
+                      <td>2017 - 2020</td>
+                      <td>December 26, 2016</td>
+                      <td>Extension</td>
                     </tr>
                     <tr>
-                      <td>2010-11</td>
-                      <td>Saint John Sea Dogs</td>
-                      <td>QMJHL</td>
-                      <td>Head</td>
-                      <td>68</td>
-                      <td>58</td>
-                      <td>7</td>
-                      <td>0</td>
-                      <td>3</td>
+                      <td><span style="font-size: 0;">SJS</span><img class="img-fluid" src="./../images/SJS.png" alt="SJS" style="width:3.25em; padding-right:3%;">&emsp;San&nbsp;Jose&nbsp;Sharks</td>
+                      <td>Peter DeBoer</td>
                       <td> </td>
+                      <td>2</td>
+                      <td>2019 - 2021</td>
+                      <td>July 1, 2018</td>
+                      <td>Extension</td>
                     </tr>
                     <tr>
-                      <td>2011-12</td>
-                      <td>Saint John Sea Dogs</td>
-                      <td>QMJHL</td>
-                      <td>Head</td>
-                      <td>68</td>
-                      <td>50</td>
-                      <td>15</td>
-                      <td>0</td>
-                      <td>3</td>
+                      <td><span style="font-size: 0;">STL</span><img class="img-fluid" src="./../images/STL.png" alt="STL" style="width:3.25em; padding-right:3%;">&emsp;St.&nbsp;Louis&nbsp;Blues</td>
+                      <td>Craig Berube</td>
                       <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td>November 20, 2018</td>
+                      <td>Promotion</td>
                     </tr>
                     <tr>
-                      <td>2012-13</td>
-                      <td>Montreal Canadiens</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
+                      <td><span style="font-size: 0;">TBL</span><img class="img-fluid" src="./../images/TBL.png" alt="TBL" style="width:3.25em; padding-right:3%;">&emsp;Tampa&nbsp;Bay&nbsp;Lightning</td>
+                      <td>Jon Cooper</td>
                       <td> </td>
                       <td> </td>
                       <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
+                      <td>March 26, 2019</td>
+                      <td>Extension</td>
                     </tr>
                     <tr>
-                      <td>2013-14</td>
-                      <td>Montreal Canadiens</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2014-15</td>
-                      <td>Florida Panthers</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>38</td>
-                      <td>29</td>
-                      <td>0</td>
-                      <td>15</td>
-                      <td>Missed Playoffs</td>
-                    </tr>
-                    <tr>
-                      <td>2015-16</td>
-                      <td>Florida Panthers</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>47</td>
-                      <td>26</td>
-                      <td>0</td>
-                      <td>9</td>
-                      <td>Lost in Round 1</td>
-                    </tr>
-                    <tr>
-                      <td>2016-17</td>
-                      <td>Florida Panthers</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>22</td>
-                      <td>11</td>
-                      <td>10</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td> </td>
-                      <td colspan="3" style="text-align: center; "><i>*Fired November 27, 2016</i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2017-18</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>51</td>
-                      <td>24</td>
-                      <td>0</td>
-                      <td>7</td>
-                      <td>Lost in Stanley Cup Final</td>
-                    </tr>
-                    <tr>
-                      <td>2018-19</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>43</td>
-                      <td>26</td>
-                      <td>0</td>
+                      <td><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;Toronto&nbsp;Maple&nbsp;Leafs</td>
+                      <td>Mike Babcock</td>
+                      <td>$6,250,000</td>
                       <td>8</td>
+                      <td>2015 - 2023</td>
+                      <td>May 25, 2015</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">VAN</span><img class="img-fluid" src="./../images/VAN.png" alt="VAN" style="width:3.25em; padding-right:3%;">&emsp;Vancouver&nbsp;Canucks</td>
+                      <td>Travis Green</td>
+                      <td>$1,000,000</td>
+                      <td>4</td>
+                      <td>2017 - 2021</td>
+                      <td>April 25, 2017</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">VGK</span><img class="img-fluid" src="./../images/VGK.png" alt="VGK" style="width:3.25em; padding-right:3%;">&emsp;Vegas&nbsp;Golden&nbsp;Knights</td>
+                      <td>Gerard Gallant</td>
                       <td> </td>
+                      <td>4</td>
+                      <td>2017 - 2021</td>
+                      <td>April 13, 2017</td>
+                      <td>Signing</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">WSH</span><img class="img-fluid" src="./../images/WSH.png" alt="WSH" style="width:3.25em; padding-right:3%;">&emsp;Washington&nbsp;Capitals</td>
+                      <td>Todd Reirden</td>
+                      <td> </td>
+                      <td></td>
+                      <td> </td>
+                      <td>June 29, 2018</td>
+                      <td>Promotion</td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size: 0;">WPG</span><img class="img-fluid" src="./../images/WPG.png" alt="WPG" style="width:3.25em; padding-right:3%;">&emsp;Winnipeg&nbsp;Jets</td>
+                      <td>Paul Maurice</td>
+                      <td> </td>
+                      <td></td>
+                      <td>2018 -</td>
+                      <td>September 7, 2017</td>
+                      <td>Extension</td>
                     </tr>
                   </tbody>
                 </table>
                 <!--///////////////////////////////////////////////////////////-->
-                <!-- ================== GERARD GALLANT END =================== -->
+                <!-- =================== CONTRACTS END ======================= -->
                 <!--///////////////////////////////////////////////////////////-->
               </div>
-            </div>  
-          </section>
+            </div>
           <a href="#" class="go-top">Go Top</a>
           <br><br>
         </div>

@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Behind the Benches: A public database on what hockey coaches do and for how long they've been doing it. NHL | AHL | CWHL | NWHL | NCAA">
+  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, ANA, Anaheim Ducks, ARI, Arizona Coyotes, BOS, Boston Bruins, BUF, Buffalo Sabres, CGY, Calgary Flames, CAR, Carolina Hurricanes, CHI, Chicago Blackhawks, COL, Colorado Avalanche, CBJ, Columbus Blue Jackets, DAL, Dallas Stars, DET, Detroit Red Wings, EDM, Edmonton Oilers, FLA, Florida Panthers, LAK, Los Angeles Kings, MIN, Minnesota Wild, MTL, Montreal Canadiens, NSH, Nashville Predators, NJD, New Jersey Devils, NYI, New York Islanders, NYR, New York Rangers, OTT, Ottawa Senators, PHI, Philadelphia Flyers, PIT, Pittsburgh Penguins, SJS, San Jose Sharks, STL, St. Louis Blues, TBL, Tampa Bay Lightning, TOR, Toronto Maple Leafs, VAN, Vancouver Canucks, VGK, Vegas Golden Knights, WSH, Washington Capitals, WPG, Winnipeg Jets, Stanley, StanleyCup, Stanley Cup, finals, playoffs">
+  <link rel="icon" href="./../images/behindthebenches.ico">
+  <title>NHL Stanley Cup | Behind the Benches</title>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== VENDOR STYLES ====================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- FONT AWESOME-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <!-- ANIMATE.CSS-->
+  <link rel="stylesheet" href="./../css/animate.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ================== PAGE VENDOR STYLES =================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- Datatables-->
+  <link rel="stylesheet" href="./../css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="./../css/keyTable.bootstrap.css">
+  <link rel="stylesheet" href="./../css/responsive.bootstrap.css">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== BOOTSTRAP STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/bootstrap.css" id="bscss">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ====================== APP STYLES ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <link rel="stylesheet" href="./../css/app.css" id="maincss">
+  <link rel="stylesheet" href="./../css/NHL.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ==================== CSS PAGE STYLES ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <style type="text/css" class="init">
+    .dataTables_length, .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
+      visibility: hidden;
+    }
+    table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc_disabled:before {
+    right: .5em;
+    content: "";
+}
+
+    @media screen and (max-width: 980px) {
+      .row-border {
+      position: relative;
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      -o-transition: all 0.25s ease-out;
+      -ms-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      width:calc(100% + 220px);
+      font-size: 12px;
+      }  
+      h1{
+        font-size: 30px;
+        }
+      .bottom{font-size: 12px!important;}
+      .top{font-size: 9px!important;}
+    }
+    .dataTables_filter{
+      padding-right: 10%;
+    }
+
+    label{
+      font-size: 16px;
+    }
+
+    .form-control{
+      background: rgb(245,245,245);
+    }
+
+    .no-js #loader { 
+      display: none;  
+    }
+
+    .js #loader { 
+      display: block;
+      position: absolute; 
+      left: 100px; 
+      top: 0; 
+    }
+
+    .se-pre-con {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: url(./../images/images/loader-64x/Preloader_5.gif) center no-repeat #fff;
+    }
+  </style>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== GOOGLE ANALYTICS ==================== -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126807142-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-126807142-1');
+  </script>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- =================== PAGE VENDER SCRIPTS ================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ===================== PAGE SCRIPT ======================= -->
+  <!--///////////////////////////////////////////////////////////-->
+  <script type="text/javascript" class="init">
+    $(document).ready(function() {
+      $('#example').DataTable( {
+        "order": [[ 0, "desc" ], [ 1, "desc" ], [ 2, "desc" ]],
+        "paging":   false,
+        "info":     false,
+        columnDefs: [{
+          orderable: false,
+          targets: "no-sort"
+        }, {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 2 ],
+            orderData: [ 1, 2 ]
+        } ],
+        "searching": true
+    } );
+    } );
+
+   $(document).ready(function() {
+        $(window).scroll(function() {
+          if ($(this).scrollTop() > 200) {
+            $('.go-top').fadeIn(200);
+          } else {
+            $('.go-top').fadeOut(200);
+          }
+        });
+        $('.go-top').click(function(event) {
+          event.preventDefault(); 
+          $('html, body').animate({scrollTop: 0}, 300);
+        })
+      });
+    $(window).load(function() {
+        $(".se-pre-con").fadeOut("slow");;
+     });
+  </script>
+</head>
+<!--///////////////////////////////////////////////////////////-->
+<!-- ========================= BODY ========================== -->
+<!--///////////////////////////////////////////////////////////-->
+<body style="background:white;">
+  <div class="se-pre-con"></div>
+   <div class="wrapper">
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV START ===================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <header class="topnavbar-wrapper"> 
+         <nav class="navbar topnavbar" style="background:black;"> 
+            <div class="navbar-header"> 
+               <a class="navbar-brand" href="./../index.html">
+                  <div class="brand-logo" style="color:white; font-size: 18px;">
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="Behind the benches" style="width:2em;"> Behind the Benches
+                  </div>
+                  <div class="brand-logo-collapsed" style="color:white;">
+                     <img class="img-fluid" src="./../images/behindthebenches.png" alt="Behind the Benches" style="width:2em;">
+                  </div>
+               </a>
+            </div>
+            <ul class="navbar-nav mr-auto flex-row" >
+               <li class="nav-item">
+                  <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                     <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+                  <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </a>
+               </li>
+            </ul>
+            <ul class="navbar-nav flex-row" >
+              <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="https://www.twitter.com/BenchBosses">
+                  <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
+                <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="mailto:benchbosses@gmail.com" target="_blank">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a class="nav-link" href="https://www.patreon.com/behindthebenches">
+                  <i class="fab fa-patreon" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item d-none d-md-block"> 
+                <a class="nav-link" href="#" data-toggle-fullscreen="">
+                  <i class="fas fa-expand-arrows-alt" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+         </nav>
+      </header>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ===================== TOP NAV END ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
+
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR START ==================== -->
+      <!--///////////////////////////////////////////////////////////-->
+      <aside class="aside-container">
+         <div class="aside-inner">
+            <nav class="sidebar" data-sidebar-anyclick-close="" style="background:rgb(245,245,245);" >
+               <ul class="sidebar-nav">
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">NHL</span>
+                  </li>
+                  <li class=" ">
+                     <a href="./index.html" title="NHL" >
+                       <img class="img-fluid" src="./../images/NHL.png" alt="NHL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NHL"> NHL</span>
+                     </a>
+                     <a href="./GM.html" title="GM" >
+                       <img class="img-fluid" src="./../images/retroNHL.png" alt="GM" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.GM"> GM</span>
+                     </a>
+                     <a href="./StanleyCup.html" title="StanleyCup" >
+                       <img class="img-fluid" src="./../images/stanley.png" alt="Stanley Cup" style="width:2.3em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.StanleyCup"> Stanley Cup</span>
+                     </a>
+                     <a href="./jackadams.html" title="JackAdams" >
+                       <img class="img-fluid" src="./../images/jackadams.png" alt="Jack Adams" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.JackAdams"> Jack Adams</span>
+                     </a>
+                     <a href="./contracts.html" title="Contracts" >
+                       <img class="img-fluid" src="./../images/contract.png" alt="Contracts" style="width:2.3em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.StanleyCup"> Contracts</span>
+                     </a>
+                     <a href="./challenge.html" title="Challenge" >
+                       <img class="img-fluid" src="./../images/challenge.png" alt="Challenge" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.Challenge"> Challenge</span>
+                     </a>
+                     <hr>
+                     <a href="./ANA.html" title="ANA" >
+                       <img class="img-fluid" src="./../images/ANA.png" alt="ANA" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.ANA"> ANA</span>
+                     </a>
+                     <a href="./ARI.html" title="ARI" >
+                       <img class="img-fluid" src="./../images/ARI.png" alt="ARI" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.ARI"> ARI</span>
+                     </a>
+                      <a href="./BOS.html" title="BOS" >
+                       <img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.BOS"> BOS</span>
+                     </a>
+                      <a href="./BUF.html" title="BUF" >
+                       <img class="img-fluid" src="./../images/BUF.png" alt="BUF" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.BUF"> BUF</span>
+                     </a>
+                      <a href="./CGY.html" title="CGY" >
+                       <img class="img-fluid" src="./../images/CGY.png" alt="CGY" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CGY"> CGY</span>
+                     </a>
+                      <a href="./CAR.html" title="CAR" >
+                       <img class="img-fluid" src="./../images/CAR.png" alt="CAR" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CAR"> CAR</span>
+                     </a>
+                      <a href="./CHI.html" title="CHI" >
+                       <img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CHI"> CHI</span>
+                     </a>
+                      <a href="./COL.html" title="COL" >
+                       <img class="img-fluid" src="./../images/COL.png" alt="COL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.COL"> COL</span>
+                     </a>
+                      <a href="./CBJ.html" title="CBJ" >
+                       <img class="img-fluid" src="./../images/CBJ.png" alt="CBJ" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CBJ"> CBJ</span>
+                     </a>
+                      <a href="./DAL.html" title="DAL" >
+                       <img class="img-fluid" src="./../images/DAL.png" alt="DAL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.DAL"> DAL</span>
+                     </a>
+                      <a href="./DET.html" title="DET" >
+                       <img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.DET"> DET</span>
+                     </a>
+                      <a href="./EDM.html" title="EDM" >
+                       <img class="img-fluid" src="./../images/EDM.png" alt="EDM" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.EDM"> EDM</span>
+                     </a>
+                      <a href="./FLA.html" title="FLA" >
+                       <img class="img-fluid" src="./../images/FLA.png" alt="FLA" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.FLA"> FLA</span>
+                     </a>
+                      <a href="./LAK.html" title="LAK" >
+                       <img class="img-fluid" src="./../images/LAK.png" alt="LAK" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.LAK"> LAK</span>
+                     </a>
+                      <a href="./MIN.html" title="MIN" >
+                       <img class="img-fluid" src="./../images/MIN.png" alt="MIN" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.MIN"> MIN</span>
+                     </a>
+                      <a href="./MTL.html" title="MTL" >
+                       <img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.MTL"> MTL</span>
+                     </a>
+                      <a href="./NSH.html" title="NSH" >
+                       <img class="img-fluid" src="./../images/NSH.png" alt="NSH" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NSH"> NSH</span>
+                     </a>
+                      <a href="./NJD.html" title="NJD" >
+                       <img class="img-fluid" src="./../images/NJD.png" alt="NJD" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NJD"> NJD</span>
+                     </a>
+                      <a href="./NYI.html" title="NYI" >
+                       <img class="img-fluid" src="./../images/NYI.png" alt="NYI" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NYI"> NYI</span>
+                     </a>
+                      <a href="./NYR.html" title="NYR" >
+                       <img class="img-fluid" src="./../images/NYR.png" alt="NYR" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NYR"> NYR</span>
+                     </a>
+                      <a href="./OTT.html" title="OTT" >
+                       <img class="img-fluid" src="./../images/OTT.png" alt="OTT" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.OTT"> OTT</span>
+                     </a>
+                      <a href="./PHI.html" title="PHI" >
+                       <img class="img-fluid" src="./../images/PHI.png" alt="PHI" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.PHI"> PHI</span>
+                     </a>
+                      <a href="./PIT.html" title="PIT" >
+                       <img class="img-fluid" src="./../images/PIT.png" alt="PIT" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.PIT"> PIT</span>
+                     </a>
+                      <a href="./SJS.html" title="SJS" >
+                       <img class="img-fluid" src="./../images/SJS.png" alt="SJS" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.SJS"> SJS</span>
+                     </a>
+                      <a href="./STL.html" title="STL" >
+                       <img class="img-fluid" src="./../images/STL.png" alt="STL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.STL"> STL</span>
+                     </a>
+                      <a href="./TBL.html" title="TBL" >
+                       <img class="img-fluid" src="./../images/TBL.png" alt="TBL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.TBL"> TBL</span>
+                     </a>
+                      <a href="./TOR.html" title="TOR" >
+                       <img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.TOR"> TOR</span>
+                     </a>
+                      <a href="./VAN.html" title="VAN" >
+                       <img class="img-fluid" src="./../images/VAN.png" alt="VAN" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.VAN"> VAN</span>
+                     </a>
+                      <a href="./VGK.html" title="VGK" >
+                       <img class="img-fluid" src="./../images/VGK.png" alt="VGK" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.VGK"> VGK</span>
+                     </a>
+                      <a href="./WSH.html" title="WSH" >
+                       <img class="img-fluid" src="./../images/WSH.png" alt="WSH" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.WSH"> WSH</span>
+                     </a>
+                      <a href="./WPG.html" title="WPG" >
+                       <img class="img-fluid" src="./../images/WPG.png" alt="WPG" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.WPG"> WPG</span>
+                     </a>
+                  </li>
+                  <hr>
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">Leagues</span>
+                  </li>
+                  <li class=" ">
+                     <a href="./../NWHL/index.html" title="NWHL" >
+                       <img class="img-fluid" src="./../images/NWHL.png" alt="NWHL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NWHL"> NWHL</span>
+                     </a>
+                     <a href="./../CWHL/index.html" title="CWHL" >
+                       <img class="img-fluid" src="./../images/CWHL.png" alt="CWHL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.CWHL"> CWHL</span>
+                     </a>
+                     <a href="./../AHL/index.html" title="AHL" >
+                       <img class="img-fluid" src="./../images/AHL.png" alt="AHL" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.AHL"> AHL &nbsp; -&nbsp;  <small><i>Coming Soon</i></small></span>
+                     </a>
+                     <a href="./../NCAA/index.html" title="NCAA" >
+                       <img class="img-fluid" src="./../images/ncaa.png" alt="NCAA" style="width:2.25em; padding-right:3%;">
+                        <span data-localize="sidebar.nav.NCAA"> NCAA - <small><i>Coming Soon</i></small></span>
+                     </a>
+                  </li>  
+                  <hr>
+                  <li class=" ">
+                    <a href="./../about.html" title="about" >
+                      <i class="fa fa-hockey-puck" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.ABOUT">  About</span>
+                    </a>
+                    <a href="mailto:benchbosses@gmail.com" target="_blank" title="email" >
+                      <i class="fa fa-envelope" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.EMAIL"> Contact Us</span>
+                    </a>
+                    <a href="https://www.twitter.com/BenchBosses" title="twitter" >
+                      <i class="fab fa-twitter" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.TWITTER"> BenchBosses</span>
+                    </a>
+                    <a href="https://www.patreon.com/behindthebenches" title="patreon" >
+                      <i class="fab fa-patreon" aria-hidden="true" style="width:2.25em; padding-right:3%;"></i>
+                        <span data-localize="sidebar.nav.PATREON"> Support Us</span>
+                    </a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+      </aside>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== SIDEBAR END ====================== -->
+      <!--///////////////////////////////////////////////////////////-->
+
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN START ======================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <section class="section-container" style="background:white;" >
+         <div class="content-wrapper">
+            <div class=" text-center">
+               <h1 class="text-center" style="padding:1%; color:black;line-height: 32px;">Stanley Cup Winners<br><span style="font-size:17px;">1927 - 2018</span> <h1>
+            </div>
+            <div class="row" style="overflow: scroll; max-width: 100%;">
+              <div class="col-xl-12">
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- ==================== STANLEY CUP START ================== -->
+                <!--///////////////////////////////////////////////////////////-->
+                <table id="example" class="row-border" style="width:100%;">
+                  <thead>
+                    <tr style="font-size: 12px; text-align: left;" class="Capitals top">
+                      <th class="no-sort" colspan="4"></th>
+                      <th class="no-sort">* Associate</th>
+                      <th class="no-sort">** Co-Coach</th>
+                      <th class="no-sort">*** Player Assistant</th>
+                    </tr>
+                    <tr style="font-size: 14px; text-align: left;" class="Capitals1 bottom">
+                      <th width="6%">Year</th>
+                      <th width="12%">Winning Team</th>
+                      <th width="12%">Coach</th>
+                      <th width="17%" class="no-sort">Assistant</th>
+                      <th width="17%" class="no-sort">Assistant</th>
+                      <th width="17%" class="no-sort">Assistant</th>
+                      <th width="17%" class="no-sort">Assistant</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2018</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">WSH</span><img class="img-fluid" src="./../images/WSH.png" alt="WSH" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Barry Trotz</td>
+                      <td>Todd Reirden*</td>
+                      <td>Blaine Forsythe</td>
+                      <td>Lane Lambert</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2017</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">PIT</span><img class="img-fluid" src="./../images/PIT.png" alt="PIT" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Mike Sullivan</td>
+                      <td>Rick Tocchet</td>
+                      <td>Jacques Martin</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2016</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">PIT</span><img class="img-fluid" src="./../images/PIT.png" alt="PIT" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Mike Sullivan</td>
+                      <td>Rick Tocchet</td>
+                      <td>Gary Agnew</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2015</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CHI</span><img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Joel Quenneville</td>
+                      <td>Mike Kitchen</td>
+                      <td>Kevin Dineen</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2014</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">LAK</span><img class="img-fluid" src="./../images/LAK.png" alt="LAK" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Darryl Sutter</td>
+                      <td>John Stevens</td>
+                      <td>Davis Payne</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2013</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CHI</span><img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Joel Quenneville</td>
+                      <td>Mike Kitchen</td>
+                      <td>Jaime Kompon</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2012</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">LAK</span><img class="img-fluid" src="./../images/LAK.png" alt="LAK" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Darryl Sutter</td>
+                      <td>Jaime Kompon</td>
+                      <td>John Stevens</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2011</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">BOS</span><img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Claude Julien</td>
+                      <td>Geoff Ward</td>
+                      <td>Doug Jarvis</td>
+                      <td>Doug Houda</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2010</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CHI</span><img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Joel Quenneville</td>
+                      <td>John Torchetti</td>
+                      <td>Mike Haviland</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2009</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">PIT</span><img class="img-fluid" src="./../images/PIT.png" alt="PIT" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Dan Bylsma</td>
+                      <td>Mike Yeo</td>
+                      <td>Andre Savard</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2008</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Mike Babcock</td>
+                      <td>Todd McLellan</td>
+                      <td>Paul MacLean</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2007</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">ANA</span><img class="img-fluid" src="./../images/ANA.png" alt="ANA" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Randy Carlyle</td>
+                      <td>Dave Farrish</td>
+                      <td>Newell Brown</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2006</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CAR</span><img class="img-fluid" src="./../images/CAR.png" alt="CAR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Peter Laviolette</td>
+                      <td>Kevin McCarthy</td>
+                      <td>Jeff Daniels</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2004</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TBL</span><img class="img-fluid" src="./../images/TBL.png" alt="TBL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>John Tortorella</td>
+                      <td>Craig Ramsay</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2003</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NJD</span><img class="img-fluid" src="./../images/NJD.png" alt="NJD" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Pat Burns</td>
+                      <td>John MacLean</td>
+                      <td>Bobby Carpenter</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2002</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td>Barry Smith*</td>
+                      <td>Dave Lewis</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2001</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">COL</span><img class="img-fluid" src="./../images/COL.png" alt="COL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Bob Hartley</td>
+                      <td>Bryan Trottier</td>
+                      <td>Jacques Cloutier</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>2000</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NJD</span><img class="img-fluid" src="./../images/NJD.png" alt="NJD" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Larry Robinson</td>
+                      <td>Viacheslav Fetisov</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1999</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DAL</span><img class="img-fluid" src="./../images/DAL.png" alt="DAL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Ken Hitchcock</td>
+                      <td>Rick Wilson</td>
+                      <td>Doug Jarvis</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1998</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td>Barry Smith*</td>
+                      <td>Dave Lewis</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1997</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td>Barry Smith*</td>
+                      <td>Dave Lewis</td>
+                      <td>Mike Krushelnyski</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1996</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">COL</span><img class="img-fluid" src="./../images/COL.png" alt="COL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Marc Crawford</td>
+                      <td>Joel Quenneville</td>
+                      <td>Jacques Martin</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1995</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NJD</span><img class="img-fluid" src="./../images/NJD.png" alt="NJD" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Jacques Lemaire</td>
+                      <td>Dennis Gendron</td>
+                      <td>Larry Robinson</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1994</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYR</span><img class="img-fluid" src="./../images/NYR.png" alt="NYR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Mike Keenan</td>
+                      <td>Dick Todd</td>
+                      <td>Colin Campbell</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1993</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Jacques Demers</td>
+                      <td>Charles Tiffault</td>
+                      <td>Jacques Laperriere</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1992</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">PIT</span><img class="img-fluid" src="./../images/PIT.png" alt="PIT" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td>Barry Smith</td>
+                      <td>Pierre McGuire</td>
+                      <td>Rick Paterson</td>
+                      <td>Rick Kehoe</td>
+                    </tr>
+                    <tr>
+                      <td>1991</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">PIT</span><img class="img-fluid" src="./../images/PIT.png" alt="PIT" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Bob Johnson</td>
+                      <td>Barry Smith</td>
+                      <td>Rick Paterson</td>
+                      <td>Rick Kehoe</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1990</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">EDM</span><img class="img-fluid" src="./../images/EDM.png" alt="EDM" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>John Muckler</td>
+                      <td>Ted Green*</td>
+                      <td>Ron Low</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1989</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CGY</span><img class="img-fluid" src="./../images/CGY.png" alt="CGY" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Terry Crisp</td>
+                      <td>Tom Watt</td>
+                      <td>Doug Risebrough</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1988</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">EDM</span><img class="img-fluid" src="./../images/EDM.png" alt="EDM" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Glen Sather</td>
+                      <td>John Muckler **</td>
+                      <td>Ted Green</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1987</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">EDM</span><img class="img-fluid" src="./../images/EDM.png" alt="EDM" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Glen Sather</td>
+                      <td>John Muckler **</td>
+                      <td>Ted Green</td>
+                      <td>Bruce MacGregor</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1986</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Jean Perron</td>
+                      <td>Jacques Laperriere</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1985</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">EDM</span><img class="img-fluid" src="./../images/EDM.png" alt="EDM" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Glen Sather</td>
+                      <td>John Muckler</td>
+                      <td>Ted Green</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1984</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">EDM</span><img class="img-fluid" src="./../images/EDM.png" alt="EDM" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Glen Sather</td>
+                      <td>John Muckler</td>
+                      <td>Ted Green</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1983</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYI</span><img class="img-fluid" src="./../images/NYI.png" alt="NYI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Al Arbour</td>
+                      <td>Lorne Henning</td>
+                      <td>Robert ‘Butch’ Goring ***</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1982</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYI</span><img class="img-fluid" src="./../images/NYI.png" alt="NYI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Al Arbour</td>
+                      <td>Lorne Henning</td>
+                      <td>Robert ‘Butch’ Goring ***</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1981</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYI</span><img class="img-fluid" src="./../images/NYI.png" alt="NYI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Al Arbour</td>
+                      <td>Bill MacMillan</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1980</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYI</span><img class="img-fluid" src="./../images/NYI.png" alt="NYI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Al Arbour</td>
+                      <td>Bert Marshall ***</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1979</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1978</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1977</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1976</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1975</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">PHI</span><img class="img-fluid" src="./../images/PHI.png" alt="PHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Fred Shero</td>
+                      <td>Mike Nykoluk</td>
+                      <td>Barry Ashbee</td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1974</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">PHI</span><img class="img-fluid" src="./../images/PHI.png" alt="PHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Fred Shero</td>
+                      <td>Mike Nykoluk</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1973</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Scotty Bowman</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1972</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">BOS</span><img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Tom Johnson</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1971</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Al MacNeil</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1970</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">BOS</span><img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Harry Sinden</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1969</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Claude Ruel</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1968</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1967</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Punch Imlach</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1966</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1965</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1964</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Punch Imlach</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1963</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Punch Imlach</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1962</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Punch Imlach</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1961</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CHI</span><img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Rudy Pilous</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1960</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1959</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL"" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1958</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1957</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1956</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Toe Blake</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1955</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Jimmy Skinner</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1954</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Tommy Ivan</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1953</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Dick Irvin</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1952</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Tommy Ivan</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1951</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Joe Primeau</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1950</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Tommy Ivan</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1949</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Hap Day</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1948</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Hap Day</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1947</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Hap Day</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1946</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Dick Irvin</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1945</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Hap Day</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1944</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Dick Irvin</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1943</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Jack Adams</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1942</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Hap Day</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1941</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">BOS</span><img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Cooney Weiland</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1940</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYR</span><img class="img-fluid" src="./../images/NYR.png" alt="NYR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Frank Boucher</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1939</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">BOS</span><img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Art Ross</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1938</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CHI</span><img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Bill Stewart</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1937</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Jack Adams</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1936</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">DET</span><img class="img-fluid" src="./../images/DET.png" alt="DET" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Jack Adams</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1935</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">Montreal Maroons - MTL</span><img class="img-fluid" src="./../images/MM.png" alt="Montreal Maroons - MTL" style="width:2.5em; padding-right:3%;">&emsp;</td>
+                      <td>Tommy Gorman</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1934</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">CHI</span><img class="img-fluid" src="./../images/CHI.png" alt="CHI" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Tommy Gorman</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1933</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYR</span><img class="img-fluid" src="./../images/NYR.png" alt="NYR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Lester Patrick</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1932</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">TOR</span><img class="img-fluid" src="./../images/TOR.png" alt="TOR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Dick Irvin</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1931</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Cecil Hart</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1930</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">MTL</span><img class="img-fluid" src="./../images/MTL.png" alt="MTL" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Cecil Hart</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1929</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">BOS</span><img class="img-fluid" src="./../images/BOS.png" alt="BOS" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Cy Denneny</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1928</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">NYR</span><img class="img-fluid" src="./../images/NYR.png" alt="NYR" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Lester Patrick</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>1927</td>
+                      <td aign="center" style="text-align: center;"><span style="font-size: 0;">OTT</span><img class="img-fluid" src="./../images/OTT.png" alt="OTT" style="width:3.25em; padding-right:3%;">&emsp;</td>
+                      <td>Dave Gill</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--///////////////////////////////////////////////////////////-->
+                <!-- =================== STANLEY CUP END ===================== -->
+                <!--///////////////////////////////////////////////////////////-->
+              </div>
+            </div>
+          <a href="#" class="go-top">Go Top</a>
+          <br><br>
+        </div>
+      </section>
+      <!--///////////////////////////////////////////////////////////-->
+      <!-- ====================== MAIN END ========================= -->
+      <!--///////////////////////////////////////////////////////////-->
+      <footer class="footer-container">
+        <span><small>2019 - Behind the Benches</small></span>
+      </footer>
+    </div>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- =================== VENDER SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- MODERNIZR-->
+    <script src="./../js/modernizr.custom.js"></script>
+    <!-- JQUERY-->
+    <script src="./../js/jquery.js"></script>
+    <!-- BOOTSTRAP-->
+    <script src="./../js/popper.js"></script>
+    <script src="./../js/bootstrap.js"></script>
+    <!-- STORAGE API-->
+    <script src="./../js/js.storage.js"></script>
+    <!-- JQUERY EASING-->
+    <script src="./../js/jquery.easing.js"></script>
+    <!-- ANIMO-->
+    <script src="./../js/animo.js"></script>
+    <!-- SCREENFULL-->
+    <script src="./../js/screenfull.js"></script>
+    <!-- LOCALIZE-->
+    <script src="./../js/jquery.localize.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ================= PAGE VENDER SCRIPTS =================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- Datatables-->
+    <script src="./../js/jquery.dataTables.js"></script>
+    <script src="./../js/dataTables.bootstrap4.js"></script>
+    <script src="./../js/dataTables.buttons.js"></script>
+    <script src="./../js/buttons.bootstrap.js"></script>
+    <script src="./../js/buttons.colVis.js"></script>
+    <script src="./../js/buttons.flash.js"></script>
+    <script src="./../js/buttons.html5.js"></script>
+    <script src="./../js/buttons.print.js"></script>
+    <script src="./../js/dataTables.keyTable.js"></script>
+    <script src="./../js/dataTables.responsive.js"></script>
+    <script src="./../js/responsive.bootstrap.js"></script>
+    <script src="./../js/jszip.js"></script>
+    <script src="./../js/pdfmake.js"></script>
+    <script src="./../js/vfs_fonts.js"></script>
+    <!--///////////////////////////////////////////////////////////-->
+    <!-- ====================== APP SCRIPTS ====================== -->
+    <!--///////////////////////////////////////////////////////////-->
+    <script src="./../js/app.js"></script>
+  </body>
+  <!--///////////////////////////////////////////////////////////-->
+  <!-- ======================= BODY END ======================== -->
+  <!--///////////////////////////////////////////////////////////-->
+</html>
