@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Behind the Benches: A public database on what hockey coaches do and for how long they've been doing it. NHL | AHL | CWHL | NWHL | NCAA">
-  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, VGK, Vegas Golden Knights">
+  <meta name="keywords" content="Behind the Benches, NHL, AHL, CWHL, NWHL, NCAA, Hockey Coaches, Coach, Coaches, Video Coach, Skills Coach, Goaltending, Goaltending Coach, Assistant, Assistant Coach, Assistant Coaches, Head Coach, Behind the Bench, BenchBosses, Bench Bosses, GM, General Manager, General Managers, ANA, Anaheim Ducks, ARI, Arizona Coyotes, BOS, Boston Bruins, BUF, Buffalo Sabres, CGY, Calgary Flames, CAR, Carolina Hurricanes, CHI, Chicago Blackhawks, COL, Colorado Avalanche, CBJ, Columbus Blue Jackets, DAL, Dallas Stars, DET, Detroit Red Wings, EDM, Edmonton Oilers, FLA, Florida Panthers, LAK, Los Angeles Kings, MIN, Minnesota Wild, MTL, Montreal Canadiens, NSH, Nashville Predators, NJD, New Jersey Devils, NYI, New York Islanders, NYR, New York Rangers, OTT, Ottawa Senators, PHI, Philadelphia Flyers, PIT, Pittsburgh Penguins, SJS, San Jose Sharks, STL, St. Louis Blues, TBL, Tampa Bay Lightning, TOR, Toronto Maple Leafs, VAN, Vancouver Canucks, VGK, Vegas Golden Knights, WSH, Washington Capitals, WPG, Winnipeg Jets, Stanley, StanleyCup, Stanley Cup, finals, playoffs, contacts, Salary, salaries">
   <link rel="icon" href="./../images/behindthebenches.ico">
-  <title> Vegas Golden Knights | Behind the Benches</title>
+  <title>NHL Jack Adams | Behind the Benches</title>
   <!--///////////////////////////////////////////////////////////-->
   <!-- ==================== VENDOR STYLES ====================== -->
   <!--///////////////////////////////////////////////////////////-->
@@ -37,24 +37,44 @@
   <!-- ==================== CSS PAGE STYLES ==================== -->
   <!--///////////////////////////////////////////////////////////-->
   <style type="text/css" class="init">
+    .dataTables_length, .dataTables_info, .dataTables_paginate, .paging_simple_numbers{
+      visibility: hidden;
+    }
+    table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc_disabled:before {
+    right: .5em;
+    content: "";
+}
+
     @media screen and (max-width: 980px) {
       .row-border {
-        position: relative;
-        -webkit-transition: all 0.25s ease-out;
-        -moz-transition: all 0.25s ease-out;
-        -o-transition: all 0.25s ease-out;
-        -ms-transition: all 0.25s ease-out;
-        transition: all 0.25s ease-out;
-        width:calc(100% + 220px);
-        font-size: 10px;
+      position: relative;
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      -o-transition: all 0.25s ease-out;
+      -ms-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      width:calc(100% + 220px);
+      font-size: 12px;
       }  
       h1{
         font-size: 30px;
-      }
+        }
+      .bottom{font-size: 12px!important;}
+      .top{font-size: 9px!important;}
+    }
+    .dataTables_filter{
+      padding-right: 10%;
     }
 
-    .tableTitle{
-      font-size: 20px;
+    label{
+      font-size: 16px;
+    }
+    
+    td{padding:12px!important;}
+
+    .form-control{
+      background: rgb(245,245,245);
     }
 
     .no-js #loader { 
@@ -101,6 +121,28 @@
   <!--///////////////////////////////////////////////////////////-->
   <script type="text/javascript" class="init">
     $(document).ready(function() {
+      $('#example').DataTable( {
+        "order": [[ 0, "desc" ], [ 1, "desc" ], [ 2, "desc" ]],
+        "paging":   false,
+        "info":     false,
+        columnDefs: [{
+          orderable: false,
+          targets: "no-sort"
+        }, {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 2 ],
+            orderData: [ 1, 2 ]
+        } ],
+        "searching": false
+    } );
+    } );
+
+   $(document).ready(function() {
         $(window).scroll(function() {
           if ($(this).scrollTop() > 200) {
             $('.go-top').fadeIn(200);
@@ -109,7 +151,7 @@
           }
         });
         $('.go-top').click(function(event) {
-          event.preventDefault();
+          event.preventDefault(); 
           $('html, body').animate({scrollTop: 0}, 300);
         })
       });
@@ -393,556 +435,309 @@
       <section class="section-container" style="background:white;" >
          <div class="content-wrapper">
             <div class=" text-center">
-               <h1 class="text-center" style="padding:1%; color:black;"> <img src="./../images/VGK.png" style="width:1.5em"> Vegas Golden Knights </h1><br>
+               <h1 class="text-center" style="padding:1%; color:black;">Jack Adams Award<h1><br>
             </div>
-            <div id="tablePadding" class="row">
-              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
+            <div class="row" style="overflow: scroll; max-width: 100%;">
+              <div class="col-xl-12">
                 <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ COACHING HISTORY START ================= -->
+                <!-- ==================== JACK ADAMS START =================== -->
                 <!--///////////////////////////////////////////////////////////-->
-                <table class="table row-border" style="width:100%">
-                    <tr class="Knights" style="font-size: 30px;">
-                      <th class="tableTitle" colspan="8">Coaching History</th>
+                <table id="example" class="row-border" style="width:100%;">
+                  <thead>
+                    <tr class="Knights" style="text-align:center;font-size:20px;">
+                      <th class="tableTitle" colspan="4">Coach of the Year 1974 - 2018</th>
                     </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th>Position </th>
-                      <th>Name </th>
-                      <th>Seasons </th>
-                      <th>DOB </th>
-                      <th>Specialty </th> 
-                      <th>Hire Date </th>
-                      <th>End Date </th> 
-                      <th>Fired? </th>
+                    <tr class="Knights1" style="text-align:left;font-size: 13px;">
+                      <th width="15%">Year</th>
+                      <th width="25%">Coach</th>
+                      <th width="25%">Team</th>
+                      <th width="35%" class="no-sort">Record</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Head</td>
-                      <td><a href="#GerardGallant">Gerard Gallant</a></td>
-                      <td>2017 - Present</td>
-                      <td>9/2/1963</td>
-                      <td>Head</td>
-                      <td>4/13/2017</td>
+                      <td>2019</td>
+                      <td> </td>
                       <td> </td>
                       <td> </td>
                     </tr>
                     <tr>
-                      <td>Assistant</td>
-                      <td>Mike Kelly</td>
-                      <td>2017 - Present</td>
-                      <td>1/17/1960</td>
-                      <td>Penalty Kill</td>
-                      <td>6/8/2017</td>
-                      <td> </td>
-                      <td> </td>
+                      <td>2018</td>
+                      <td>Gerard Gallant</td>
+                      <td>Vegas Golden Knights</td>
+                      <td>43-32-7 (Lost in Stanley Cup Final)</td>
                     </tr>
                     <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Craig</td>
-                      <td>2017 - Present</td>
-                      <td>1/6/1982</td>
-                      <td>Forwards, Power Play</td>
-                      <td>6/9/2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan McGill</td>
-                      <td>2017 - Present</td>
-                      <td>2/28/1969</td>
-                      <td>Defense, Penalty Kill</td>
-                      <td>6/29/2017</td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Prior</td>
-                      <td>2017 - Present</td>
-                      <td> </td>
-                      <td>Goaltending</td>
                       <td>2017</td>
-                      <td> </td>
+                      <td>John Tortorella</td>
+                      <td>Columbus Blue Jackets</td>
+                      <td>50-24-8 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>2016</td>
+                      <td>Barry Trotz</td>
+                      <td>Washington Capitals</td>
+                      <td>56-18-8 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>2015</td>
+                      <td>Bob Hartley</td>
+                      <td>Calgary Flames</td>
+                      <td>45-30-7 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>2014</td>
+                      <td>Patrick Roy</td>
+                      <td>Colorado Avalanche</td>
+                      <td>52-22-8 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>2013</td>
+                      <td>Paul MacLean</td>
+                      <td>Ottawa Senators</td>
+                      <td>25-17-6 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>2012</td>
+                      <td>Ken Hitchcock</td>
+                      <td>St. Louis Blues</td>
+                      <td>43-15-11 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>2011</td>
+                      <td>Dan Bylsma</td>
+                      <td>Pittsburgh Penguins</td>
+                      <td>49-25-8 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>2010</td>
+                      <td>Dave Tippett</td>
+                      <td>Phoenix Coyotes</td>
+                      <td>50-25-7 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>2009</td>
+                      <td>Claude Julien</td>
+                      <td>Boston Bruins</td>
+                      <td>53-19-10 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>2008</td>
+                      <td>Bruce Boudreau</td>
+                      <td>Washington Capitals</td>
+                      <td>37-17-7 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>2007</td>
+                      <td>Alain Vigneault</td>
+                      <td>Vancouver Canucks</td>
+                      <td>49-26-7 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>2006</td>
+                      <td>Lindy Ruff</td>
+                      <td>Buffalo Sabres</td>
+                      <td>52-24-6 (Lost in Eastern Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>2005</td>
+                      <td>—</td>
+                      <td>—</td>
                       <td> </td>
                     </tr>
                     <tr>
-                      <td>Video</td>
-                      <td>Tommy Cruz</td>
-                      <td>2017 - Present</td>
-                      <td>3/9/1994</td>
-                      <td>Video</td>
-                      <td>2017</td>
-                      <td> </td>
-                      <td> </td>
+                      <td>2004</td>
+                      <td>John Tortorella</td>
+                      <td>Tampa Bay Lightning</td>
+                      <td>46-22-8-6 (Won Stanley Cup)</td>
+                    </tr>
+                    <tr>
+                      <td>2003</td>
+                      <td>Jacques Lemaire</td>
+                      <td>Minnesota Wild</td>
+                      <td>42-29-10-1 (Lost in Western Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>2002</td>
+                      <td>Bob Francis</td>
+                      <td>Phoenix Coyotes</td>
+                      <td>40-27-9-6 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>2001</td>
+                      <td>Bill Barber</td>
+                      <td>Philadelphia Flyers</td>
+                      <td>31-13-7-3 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>2000</td>
+                      <td>Joel Quenneville</td>
+                      <td>St. Louis Blues</td>
+                      <td>51-19-11-1 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1999</td>
+                      <td>Jacques Martin</td>
+                      <td>Ottawa Senators</td>
+                      <td>44-23-15 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1998</td>
+                      <td>Pat Burns</td>
+                      <td>Boston Bruins</td>
+                      <td>39-30-13 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1997</td>
+                      <td>Ted Nolan</td>
+                      <td>Buffalo Sabres</td>
+                      <td>40-30-12 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>1996</td>
+                      <td>Scotty Bowman</td>
+                      <td>Detroit Red Wings</td>
+                      <td>62-13-7 (Lost in Western Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1995</td>
+                      <td>Marc Crawford</td>
+                      <td>Quebec Nordiques</td>
+                      <td>30-13-5 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1994</td>
+                      <td>Jacques Lemaire</td>
+                      <td>New Jersey Devils</td>
+                      <td>47-25-12 (Lost in Eastern Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1993</td>
+                      <td>Pat Burns</td>
+                      <td>Toronto Maple Leafs</td>
+                      <td>44-29-11 (Lost in Campbell Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1992</td>
+                      <td>Pat Quinn</td>
+                      <td>Vancouver Canucks</td>
+                      <td>42-26-12 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>1991</td>
+                      <td>Brian Sutter</td>
+                      <td>St. Louis Blues</td>
+                      <td>47-22-11 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>1990</td>
+                      <td>Bob Murdoch</td>
+                      <td>Winnipeg Jets</td>
+                      <td>37-32-11 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1989</td>
+                      <td>Pat Burns</td>
+                      <td>Montreal Canadiens</td>
+                      <td>53-18-9 (Lost in Stanley Cup Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1988</td>
+                      <td>Jacques Demers</td>
+                      <td>Detroit Red Wings</td>
+                      <td>41-28-11 (Lost in Campbell Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1987</td>
+                      <td>Jacques Demers</td>
+                      <td>Detroit Red Wings</td>
+                      <td>34-36-10 (Lost in Campbell Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1986</td>
+                      <td>Glen Sather</td>
+                      <td>Edmonton Oilers</td>
+                      <td>56-17-7 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>1985</td>
+                      <td>Mike Keenan</td>
+                      <td>Philadelphia Flyers</td>
+                      <td>53-20-7 (Lost in Stanley Cup Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1984</td>
+                      <td>Bryan Murray</td>
+                      <td>Washington Capitals</td>
+                      <td>48-27-5 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>1983</td>
+                      <td>Orval Tessier</td>
+                      <td>Chicago Black Hawks</td>
+                      <td>47-23-10 (Lost in Campbell Conference Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1982</td>
+                      <td>Tom Watt</td>
+                      <td>Winnipeg Jets</td>
+                      <td>33-33-14 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1981</td>
+                      <td>Red Berenson</td>
+                      <td>St. Louis Blues</td>
+                      <td>45-18-7 (Lost in Round 2)</td>
+                    </tr>
+                    <tr>
+                      <td>1980</td>
+                      <td>Pat Quinn</td>
+                      <td>Philadelphia Flyers</td>
+                      <td>48-12-20 (Lost in Stanley Cup Final)</td>
+                    </tr>
+                    <tr>
+                      <td>1979</td>
+                      <td>Al Arbour</td>
+                      <td>New York Islanders</td>
+                      <td>51-15-14 (Lost in Round 3)</td>
+                    </tr>
+                    <tr>
+                      <td>1978</td>
+                      <td>Bobby Kromm</td>
+                      <td>Detroit Red Wings</td>
+                      <td>32-34-14 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1977</td>
+                      <td>Scotty Bowman</td>
+                      <td>Montreal Canadiens</td>
+                      <td>60-8-12 (Won Stanley Cup)</td>
+                    </tr>
+                    <tr>
+                      <td>1976</td>
+                      <td>Don Cherry</td>
+                      <td>Boston Bruins</td>
+                      <td>48-15-17 (Lost in Round 3)</td>
+                    </tr>
+                    <tr>
+                      <td>1975</td>
+                      <td>Bob Pulford</td>
+                      <td>Los Angeles Kings</td>
+                      <td>42-17-21 (Lost in Round 1)</td>
+                    </tr>
+                    <tr>
+                      <td>1974</td>
+                      <td>Fred Shero</td>
+                      <td>Philadelphia Flyers</td>
+                      <td>50-16-12 (Won Stanley Cup)</td>
                     </tr>
                   </tbody>
                 </table>
                 <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ COACHING HISTORY ENDS  ================= -->
-                <!--///////////////////////////////////////////////////////////-->
-               </div>
-            </div>
-            <br><br>
-            <section>
-            <div class=" text-center">
-               <h3 class="text-center" style="padding:1%; color:black;"> Season by Season </h3>
-            </div>
-            <div id="tablePadding" class="row">
-              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ SEASON BY SEASON START ================= -->
-                <!--///////////////////////////////////////////////////////////-->
-                <table class="table row-border" style="width:100%">
-                    <!-- ================= 2018-19 ==================== -->
-                    <tr class="Knights" style="font-size: 12px;">
-                      <th class="tableTitle" colspan="8">2018-19</th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th width="25%">Position </th>
-                      <th width="25%">Name </th>
-                      <th width="25%">Seasons </th>
-                      <th width="25%">Specialty </th> 
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Head</td>
-                      <td>Gerard Gallant</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mike Kelly</td>
-                      <td>2017 - Present</td>
-                      <td>Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Craig</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan McGill</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Prior</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Tommy Cruz</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                    <!-- ================= 2017-18 ==================== -->
-                    <tr class="Knights" style="font-size: 12px;">
-                      <th class="tableTitle" colspan="8">2017-18</th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th>Position </th>
-                      <th>Name </th>
-                      <th>Seasons </th>
-                      <th>Specialty </th> 
-                    </tr>
-                    <tr>
-                      <td>Head</td>
-                      <td>Gerard Gallant</td>
-                      <td>2017 - Present</td>
-                      <td>Head</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Mike Kelly</td>
-                      <td>2017 - Present</td>
-                      <td>Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan Craig</td>
-                      <td>2017 - Present</td>
-                      <td>Forwards, Power Play</td>
-                    </tr>
-                    <tr>
-                      <td>Assistant</td>
-                      <td>Ryan McGill</td>
-                      <td>2017 - Present</td>
-                      <td>Defense, Penalty Kill</td>
-                    </tr>
-                    <tr>
-                      <td>Goaltending</td>
-                      <td>David Prior</td>
-                      <td>2017 - Present</td>
-                      <td>Goaltending</td>
-                    </tr>
-                    <tr>
-                      <td>Video</td>
-                      <td>Tommy Cruz</td>
-                      <td>2017 - Present</td>
-                      <td>Video</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================ SEASON BY SEASON END =================== -->
+                <!-- =================== JACK ADAMS END ====================== -->
                 <!--///////////////////////////////////////////////////////////-->
               </div>
             </div>
-          </section>
-          <br><br>
-          <div class=" text-center">
-               <h3 class="text-center" style="padding:1%; color:black;"> Head Coach History</h3>
-          </div>
-         <section id="GerardGallant">
-            <div id="tablePadding" class="row">
-              <div id="tableBorder" class="col-xl-12 table-responsive-xl table-condensed">
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================== GERARD GALLANT START ================= -->
-                <!--///////////////////////////////////////////////////////////-->
-                <table class="table row-border" style="width:100%">
-                    <tr class="Knights" style="font-size: 15px;">
-                      <th class="tableTitle" colspan="10"> Gerard Gallant </th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">       
-                      <th>DOB</th>
-                      <th>Hire Date</th>
-                      <th> </th>
-                      <th>2018-19 Salary</th>
-                      <th colspan="2">Jack Adams Award</th>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>September 2, 1963</td>
-                      <td>April 13, 2017</td>
-                      <td> </td>
-                      <td>Unknown</td>
-                      <td>2017-18</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>              
-                    <tr>
-                      <td> </td>
-                      <td colspan="3"><i>*Signed four year contract in April 2017 </i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table class="table row-border" style="width:100%">
-                  <tbody>
-                    <tr>
-                      <th colspan="4"></th>
-                      <th colspan="6" class="Knights" style="font-size: 15px;">Record</th>
-                    </tr>
-                    <tr class="Knights1" style="font-size: 13px;">
-                      <th>Season</th>
-                      <th>Team</th>
-                      <th>League</th>
-                      <th>Position</th>
-                      <th>Games<br>Played</th>
-                      <th>Win</th>
-                      <th>Loss</th>
-                      <th>Tie</th>
-                      <th>Overtime<br>Loss</th>
-                      <th>Playoffs</th>
-                    </tr>
-                    <tr>
-                      <td>1998-99</td>
-                      <td>Fort Wayne Komets</td>
-                      <td>IHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>1999-00</td>
-                      <td>Louisville Panthers</td>
-                      <td>AHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2001-02</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2002-03</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2003-04</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2003-04</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>45</td>
-                      <td>16</td>
-                      <td>25</td>
-                      <td>4</td>
-                      <td>0</td>
-                      <td>Missed Playoffs</td>
-                    </tr>
-                    <tr>
-                      <td> </td>
-                      <td colspan="3" style="text-align: center; "><i>*Promoted January 1, 2004</i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2005-06</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>35</td>
-                      <td>43</td>
-                      <td>0</td>
-                      <td>4</td>
-                      <td>Missed Playoffs</td>
-                    </tr>
-                    <tr>
-                      <td>2006-07</td>
-                      <td>Columbus Blue Jackets</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>15</td>
-                      <td>5</td>
-                      <td>9</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td> </td>
-                      <td colspan="3" style="text-align: center; "><i>*Fired November 13, 2006</i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2007-08</td>
-                      <td>New York Islanders</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2008-09</td>
-                      <td>New York Islanders</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2009-10</td>
-                      <td>Saint John Sea Dogs</td>
-                      <td>QMJHL</td>
-                      <td>Head</td>
-                      <td>68</td>
-                      <td>53</td>
-                      <td>12</td>
-                      <td>0</td>
-                      <td>3</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2010-11</td>
-                      <td>Saint John Sea Dogs</td>
-                      <td>QMJHL</td>
-                      <td>Head</td>
-                      <td>68</td>
-                      <td>58</td>
-                      <td>7</td>
-                      <td>0</td>
-                      <td>3</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2011-12</td>
-                      <td>Saint John Sea Dogs</td>
-                      <td>QMJHL</td>
-                      <td>Head</td>
-                      <td>68</td>
-                      <td>50</td>
-                      <td>15</td>
-                      <td>0</td>
-                      <td>3</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2012-13</td>
-                      <td>Montreal Canadiens</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2013-14</td>
-                      <td>Montreal Canadiens</td>
-                      <td>NHL</td>
-                      <td>Assistant</td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2014-15</td>
-                      <td>Florida Panthers</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>38</td>
-                      <td>29</td>
-                      <td>0</td>
-                      <td>15</td>
-                      <td>Missed Playoffs</td>
-                    </tr>
-                    <tr>
-                      <td>2015-16</td>
-                      <td>Florida Panthers</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>47</td>
-                      <td>26</td>
-                      <td>0</td>
-                      <td>9</td>
-                      <td>Lost in Round 1</td>
-                    </tr>
-                    <tr>
-                      <td>2016-17</td>
-                      <td>Florida Panthers</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>22</td>
-                      <td>11</td>
-                      <td>10</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td> </td>
-                      <td colspan="3" style="text-align: center; "><i>*Fired November 27, 2016</i></td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td>2017-18</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>51</td>
-                      <td>24</td>
-                      <td>0</td>
-                      <td>7</td>
-                      <td>Lost in Stanley Cup Final</td>
-                    </tr>
-                    <tr>
-                      <td>2018-19</td>
-                      <td>Vegas Golden Knights</td>
-                      <td>NHL</td>
-                      <td>Head</td>
-                      <td>82</td>
-                      <td>43</td>
-                      <td>26</td>
-                      <td>0</td>
-                      <td>8</td>
-                      <td>Lost in Round 1</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!--///////////////////////////////////////////////////////////-->
-                <!-- ================== GERARD GALLANT END =================== -->
-                <!--///////////////////////////////////////////////////////////-->
-              </div>
-            </div>  
-          </section>
           <a href="#" class="go-top">Go Top</a>
           <br><br>
         </div>
